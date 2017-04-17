@@ -1,3 +1,130 @@
-<h1>
-  {{title}}
-</h1>
+<div class="geral">
+  <div class="header-background">
+    <div class="row">
+      <div class="col-md-8" style="align: center">
+        <a routerLink="/pages/home"><img src="/images/logo_cort.png" class="logo"></a>
+      </div>
+      <div class="col-md-4 col-xs-12">
+        <div class="contact-header">
+          <h1>Imobiliária Unidas</h1>
+          <h4>25 anos com você!</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Unidas</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="Residencial" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Residencial
+          </a>
+          <div class="dropdown-menu" aria-labelledby="Residencial">
+            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 2}">Vendas</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 1}">Aluguel</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="Comercial" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Comercial
+          </a>
+          <div class="dropdown-menu" aria-labelledby="Comercial">
+            <a class="dropdown-item" href="#">Vendas</a>
+            <a class="dropdown-item" href="#">Aluguel</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Kitnet</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="Rural" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Imóveis Rurais
+          </a>
+          <div class="dropdown-menu" aria-labelledby="Rural">
+            <a class="dropdown-item" href="#">Vendas</a>
+            <a class="dropdown-item" href="#">Aluguel</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Anuncie seu imóvel</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="Institucional" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Institucional
+          </a>
+          <div class="dropdown-menu" aria-labelledby="Institucional">
+            <a class="dropdown-item" routerLink="pages/empresa">A Empresa</a>
+            <a class="dropdown-item" routerLink="pages/regraslocacao">Regras de Locação</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</div>
+<div class="container corpo">
+  <div class="row">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<footer>
+  <div class="row" style="padding-left: 15px">
+    <div class="col-sm-2">
+      <b>Residencial</b>
+      <br>
+      <a href="">Vendas</a>
+      <br>
+      <a href="">Aluguel</a>
+    </div>
+    <div class="col-sm-2">
+      <b>Comercial</b>
+      <br>
+      <a href="">Vendas</a>
+      <br>
+      <a href="">Aluguel</a>
+    </div>
+    <div class="col-sm-2">
+      <b>Kitnet</b>
+      <br>
+      <a href="">Aluguel</a>
+    </div>
+    <div class="col-sm-2">
+      <b>Imóveis Rurais</b>
+      <br>
+      <a href="">Vendas</a>
+      <br>
+      <a href="">Aluguel</a>
+    </div>
+    <div class="col-sm-2">
+      <b>Institucional</b>
+      <br>
+      <a routerLink="/pages/empresa">A Empresa</a>
+      <br>
+      <a routerLink="/pages/regraslocacao">Regras de Locação</a>
+    </div>
+    <div class="col-md-2">
+      <img src="images/logounidas.png" class="img-foot">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12" style="text-align: center">
+      <h5 style="font-size: 0.875rem">Imobiliária Unidas - Rua Santana, 275 - Centro - Itapeva/SP - (15)3521-1472 -
+        (15)3522-3319</h5>
+      <h6 style="font-size: 0.75rem">Segunda à Sexta das 8h às 18h. Sábados das 8h às 12h.</h6>
+    </div>
+  </div>
+</footer>
+

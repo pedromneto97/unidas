@@ -8,7 +8,9 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
+        "images",
         "assets",
+        "documentos",
         "favicon.ico"
       ],
       "index": "index.html",
@@ -19,9 +21,14 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/tether/dist/js/tether.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
