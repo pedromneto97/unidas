@@ -3,6 +3,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import {Subscription} from 'rxjs/Subscription';
+import {Imovel} from '../../app.component';
 
 @Component({
   selector: 'app-imoveis',
@@ -10,17 +11,21 @@ import {Subscription} from 'rxjs/Subscription';
   styleUrls: ['./imoveis.component.css']
 })
 export class ImoveisComponent implements OnInit, OnDestroy {
-  imoveis: string[];
+  imoveis: Imovel[];
+  error: Error;
   tipo: number;
   finalidade: number;
   inscricao: Subscription;
 
   constructor(private servico: ImoveisService, private route: ActivatedRoute) {
-    this.imoveis = servico.getImoveis();
   }
 
   busca(a, b) {
-    this.servico.busca(a, b);
+    this.servico.busca(a, b)
+      .subscribe(
+        imovel => this.imoveis = imovel,
+        error => this.error = error
+      );
   }
 
   ngOnInit() {
@@ -28,7 +33,7 @@ export class ImoveisComponent implements OnInit, OnDestroy {
       (queryParams: any) => {
         this.tipo = queryParams['tipo'];
         this.finalidade = queryParams['finalidade'];
-        return this.servico.busca(this.finalidade, this.tipo);
+        this.busca(this.tipo, this.finalidade);
       }
     );
   }
