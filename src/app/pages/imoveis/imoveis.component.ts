@@ -21,11 +21,9 @@ export class ImoveisComponent implements OnInit, OnDestroy {
   }
 
   busca(a, b) {
-    this.servico.busca(a, b)
-      .subscribe(
-        imovel => this.imoveis = imovel,
-        error => this.error = error
-      );
+    this.servico.busca(a, b).subscribe(
+      imovel => this.imoveis = imovel
+    );
   }
 
   ngOnInit() {
@@ -33,7 +31,7 @@ export class ImoveisComponent implements OnInit, OnDestroy {
       (queryParams: any) => {
         this.tipo = queryParams['tipo'];
         this.finalidade = queryParams['finalidade'];
-        this.busca(this.tipo, this.finalidade);
+        this.busca(this.finalidade, this.tipo);
       }
     );
   }
