@@ -1,6 +1,10 @@
-<p *ngFor="let imovel of imoveis">
-  {{ imovel.valor }}
-  {{ imovel.finalidade_id }}
-  {{imovel.descricao}}
-  {{imovel.suite}}
-</p>
+<table class="table table-hover">
+  <tbody>
+  <tr *ngFor="let imovel of imoveis">
+    <td><img src="/images/1.jpg" class="foto"></td>
+    <td>{{imovel.valor}}</td>
+    <td>{{imovel.banheiros}}</td>
+    <td>{{imovel.suite}}</td>
+  </tr>
+  </tbody>
+</table>

@@ -3,7 +3,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import {Subscription} from 'rxjs/Subscription';
-import {Imovel} from '../../app.component';
+import {Imovel, Rua} from '../../app.component';
 
 @Component({
   selector: 'app-imoveis',
@@ -29,6 +29,7 @@ export class ImoveisComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.inscricao = this.route.queryParams.subscribe(
       (queryParams: any) => {
+        this.imoveis = null;
         this.tipo = queryParams['tipo'];
         this.finalidade = queryParams['finalidade'];
         this.busca(this.finalidade, this.tipo);
