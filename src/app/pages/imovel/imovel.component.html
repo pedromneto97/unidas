@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-12">
-    <div class="row" *ngFor="let imovel of imoveis">
+  <div class="col-12" *ngFor="let imovel of imoveis">
+    <div class="row">
       <div class="col-md-5">
         <a href="images/1.jpg">
           <img src="images/1.jpg" class="img-fluid">
@@ -9,7 +9,7 @@
         <br>
         <button class="btn btn-warning btn-lg my-2 my-sm-0" type="submit">TENHO INTERESSE</button>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-4">
         <h4 class="page-header">Detalhes do imóvel: </h4>
         <p>
           <b>Finalidade:</b> {{imovel.finalidade}}
@@ -25,6 +25,22 @@
         </p>
         <p>
           <b>Endereço:</b> {{imovel.rua}}
+        </p>
+        <p>
+          <b>Área Terreno:</b> {{imovel.aterreno}} m²
+        </p>
+        <p>
+          <b>Área Construída:</b> {{imovel.aconstruida}} m²
+        </p>
+        <h4>
+          <b>Valor: R${{imovel.valor}}</b>
+        </h4>
+      </div>
+      <div class="col-md-3">
+        <br>
+        <p>
+          <b> Descrição:</b>
+          {{imovel.descricao}}
         </p>
         <p>
           {{imovel.dormitorio}} Dormitórios
@@ -45,16 +61,6 @@
         <p>
           <b>Mobíliado:</b>
           {{imovel.mobilia == 1 ? "Sim" : "Não"}}
-        </p>
-        <p>
-          <b>Área Terreno:</b> {{imovel.aterreno}} m²
-        </p>
-        <p>
-          <b>Área Construída:</b> {{imovel.aconstruida}} m²
-        </p>
-        <p>
-          <b> Descrição:</b>
-          {{imovel.descricao}}
         </p>
       </div>
     </div>

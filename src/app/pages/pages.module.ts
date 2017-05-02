@@ -12,6 +12,7 @@ import {ImovelComponent} from './imovel/imovel.component';
 import {ImoveisComponent} from './imoveis/imoveis.component';
 import {ImoveisService} from './imoveis/imoveis.service';
 import {ImovelService} from "./imovel/imovel.service";
+import {HomeService} from "./home/home.service";
 
 
 @NgModule({
@@ -29,10 +30,11 @@ import {ImovelService} from "./imovel/imovel.service";
     ImovelComponent,
     ImoveisComponent,
     ImovelComponent
-      ],
+  ],
   providers: [
     ImoveisService,
-    ImovelService
+    ImovelService,
+    HomeService
   ]
 })
 export class PagesModule {
