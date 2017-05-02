@@ -1,30 +1,62 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-5">
-      <a href="images/1.jpg">
-        <img src="images/1.jpg">
-      </a>
-      <br>
-      <br>
-      <button class="btn btn-warning btn-lg my-2 my-sm-0" type="submit">TENHO INTERESSE</button>
-    </div>
-    <div class="col-lg-7">
-      <h4 class="page-header">Detalhes do Imóvel: </h4>
-      <p><b>Finalidade:</b> Venda</p>
-      <p><b>Tipo:</b> Residencial</p>
-      <p><b>Cidade:</b> Itapeva - SP</p>
-      <p><b>Bairro:</b> Jardim Europa</p>
-      <p><b>Endereço:</b> Avenida Europa</p>
-      <p>3 Dormitórios</p>
-      <p>1 Suíte</p>
-      <p> 2 Banheiros</p>
-      <p>2 Garagens</p>
-      <p><b>Mobília:</b> Não</p>
-      <p><b>Área Terreno:</b> 600 m²</p>
-      <p><b>Área Construída:</b> 300 m²</p>
-      <p><b> Descrição:</b>
-        3 quartos (1 suite), 2 banheiros, copa, cozinha, lavanderia, edicula completa com churrasqueira
-        e garagem</p>
+<div class="row">
+  <div class="col-12">
+    <div class="row" *ngFor="let imovel of imoveis">
+      <div class="col-md-5">
+        <a href="images/1.jpg">
+          <img src="images/1.jpg" class="img-fluid">
+        </a>
+        <br>
+        <br>
+        <button class="btn btn-warning btn-lg my-2 my-sm-0" type="submit">TENHO INTERESSE</button>
+      </div>
+      <div class="col-md-7">
+        <h4 class="page-header">Detalhes do imóvel: </h4>
+        <p>
+          <b>Finalidade:</b> {{imovel.finalidade}}
+        </p>
+        <p>
+          <b>Tipo:</b> {{imovel.tipo}}
+        </p>
+        <p>
+          <b>Cidade:</b> {{imovel.cidade}} - {{imovel.uf}}
+        </p>
+        <p>
+          <b>Bairro:</b> {{imovel.bairro}}
+        </p>
+        <p>
+          <b>Endereço:</b> {{imovel.rua}}
+        </p>
+        <p>
+          {{imovel.dormitorio}} Dormitórios
+        </p>
+        <p>
+          {{imovel.suite}} Suíte
+        </p>
+        <p>
+          {{imovel.banheiros}} Banheiros
+        </p>
+        <p>
+          {{imovel.garagens}} Garagens
+        </p>
+        <p>
+          <b>Área de Serviço: </b>
+          {{imovel.aservico == 1 ? "Sim" : "Não"}}
+        </p>
+        <p>
+          <b>Mobíliado:</b>
+          {{imovel.mobilia == 1 ? "Sim" : "Não"}}
+        </p>
+        <p>
+          <b>Área Terreno:</b> {{imovel.aterreno}} m²
+        </p>
+        <p>
+          <b>Área Construída:</b> {{imovel.aconstruida}} m²
+        </p>
+        <p>
+          <b> Descrição:</b>
+          {{imovel.descricao}}
+        </p>
+      </div>
     </div>
   </div>
 </div>

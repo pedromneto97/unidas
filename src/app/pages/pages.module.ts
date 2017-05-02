@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
 import {HttpModule, JsonpModule} from '@angular/http';
 import {PagesRoutingModule} from './pages.routing.module';
 import {HomeComponent} from './home/home.component';
@@ -11,6 +11,7 @@ import {RegraslocacaoComponent} from './regraslocacao/regraslocacao.component';
 import {ImovelComponent} from './imovel/imovel.component';
 import {ImoveisComponent} from './imoveis/imoveis.component';
 import {ImoveisService} from './imoveis/imoveis.service';
+import {ImovelService} from "./imovel/imovel.service";
 
 
 @NgModule({
@@ -27,8 +28,12 @@ import {ImoveisService} from './imoveis/imoveis.service';
     RegraslocacaoComponent,
     ImovelComponent,
     ImoveisComponent,
-    ImovelComponent],
-  providers: [ImoveisService]
+    ImovelComponent
+      ],
+  providers: [
+    ImoveisService,
+    ImovelService
+  ]
 })
 export class PagesModule {
 }

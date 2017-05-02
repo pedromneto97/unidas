@@ -1,23 +1,38 @@
-<table class="table table-responsive table-hover">
-  <thead>
-  <td>
-  </td>
-  <td>
-  </td>
-  </thead>
-  <tbody>
-  <tr *ngFor="let imovel of imoveis">
-    <td><img src="/images/1.jpg" class="foto"></td>
+<div class="col-12">
+  <table class="table table-responsive table-hover">
+    <thead>
     <td>
-      Endereço: {{imovel.rua}} - {{imovel.numero}}
-      <br>
-      Bairro: {{imovel.bairro}}
-      <br>
-      Cidade: {{imovel.cidade}} - {{imovel.uf}}
     </td>
-    <td>Valor: R${{imovel.valor}}</td>
-    <td>{{imovel.banheiros}}</td>
-    <td>{{imovel.suite}}</td>
-  </tr>
-  </tbody>
-</table>
+    <td>
+    </td>
+    </thead>
+    <tbody>
+    <tr *ngFor="let imovel of imoveis" routerLink="/pages/imovel/" [queryParams]="{id: imovel.id_imovel}">
+
+      <td><img src="/images/1.jpg" class="foto"></td>
+      <td>
+        Endereço: {{imovel.rua}} - {{imovel.numero}}
+        <br>
+        Bairro: {{imovel.bairro}}
+        <br>
+        Cidade: {{imovel.cidade}} - {{imovel.uf}}
+      </td>
+      <td>Valor: R${{imovel.valor}}</td>
+      <td><i class="fa fa-bed fa-fw"></i>
+        <br>
+        {{imovel.dormitorio}}
+      </td>
+      <td>
+        <i class="fa fa-car fa-fw"></i>
+        <br>
+        {{imovel.garagens}}
+      </td>
+      <td>
+        <i class="fa fa-shower fa-fw"></i>
+        <br>
+        {{imovel.banheiros}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -34,7 +34,7 @@ export class Imovel {
   dormitorio: number;
   suite: number;
   banheiros: number;
-  garagem: number;
+  garagens: number;
   mobilia: boolean;
   aservico: boolean;
   descricao: string;
