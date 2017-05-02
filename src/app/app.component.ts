@@ -10,7 +10,25 @@ export class AppComponent {
 
 }
 export class Imovel {
-  id: number;
+  // chaves
+  id_imovel: number;
+  id_finalidade: number;
+  id_tipo: number;
+  cep: number;
+  id_bairro: number;
+  id_cidade: number;
+  id_estado: number;
+
+  // Dados estrangeiros
+  rua: string;
+  bairro: string;
+  cidade: string;
+  estado: string;
+  tipo: string;
+  finalidade: string;
+  uf: string;
+
+  // Dados do imóvel
   numero: number;
   valor: number;
   dormitorio: number;
@@ -22,31 +40,5 @@ export class Imovel {
   descricao: string;
   aterreno: number;
   aconstruida: number;
-  finalidade_id: number;
-  tipo_id: number;
-  rua_cep: number;
-  rua: Rua;
-  // bairro: Bairro;
-  // cidade: Cidade;
-  // foto: Foto;
-}
-export class Rua {
-  cep: number;
-  nome: string;
-  bairro_id: number;
-}
-export class Bairro {
-  id: number;
-  nome: string;
-  cidade_id: number;
-}
-export class Cidade {
-  id: number;
-  nome: string;
-  uf: string;
-}
-export class Foto {
-  id: number;
-  nome: string;
-  imovel_id: number;
+
 }

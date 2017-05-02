@@ -3,7 +3,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import {Subscription} from 'rxjs/Subscription';
-import {Imovel, Rua} from '../../app.component';
+import {Imovel} from '../../app.component';
 
 @Component({
   selector: 'app-imoveis',

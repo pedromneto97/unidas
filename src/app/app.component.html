@@ -27,8 +27,8 @@
             Residencial
           </a>
           <div class="dropdown-menu" aria-labelledby="Residencial">
-            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 2}">Vendas</a>
-            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 1}">Aluguel</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 1}">Vendas</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 2}">Aluguel</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -37,12 +37,12 @@
             Comercial
           </a>
           <div class="dropdown-menu" aria-labelledby="Comercial">
-            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 2, finalidade: 2}">Vendas</a>
-            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 2, finalidade: 1}">Aluguel</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 2, finalidade: 1}">Vendas</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 2, finalidade: 2}">Aluguel</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/pages/imoveis/" [queryParams]="{tipo: 3, finalidade: 1}">Kitnet</a>
+          <a class="nav-link" routerLink="/pages/imoveis/" [queryParams]="{tipo: 3, finalidade: 2}">Kitnet</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="Rural" data-toggle="dropdown"
@@ -50,9 +50,12 @@
             Imóveis Rurais
           </a>
           <div class="dropdown-menu" aria-labelledby="Rural">
-            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 4, finalidade: 2}">Vendas</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 4, finalidade: 1}">Vendas</a>
             <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 4, finalidade: 2}">Aluguel</a>
           </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/pages/imoveis/" [queryParams]="{tipo: 5, finalidade: 1}">Terrenos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Anuncie seu imóvel</a>
@@ -85,28 +88,28 @@
     <div class="col-sm-2">
       <b>Residencial</b>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 2}">Vendas</a>
+      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 1}">Vendas</a>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 1}">Aluguel</a>
+      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 2}">Aluguel</a>
     </div>
     <div class="col-sm-2">
       <b>Comercial</b>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 2, finalidade: 2}">Vendas</a>
+      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 2, finalidade: 1}">Vendas</a>
       <br>
       <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 2, finalidade: 2}">Aluguel</a>
     </div>
     <div class="col-sm-2">
       <b>Kitnet</b>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 3, finalidade: 1}">Aluguel</a>
+      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 3, finalidade: 2}">Aluguel</a>
     </div>
     <div class="col-sm-2">
       <b>Imóveis Rurais</b>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 4, finalidade: 2}">Vendas</a>
+      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 4, finalidade: 1}">Vendas</a>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 4, finalidade: 1}">Aluguel</a>
+      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 4, finalidade: 2}">Aluguel</a>
     </div>
     <div class="col-sm-2">
       <b>Institucional</b>
