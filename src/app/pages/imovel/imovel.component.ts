@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {Imovel} from '../../app.component';
 import {ImovelService} from './imovel.service';
 
+
 @Component({
   selector: 'app-imovel',
   templateUrl: './imovel.component.html',

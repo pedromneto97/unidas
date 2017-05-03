@@ -7,7 +7,6 @@
         </a>
         <br>
         <br>
-        <button class="btn btn-warning btn-lg my-2 my-sm-0" type="submit">TENHO INTERESSE</button>
       </div>
       <div class="col-md-4">
         <h4 class="page-header">Detalhes do imóvel: </h4>
@@ -18,7 +17,7 @@
           <b>Tipo:</b> {{imovel.tipo}}
         </p>
         <p>
-          <b>Cidade:</b> {{imovel.cidade}} - {{imovel.uf}}
+          <b>Cidade:</b> {{imovel.cidade}}/{{imovel.uf}}
         </p>
         <p>
           <b>Bairro:</b> {{imovel.bairro}}
@@ -27,13 +26,13 @@
           <b>Endereço:</b> {{imovel.rua}}
         </p>
         <p>
-          <b>Área Terreno:</b> {{imovel.aterreno}} m²
+          <b *ngIf="imovel.aterreno != null">Área Terreno:</b> {{imovel.aterreno}} m²
         </p>
         <p>
-          <b>Área Construída:</b> {{imovel.aconstruida}} m²
+          <b *ngIf="imovel.aconstruida != null">Área Construída:</b> {{imovel.aconstruida}} m²
         </p>
         <h4>
-          <b>Valor: R${{imovel.valor}}</b>
+          <b *ngIf="imovel.valor != null">Valor: R${{imovel.valor}}</b>
         </h4>
       </div>
       <div class="col-md-3">
@@ -55,11 +54,11 @@
           {{imovel.garagens}} Garagens
         </p>
         <p>
-          <b>Área de Serviço: </b>
+          <b *ngIf="imovel.aservico != null">Área de Serviço: </b>
           {{imovel.aservico == 1 ? "Sim" : "Não"}}
         </p>
         <p>
-          <b>Mobíliado:</b>
+          <b *ngIf="imovel.mobilia != null">Mobíliado:</b>
           {{imovel.mobilia == 1 ? "Sim" : "Não"}}
         </p>
       </div>

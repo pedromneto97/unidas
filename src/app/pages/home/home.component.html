@@ -9,79 +9,16 @@
     <div class="col-12">
       <h3 class="vitrine">Vitrine de Casas</h3>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" *ngFor="let imovel of imoveis">
       <div class="item">
-        <a routerLink="/pages/imovel"><img src="images/1.jpg" class="img-fluid"></a>
+        <a routerLink="/pages/imovel" [queryParams]="{id:imovel.id_imovel}"><img src="images/1.jpg" class="img-fluid"></a>
         <div class="descricao">
-          <h4 class="pull-right">Valor:</h4>
-          <p>Localização:</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="item">
-        <a><img src="images/1.jpg"></a>
-        <div class="descricao">
-          <h4 class="pull-right">Valor:</h4>
-          <p>Localização:</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="item">
-        <a><img src="images/1.jpg"></a>
-        <div class="descricao">
-          <h4 class="pull-right">Valor:</h4>
-          <p>Localização:</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="item">
-        <a><img src="images/1.jpg"></a>
-        <div class="descricao">
-          <h4 class="pull-right">Valor:</h4>
-          <h4><a>Nome</a>
-          </h4>
-          <p>Localização:</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="item">
-        <a><img src="images/1.jpg"></a>
-        <div class="descricao">
-          <h4 class="pull-right">Valor:</h4>
-          <h4><a>Nome</a>
-          </h4>
-          <p>Localização:</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="item">
-        <a><img src="images/1.jpg"></a>
-        <div class="descricao">
-          <h4 class="pull-right">Valor:</h4>
-          <p>Localização:</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="item">
-        <a><img src="images/1.jpg"></a>
-        <div class="descricao">
-          <h4 class="pull-right">Valor:</h4>
-          <p>Localização:</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="item">
-        <a><img src="images/1.jpg"></a>
-        <div class="descricao">
-          <h4 class="pull-right">Valor:</h4>
-          <p>Localização:</p>
+          <p class="localizacao">
+            Localização: {{imovel.bairro}}
+            <br>
+            {{imovel.cidade}}/{{imovel.uf}}
+          </p>
+          <h6 *ngIf="imovel.valor != null">Valor: R${{imovel.valor}}</h6>
         </div>
       </div>
     </div>

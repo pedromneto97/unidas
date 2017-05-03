@@ -11,14 +11,17 @@
 
       <td><img src="/images/1.jpg" class="foto"></td>
       <td>
-        Endereço: {{imovel.rua}} - {{imovel.numero}}
+        Endereço: {{imovel.rua}},{{imovel.numero}}
         <br>
         Bairro: {{imovel.bairro}}
         <br>
-        Cidade: {{imovel.cidade}} - {{imovel.uf}}
+        Cidade: {{imovel.cidade}}/{{imovel.uf}}
       </td>
-      <td>Valor: R${{imovel.valor}}</td>
-      <td><i class="fa fa-bed fa-fw"></i>
+      <td>
+        <p *ngIf="imovel.valor != null">Valor: R${{imovel.valor}}</p>
+      </td>
+      <td>
+        <i class="fa fa-bed fa-fw"></i>
         <br>
         {{imovel.dormitorio}}
       </td>
