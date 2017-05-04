@@ -10,6 +10,7 @@ import {ImovelService} from './imovel.service';
   templateUrl: './imovel.component.html',
   styleUrls: ['./imovel.component.css']
 })
+
 export class ImovelComponent implements OnInit, OnDestroy {
 
   imoveis: Imovel;
@@ -34,7 +35,6 @@ export class ImovelComponent implements OnInit, OnDestroy {
       }
     );
   }
-
 
   ngOnDestroy() {
     this.inscricao.unsubscribe();

@@ -35,3 +35,9 @@
 .localizacao {
   font-size: 0.95rem;
 }
+
+@media (max-width: 720px) {
+  .linha {
+    display: none;
+  }
+}

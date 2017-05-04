@@ -1,66 +1,125 @@
-<div class="row">
-  <div class="col-12" *ngFor="let imovel of imoveis">
-    <div class="row">
-      <div class="col-md-5">
-        <a href="images/1.jpg">
-          <img src="images/1.jpg" class="img-fluid">
-        </a>
-        <br>
-        <br>
-      </div>
-      <div class="col-md-4">
-        <h4 class="page-header">Detalhes do imóvel: </h4>
-        <p>
-          <b>Finalidade:</b> {{imovel.finalidade}}
-        </p>
-        <p>
-          <b>Tipo:</b> {{imovel.tipo}}
-        </p>
-        <p>
-          <b>Cidade:</b> {{imovel.cidade}}/{{imovel.uf}}
-        </p>
-        <p>
-          <b>Bairro:</b> {{imovel.bairro}}
-        </p>
-        <p>
-          <b>Endereço:</b> {{imovel.rua}}
-        </p>
-        <p>
-          <b *ngIf="imovel.aterreno != null">Área Terreno:</b> {{imovel.aterreno}} m²
-        </p>
-        <p>
-          <b *ngIf="imovel.aconstruida != null">Área Construída:</b> {{imovel.aconstruida}} m²
-        </p>
-        <h4>
-          <b *ngIf="imovel.valor != null">Valor: R${{imovel.valor}}</b>
-        </h4>
-      </div>
-      <div class="col-md-3">
-        <br>
-        <p>
-          <b> Descrição:</b>
-          {{imovel.descricao}}
-        </p>
-        <p>
-          {{imovel.dormitorio}} Dormitórios
-        </p>
-        <p>
-          {{imovel.suite}} Suíte
-        </p>
-        <p>
-          {{imovel.banheiros}} Banheiros
-        </p>
-        <p>
-          {{imovel.garagens}} Garagens
-        </p>
-        <p>
-          <b *ngIf="imovel.aservico != null">Área de Serviço: </b>
-          {{imovel.aservico == 1 ? "Sim" : "Não"}}
-        </p>
-        <p>
-          <b *ngIf="imovel.mobilia != null">Mobíliado:</b>
-          {{imovel.mobilia == 1 ? "Sim" : "Não"}}
-        </p>
+<div class="container">
+  <div class="row">
+    <div class="col-12" *ngFor="let imovel of imoveis">
+      <div class="row">
+        <div class="col-sm-5">
+          <a data-toggle="modal"
+             data-target="#imagem">
+            <img src="images/1.jpg" class="img-fluid">
+          </a>
+          <div>
+            <img src="images/2.jpg" class="miniatura">
+            <img src="images/3.jpg" class="miniatura">
+            <img src="images/4.jpg" class="miniatura">
+          </div>
+
+          <!--Modal-->
+          <div class="modal fade" id="imagem" tabindex="-1" role="dialog" aria-labelledby="imagemLabel"
+               aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="imagemLabel">Fotos</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <img src="images/1.jpg" style="max-width: 100%;">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Fim do modal-->
+          <br>
+          <br>
+          <button type="button" class="btn btn-primary btn-warning " data-toggle="modal"
+                  data-target="#interesse">
+            TENHO INTERESSE
+          </button>
+          <!--Modal-->
+          <div class="modal fade" id="interesse" tabindex="-1" role="dialog" aria-labelledby="interesseLabel"
+               aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="interesseLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Fim do modal-->
+        </div>
+        <div class="col-sm-4">
+          <h4 class="page-header">Detalhes do imóvel: </h4>
+          <p>
+            <b>Finalidade:</b> {{imovel.finalidade}}
+          </p>
+          <p>
+            <b>Tipo:</b> {{imovel.tipo}}
+          </p>
+          <p>
+            <b>Cidade:</b> {{imovel.cidade}}/{{imovel.uf}}
+          </p>
+          <p>
+            <b *ngIf="imovel.bairro != null">Bairro:</b> {{imovel.bairro}}
+          </p>
+          <p>
+            <b *ngIf="imovel.rua != null">Endereço:</b> {{imovel.rua}}
+          </p>
+          <p *ngIf="imovel.aterreno != null">
+            <b>Área Terreno:</b> {{imovel.aterreno}} m²
+          </p>
+          <p>
+            <b *ngIf="imovel.aconstruida != null">Área Construída:</b> {{imovel.aconstruida}} m²
+          </p>
+        </div>
+        <div class="col-sm-3">
+          <br>
+          <p>
+            <b> Descrição:</b>
+            {{imovel.descricao}}
+          </p>
+          <p *ngIf="imovel.dormitorio != null">
+            {{imovel.dormitorio}} Dormitórios
+          </p>
+          <p *ngIf="imovel.suite != null">
+            {{imovel.suite}} Suíte
+          </p>
+          <p *ngIf="imovel.banheiros != null">
+            {{imovel.banheiros}} Banheiros
+          </p>
+          <p *ngIf="imovel.garagens != null">
+            {{imovel.garagens}} Garagens
+          </p>
+          <p *ngIf="imovel.aservico != null">
+            <b *ngIf="imovel.aservico != null">Área de Serviço: </b>
+            {{imovel.aservico == 1 ? "Sim" : "Não"}}
+          </p>
+          <p>
+            <b *ngIf="imovel.mobilia != null">Mobíliado:</b>
+            {{imovel.mobilia == 1 ? "Sim" : "Não"}}
+          </p>
+        </div>
+        <div class="col-sm-7 offset-md-5">
+          <h4>
+            <b *ngIf="imovel.valor != null">Valor: R${{imovel.valor}}</b>
+          </h4>
+        </div>
       </div>
     </div>
   </div>
