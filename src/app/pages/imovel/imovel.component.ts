@@ -1,6 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
+import {NgForm} from '@angular/forms';
+
 import {Imovel} from '../../app.component';
 import {ImovelService} from './imovel.service';
 
@@ -16,6 +18,7 @@ export class ImovelComponent implements OnInit, OnDestroy {
   imoveis: Imovel;
   id: number;
   inscricao: Subscription;
+  interesse: any;
 
   constructor(private servico: ImovelService, private route: ActivatedRoute) {
   }
@@ -25,6 +28,14 @@ export class ImovelComponent implements OnInit, OnDestroy {
       imovel => this.imoveis = imovel
     );
   }
+
+  onSubmit(form: NgForm) {
+    let nome, celular, email;
+    nome = form.value['nome'];
+    celular = form.value['celular'];
+    email = form.value['email'];
+    this.servico.interesse(nome, celular, email);
+  };
 
   ngOnInit() {
     this.inscricao = this.route.queryParams.subscribe(

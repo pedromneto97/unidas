@@ -19,9 +19,13 @@ export class ImovelService {
 
     return this.http.post(url, {id: id}, options)
       .map((res: Response) => res.json());
-    // return this.http.post(url, {finalidade: finalidade, tipo: tipo}, options)
-    //   .subscribe((response: Response) => {
-    //     console.log(response.json());
-    //   });
+  }
+
+  interesse(nome: string, celular: number, email: string): any {
+    const url = 'http://localhost/novounidas/gui/interesse.php';
+    const headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+    const options = new RequestOptions({headers: headers});
+
+    return this.http.post(url, {nome, celular, email}, options);
   }
 }

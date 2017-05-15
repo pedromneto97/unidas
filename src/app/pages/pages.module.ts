@@ -3,7 +3,9 @@ import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpModule, JsonpModule} from '@angular/http';
+
 import {PagesRoutingModule} from './pages.routing.module';
+
 import {HomeComponent} from './home/home.component';
 import {EmpresaComponent} from './empresa/empresa.component';
 import {PagesComponent} from './pages.component';
@@ -20,7 +22,8 @@ import {HomeService} from "./home/home.service";
     CommonModule,
     PagesRoutingModule,
     HttpModule,
-    JsonpModule
+    JsonpModule,
+    FormsModule
   ],
   declarations: [
     PagesComponent,
