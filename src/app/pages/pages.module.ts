@@ -13,9 +13,9 @@ import {RegraslocacaoComponent} from './regraslocacao/regraslocacao.component';
 import {ImovelComponent} from './imovel/imovel.component';
 import {ImoveisComponent} from './imoveis/imoveis.component';
 import {ImoveisService} from './imoveis/imoveis.service';
-import {ImovelService} from "./imovel/imovel.service";
-import {HomeService} from "./home/home.service";
-
+import {ImovelService} from './imovel/imovel.service';
+import {HomeService} from './home/home.service';
+import {CamelCasePipe} from "../pipes/camel-case.pipe";
 
 @NgModule({
   imports: [
@@ -32,12 +32,13 @@ import {HomeService} from "./home/home.service";
     RegraslocacaoComponent,
     ImovelComponent,
     ImoveisComponent,
-    ImovelComponent
+    CamelCasePipe
   ],
   providers: [
     ImoveisService,
     ImovelService,
-    HomeService
+    HomeService,
+    CamelCasePipe
   ]
 })
 export class PagesModule {

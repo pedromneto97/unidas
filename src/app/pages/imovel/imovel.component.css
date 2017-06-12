@@ -1,6 +1,8 @@
 .miniatura {
   padding-top: 5px;
-  max-width: 120px;
+  max-width: 100px;
+  min-height: 100%;
+  width: 100%;
 }
 
 .exibicao {
@@ -10,4 +12,9 @@
   border-image-width: initial;
   border-image-outset: initial;
   border-image-repeat: initial;
+}
+
+.imagem {
+  min-width: 100%;
+  max-height: 100%
 }

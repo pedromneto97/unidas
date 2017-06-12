@@ -7,6 +7,7 @@
       <div class="col-md-4 col-xs-12">
         <div class="contact-header">
           <h1>Imobiliária Unidas</h1>
+          <h6>Creci: </h6>
           <h4>25 anos com você!</h4>
         </div>
       </div>
@@ -27,8 +28,8 @@
             Residencial
           </a>
           <div class="dropdown-menu" aria-labelledby="Residencial">
-            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 1}">Vendas</a>
-            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 2}">Aluguel</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/residencial/venda">Vendas</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/residencial/aluguel">Aluguel</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -37,12 +38,19 @@
             Comercial
           </a>
           <div class="dropdown-menu" aria-labelledby="Comercial">
-            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 2, finalidade: 1}">Vendas</a>
-            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 2, finalidade: 2}">Aluguel</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/comercial/venda">Vendas</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/comercial/aluguel">Aluguel</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/pages/imoveis/" [queryParams]="{tipo: 3, finalidade: 2}">Kitnet</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="Kitnet" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Kitnet
+          </a>
+          <div class="dropdown-menu" aria-labelledby="Kitnet">
+            <a class="dropdown-item" routerLink="/pages/imoveis/kitnet/venda">Vendas</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/kitnet/aluguel">Aluguel</a>
+          </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="Rural" data-toggle="dropdown"
@@ -50,12 +58,19 @@
             Imóveis Rurais
           </a>
           <div class="dropdown-menu" aria-labelledby="Rural">
-            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 4, finalidade: 1}">Vendas</a>
-            <a class="dropdown-item" routerLink="/pages/imoveis/" [queryParams]="{tipo: 4, finalidade: 2}">Aluguel</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/rural/venda">Vendas</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/rural/comercial">Aluguel</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/pages/imoveis/" [queryParams]="{tipo: 5, finalidade: 1}">Terrenos</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="Terreno" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Terreno
+          </a>
+          <div class="dropdown-menu" aria-labelledby="Terreno">
+            <a class="dropdown-item" routerLink="/pages/imoveis/terreno/venda">Vendas</a>
+            <a class="dropdown-item" routerLink="/pages/imoveis/terreno/aluguel">Aluguel</a>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Anuncie seu imóvel</a>
@@ -85,36 +100,40 @@
 </div>
 <footer>
   <div class="row" style="padding-left: 15px">
-    <div class="col-sm-1">
+    <div class="col-sm-2">
       <b>Residencial</b>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 1}">Vendas</a>
+      <a routerLink="/pages/imoveis/residencial/venda">Vendas</a>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 1, finalidade: 2}">Aluguel</a>
+      <a routerLink="/pages/imoveis/residencial/aluguel">Aluguel</a>
     </div>
-    <div class="col-sm-1">
+    <div class="col-sm-2">
       <b>Comercial</b>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 2, finalidade: 1}">Vendas</a>
+      <a routerLink="/pages/imoveis/comercial/venda">Vendas</a>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 2, finalidade: 2}">Aluguel</a>
+      <a routerLink="/pages/imoveis/comercial/aluguel">Aluguel</a>
     </div>
-    <div class="col-sm-1">
+    <div class="col-sm-2">
       <b>Kitnet</b>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 3, finalidade: 2}">Aluguel</a>
+      <a routerLink="/pages/imoveis/kitnet/venda">Vendas</a>
+      <br>
+      <a routerLink="/pages/imoveis/kitnet/aluguel">Aluguel</a>
     </div>
     <div class="col-sm-2">
       <b>Imóveis Rurais</b>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 4, finalidade: 1}">Vendas</a>
+      <a routerLink="/pages/imoveis/rural/venda">Vendas</a>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 4, finalidade: 2}">Aluguel</a>
+      <a routerLink="/pages/imoveis/rural/aluguel">Aluguel</a>
     </div>
-    <div class="col-sm-1">
+    <div class="col-sm-2">
       <b>Terrenos</b>
       <br>
-      <a routerLink="/pages/imoveis/" [queryParams]="{tipo: 5, finalidade: 1}">Vendas</a>
+      <a routerLink="/pages/imoveis/terreno/venda">Vendas</a>
+      <br>
+      <a routerLink="/pages/imoveis/terreno/aluguel">Aluguel</a>
     </div>
     <div class="col-sm-2">
       <b>Institucional</b>
@@ -122,9 +141,6 @@
       <a routerLink="/pages/empresa">A Empresa</a>
       <br>
       <a routerLink="/pages/regraslocacao">Regras de Locação</a>
-    </div>
-    <div class="col-md-2 offset-md-1">
-      <img src="images/logounidas.png" class="img-foot img-fluid">
     </div>
   </div>
   <div class="row">

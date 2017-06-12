@@ -1,7 +1,12 @@
-.foto
-{
-  padding: 10px 10px ;
+.foto {
+  padding: 10px 10px;
   max-height: 130px;
   min-height: 130px;
   min-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .coluna {
+    display: none;
+  }
 }
