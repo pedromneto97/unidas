@@ -1,9 +1,9 @@
-import {ImoveisService} from './imoveis.service';
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import {Subscription} from 'rxjs/Subscription';
-import {Imovel} from '../../app.component';
+
+import {ImovelService} from "../../services/imovel.service";
 
 @Component({
   selector: 'app-imoveis',
@@ -11,22 +11,22 @@ import {Imovel} from '../../app.component';
   styleUrls: ['./imoveis.component.css']
 })
 export class ImoveisComponent implements OnInit, OnDestroy {
-  imoveis: Imovel[];
+  // imoveis: Imovel[];
   error: Error;
+  rotatipo: string;
+  rotafinalidade: string;
   private tipo: number;
   private finalidade: number;
   private inscricao: Subscription;
-  rotatipo: string;
-  rotafinalidade: string;
 
-  constructor(private servico: ImoveisService, private route: ActivatedRoute) {
+  constructor(private servico: ImovelService, private route: ActivatedRoute) {
   }
 
-  busca(a, b) {
-    this.servico.busca(a, b).subscribe(
-      imovel => this.imoveis = imovel
-    );
-  }
+  // busca(a, b) {
+  //   this.servico.getImoveis().subscribe(
+  //     imovel => this.imoveis = imovel
+  //   );
+  // }
 
   ngOnInit() {
     this.inscricao = this.route.params.subscribe(
@@ -83,8 +83,8 @@ export class ImoveisComponent implements OnInit, OnDestroy {
           default:
             this.finalidade = 0;
         }
-        this.imoveis = null;
-        this.busca(this.finalidade, this.tipo);
+        // this.imoveis = null;
+        // this.busca(this.finalidade, this.tipo);
       }
     );
   }

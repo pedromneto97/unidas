@@ -13,7 +13,7 @@ const pagesRoutes: Routes = [{
     {path: 'home', component: HomeComponent},
     {path: 'empresa', component: EmpresaComponent},
     {path: 'regraslocacao', component: RegraslocacaoComponent},
-    {path: 'imovel', component: ImovelComponent},
+    {path: 'imovel/:id', component: ImovelComponent},
     {path: 'imoveis/:tipo/:finalidade', component: ImoveisComponent}
   ]
 }];
