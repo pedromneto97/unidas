@@ -1,0 +1,26 @@
+<div class="col-12">
+
+  <div class="row">
+    <div class="col-12">
+      <div class="propaganda">
+        <a href="http://www.ourovilleitapeva.com.br"><img src="images/ouroville.gif" class="img-fluid"></a>
+      </div>
+    </div>
+    <div class="col-12">
+      <h3 class="vitrine">Vitrine de Casas</h3>
+    </div>
+    <div class="col-md-3" *ngFor="let imovel of imoveis">
+      <div class="item">
+        <a routerLink="/pages/imovel/{{imovel.id_imovel}}"><img src="images/{{imovel.foto}}" class="img-fluid rounded"></a>
+        <div class="descricao">
+          <p class="localizacao">
+            Localização: {{imovel.bairro}}
+            <br>
+            {{imovel.cidade}}/{{imovel.uf}}
+          </p>
+          <h6 *ngIf="imovel.valor != null">Valor: R${{imovel.valor}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
