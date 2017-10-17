@@ -1,0 +1,68 @@
+@media (max-width: 1024px) {
+  .propaganda {
+    display: none;
+  }
+}
+
+@media (max-width: 1140px) {
+  .img-foot {
+    display: none;
+  }
+}
+
+@media (max-width: 880px) {
+  .contact-header {
+    display: none;
+  }
+
+  .logo {
+    align: center;
+  }
+}
+
+.geral {
+  height: auto;
+  min-height: 100%;
+}
+
+.corpo {
+  margin-top: 20px;
+}
+
+.logo {
+  max-height: 150px;
+  padding: 5px 0px 10px 60px;
+}
+
+.contact-header {
+  padding-top: 26px;
+  padding-left: 60px;
+  color: #ffffff;
+}
+
+.header-background {
+  background-color: #e40613;
+}
+
+footer {
+  width: 100%;
+  bottom: 0;
+  position: relative;
+  margin: 50px 0 0 0;
+  background-color: #e40613;
+  color: #ffffff;
+}
+
+footer a {
+  color: #ffffff;
+}
+
+footer a:hover {
+  color: #ffffff;;
+}
+
+.img-foot {
+  max-width: 170px;
+  align-self: center;
+}
+
