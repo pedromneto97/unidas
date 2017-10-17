@@ -1,0 +1,43 @@
+.descricao {
+  height: 130px;
+  overflow: hidden;
+}
+
+.item img {
+  width: 100%;
+  max-width: 250px;
+}
+
+.item {
+  padding: 0;
+}
+
+.vitrine {
+  color: #5e5e5e;
+  font-size: 30px;
+}
+
+.propaganda {
+  padding-bottom: 10px;
+  text-align: center;
+
+}
+
+.descricao h4 {
+  white-space: nowrap;
+}
+
+.item .descricao-full {
+  padding: 9px;
+  color: #333;
+}
+
+.localizacao {
+  font-size: 0.95rem;
+}
+
+@media (max-width: 720px) {
+  .linha {
+    display: none;
+  }
+}
