@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 
 import {Subscription} from 'rxjs/Subscription';
 
+import {Imovel} from "../../../model/imovel";
 import {ImovelService} from "../../../services/imovel.service";
 
 @Component({
@@ -11,7 +12,7 @@ import {ImovelService} from "../../../services/imovel.service";
   styleUrls: ['./imoveis.component.css']
 })
 export class ImoveisComponent implements OnInit, OnDestroy {
-  // imoveis: Imovel[];
+  imoveis: Imovel[];
   error: Error;
   rotatipo: string;
   rotafinalidade: string;
@@ -22,11 +23,11 @@ export class ImoveisComponent implements OnInit, OnDestroy {
   constructor(private servico: ImovelService, private route: ActivatedRoute) {
   }
 
-  // busca(a, b) {
-  //   this.servico.getImoveis().subscribe(
-  //     imovel => this.imoveis = imovel
-  //   );
-  // }
+  busca(a, b) {
+    this.servico.getImoveis().then(
+      imovel => this.imoveis = imovel
+    );
+  }
 
   ngOnInit() {
     this.inscricao = this.route.params.subscribe(
@@ -83,8 +84,8 @@ export class ImoveisComponent implements OnInit, OnDestroy {
           default:
             this.finalidade = 0;
         }
-        // this.imoveis = null;
-        // this.busca(this.finalidade, this.tipo);
+        this.imoveis = null;
+        this.busca(this.finalidade, this.tipo);
       }
     );
   }
