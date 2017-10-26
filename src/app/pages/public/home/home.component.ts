@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ImovelService} from '../../services/imovel.service';
 
-import {Imovel} from "../../model/imovel";
-import {Rua} from "../../model/rua";
-import {Bairro} from "../../model/bairro";
-import {Cidade} from "../../model/cidade";
-import {Estado} from "../../model/estado";
+import {Imovel} from "../../../model/imovel";
+import {Rua} from "../../../model/rua";
+import {Bairro} from "../../../model/bairro";
+import {Cidade} from "../../../model/cidade";
+import {Estado} from "../../../model/estado";
+
+import {ImovelService} from "../../../services/imovel.service";
 
 @Component({
   selector: 'app-home',
