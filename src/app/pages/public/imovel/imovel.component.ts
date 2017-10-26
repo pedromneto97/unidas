@@ -2,8 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 
-import {ImovelService} from "../../services/imovel.service";
-import {Imovel} from "../../model/imovel";
+import {ImovelService} from "../../../services/imovel.service";
+import {Imovel} from "../../../model/imovel";
 
 @Component({
   selector: 'app-imovel',

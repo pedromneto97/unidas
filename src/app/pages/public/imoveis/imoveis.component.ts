@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 
 import {Subscription} from 'rxjs/Subscription';
 
-import {ImovelService} from "../../services/imovel.service";
+import {ImovelService} from "../../../services/imovel.service";
 
 @Component({
   selector: 'app-imoveis',
