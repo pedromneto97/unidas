@@ -27,14 +27,6 @@ export class ImovelComponent implements OnInit, OnDestroy {
     );
   }
 
-  pdf(id) {
-    let pdf = id;
-  }
-
-  apagarImovel(id) {
-    let im = id;
-  }
-
   ngOnInit() {
     this.inscricao = this.route.params.subscribe(
       (Params: any) => {

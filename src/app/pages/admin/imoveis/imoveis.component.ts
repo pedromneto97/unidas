@@ -28,6 +28,14 @@ export class ImoveisComponent implements OnInit {
     );
   }
 
+  pdf(id) {
+    let pdf = id;
+  }
+
+  apagarImovel(id) {
+    let im = id;
+  }
+
   ngOnInit() {
     this.inscricao = this.route.params.subscribe(
       (params: any) => {
