@@ -1,0 +1,33 @@
+<div class="col-12">
+  <table class="table table-responsive table-hover">
+    <thead>
+    </thead>
+    <tbody>
+    <tr *ngFor="let imovel of imoveis">
+      <td>
+        <img src="/images/1.jpg" class="foto rounded">
+      </td>
+      <td>
+        Endereço: {{imovel.rua}},{{imovel.numero}}
+        <br>
+        Bairro: {{imovel.bairro}}
+        <br>
+        Cidade: {{imovel.cidade}}/{{imovel.uf}}
+      </td>
+      <td class="coluna">
+        <p *ngIf="imovel.cep != null">CEP: {{imovel.cep}}</p>
+      </td>
+      <td class="coluna">
+        <button routerLink="/admin/editarimovel/{{imovel.id_imovel}}" class="btn btn-primary">Editar Imóvel</button>
+      </td>
+      <td class="coluna">
+        <button (click)="pdf(imovel.id_imovel)" class="btn btn-warning">Gerar pdf para pasta
+        </button>
+      </td>
+      <td class="coluna">
+        <button (click)="apagarImovel(imovel.id_imovel)" class="btn btn-danger">Apagar imóvel</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
