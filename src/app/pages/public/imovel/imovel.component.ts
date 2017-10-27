@@ -27,13 +27,13 @@ export class ImovelComponent implements OnInit, OnDestroy {
     );
   }
 
-  // onSubmit(form: NgForm) {
-  //   let nome, celular, email;
-  //   nome = form.value['nome'];
-  //   celular = form.value['celular'];
-  //   email = form.value['email'];
-  //   this.servico.interesse(nome, celular, email);
-  // };
+  pdf(id) {
+    let pdf = id;
+  }
+
+  apagarImovel(id) {
+    let im = id;
+  }
 
   ngOnInit() {
     this.inscricao = this.route.params.subscribe(
