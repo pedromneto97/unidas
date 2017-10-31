@@ -6,13 +6,16 @@ import {InicialComponent} from './inicial/inicial.component';
 import {AdminComponent} from "./admin.component";
 import {ImoveisComponent} from "./imoveis/imoveis.component";
 import {ImovelService} from "../../services/imovel.service";
-import { NovoimovelComponent } from './novoimovel/novoimovel.component';
-import { EditarimovelComponent } from './editarimovel/editarimovel.component';
+import {NovoimovelComponent} from './novoimovel/novoimovel.component';
+import {EditarimovelComponent} from './editarimovel/editarimovel.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     AdminComponent,
