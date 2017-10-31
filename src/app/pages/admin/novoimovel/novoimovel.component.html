@@ -1,5 +1,48 @@
 <div class="col-12">
-  <form>
-
+  <form [formGroup]="novoImovelForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col">
+        <div class="form-group"
+             [ngClass]="{'has-danger': novoImovelForm.controls['numero'].invalid && novoImovelForm.controls['numero'].touched}">
+          <label for="numero-input"
+                 class="form-control-label">Número</label>
+          <input id="numero-input"
+                 type="text"
+                 class="form-control"
+                 [ngClass]="{'form-control-danger': novoImovelForm.controls['numero'].invalid}"
+                 formControlName="numero"
+                 placeholder="numero do Evento">
+          <div *ngIf="novoImovelForm.controls['numero'].invalid && novoImovelForm.controls['numero'].touched">
+            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+            <small class="form-text text-muted"
+                   *ngIf="novoImovelForm.controls['numero'].errors?.required">O campo é obrigatório.
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group"
+             [ngClass]="{'has-danger': novoImovelForm.controls['valor'].invalid && novoImovelForm.controls['valor'].touched}">
+          <label for="valor-input"
+                 class="form-control-label">Número</label>
+          <input id="valor-input"
+                 type="text"
+                 class="form-control"
+                 [ngClass]="{'form-control-danger': novoImovelForm.controls['valor'].invalid}"
+                 formControlName="valor"
+                 placeholder="valor do Evento">
+          <div *ngIf="novoImovelForm.controls['valor'].invalid && novoImovelForm.controls['valor'].touched">
+            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+            <small class="form-text text-muted"
+                   *ngIf="novoImovelForm.controls['valor'].errors?.required">
+              O campo é obrigatório.
+            </small>
+            <small class="form-text text-muted" *ngIf="novoImovelForm.controls['valor'].errors?.min">
+              O valor mínimo é 100
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
 </div>

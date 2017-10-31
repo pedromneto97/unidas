@@ -29,11 +29,11 @@ export class ImoveisComponent implements OnInit {
   }
 
   pdf(id) {
-    let pdf = id;
+    console.log(id);
   }
 
   apagarImovel(id) {
-    let im = id;
+    console.log(id);
   }
 
   ngOnInit() {
