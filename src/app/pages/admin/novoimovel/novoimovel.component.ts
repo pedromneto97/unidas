@@ -11,7 +11,7 @@ export class NovoimovelComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder) {
-
+    this.formBuilder = new FormBuilder();
   }
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class NovoimovelComponent implements OnInit {
       aterreno: [null, Validators.compose([Validators.min(0), Validators.pattern(new RegExp('[0-9]'))])],
       aconstruida: [null, Validators.compose([Validators.min(0), Validators.pattern(new RegExp('[0-9]'))])],
       rua: this.formBuilder.group({
-        cep: [null, Validators.compose([Validators.pattern(new RegExp('[0-9]{8}'))])],
+        cep: [null, Validators.compose([Validators.required, Validators.pattern(new RegExp('[0-9]{8}'))])],
         rua: [null, Validators.compose([Validators.minLength(3)])],
         bairro: this.formBuilder.group({
           bairro: [null, Validators.compose([Validators.minLength(3)])],
