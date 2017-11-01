@@ -1,3 +1,8 @@
+import {Rua} from "./rua";
+import {Foto} from "./foto";
+import {Tipo} from "./tipo";
+import {Finalidade} from "./finalidade";
+
 export class Imovel {
   id: number;
   id_finalidade: number;
@@ -16,5 +21,9 @@ export class Imovel {
   descricao: string;
   aterreno: number;
   aconstruida: number;
+  rua: Rua;
+  foto: Foto[];
+  tipo: Tipo;
+  finalidade: Finalidade;
 
 }
