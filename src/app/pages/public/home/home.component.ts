@@ -16,11 +16,6 @@ import {ImovelService} from "../../../services/imovel.service";
 export class HomeComponent implements OnInit {
 
   imoveis: Imovel[];
-  ruas: Rua[];
-  bairros: Bairro[];
-  cidades: Cidade[];
-  estados: Estado[];
-  resultado: any;
 
 
   constructor(private servico: ImovelService) {

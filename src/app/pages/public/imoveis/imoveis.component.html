@@ -8,16 +8,16 @@
     <thead>
     </thead>
     <tbody>
-    <tr *ngFor="let imovel of imoveis" routerLink="/imovel/{{imovel.id_imovel}}">
+    <tr *ngFor="let imovel of imoveis" routerLink="/imovel/{{imovel.id}}">
       <td>
-        <img src="/images/1.jpg" class="foto rounded">
+        <img src="/images/{{imovel.foto[0].foto}}" class="foto rounded">
       </td>
       <td>
-        Endereço: {{imovel.rua}},{{imovel.numero}}
+        Endereço: {{imovel.rua.rua}},{{imovel.numero}}
         <br>
-        Bairro: {{imovel.bairro}}
+        Bairro: {{imovel.rua.bairro.bairro}}
         <br>
-        Cidade: {{imovel.cidade}}/{{imovel.uf}}
+        Cidade: {{imovel.rua.bairro.cidade.cidade}}/{{imovel.rua.bairro.cidade.estado.uf}}
       </td>
       <td class="coluna">
         <p *ngIf="imovel.valor != null">Valor: R${{imovel.valor}}</p>
