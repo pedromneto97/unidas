@@ -1,274 +1,93 @@
 <div class="col-12">
-  <form [formGroup]="novoImovelForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="ImovelForm"
+        (ngSubmit)="onSubmit()">
     <div class="row">
+      <!--Número-->
       <div class="col">
         <div class="form-group"
-             [ngClass]="{'has-danger': novoImovelForm.controls['numero'].invalid && novoImovelForm.constrols['numero'].touched}">
+             [ngClass]="{'has-danger': ImovelForm.controls['numero'].invalid && ImovelForm.controls['numero'].touched}">
           <label for="numero-input"
                  class="form-control-label">Número</label>
           <input id="numero-input"
-                 type="text"
+                 type="number"
                  class="form-control"
-                 [ngClass]="{'form-control-danger': novoImovelForm.controls['numero'].invalid}"
+                 [ngClass]="{'form-control-danger': ImovelForm.controls['numero'].invalid}"
                  formControlName="numero"
-                 placeholder="Número do Imóvel">
-          <div *ngIf="novoImovelForm.controls['numero'].invalid && novoImovelForm.controls['numero'].touched">
+                 placeholder="Número do imóvel">
+          <div *ngIf="ImovelForm.controls['numero'].invalid && ImovelForm.controls['numero'].touched">
             <div class="form-control-feedback"> Oops! Há algo de errado!</div>
             <small class="form-text text-muted"
-                   *ngIf="novoImovelForm.controls['numero'].errors?.required">O campo é obrigatório.
+                   *ngIf="ImovelForm.controls['numero'].errors?.required">O campo é obrigatório.
             </small>
-            <small class="form-text text-muted" *ngIf="novoImovelForm.controls['numero'].errors?.pattern">
-              Caractere inválido
+            <small class="form-text text-muted"
+                   *ngIf="ImovelForm.controls['numero'].errors?.min">O campo deve ser maior que 0
             </small>
           </div>
         </div>
       </div>
+      <!--Valor-->
       <div class="col">
         <div class="form-group"
-             [ngClass]="{'has-danger': novoImovelForm.controls['dormitorio'].invalid && novoImovelForm.controls['dormitorio'].touched}">
-          <label for="dormitorio-input"
-                 class="form-control-label">Dormitórios</label>
-          <input id="dormitorio-input"
-                 type="text"
-                 class="form-control"
-                 [ngClass]="{'form-control-danger': novoImovelForm.controls['dormitorio'].invalid}"
-                 formControlName="dormitorio"
-                 placeholder="Número de Dormitórios">
-          <div *ngIf="novoImovelForm.controls['dormitorio'].invalid && novoImovelForm.controls['dormitorio'].touched">
-            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
-            <small class="form-text text-muted"
-                   *ngIf="novoImovelForm.controls['dormitorio'].errors?.required">
-              O campo é obrigatório.
-            </small>
-            <small class="form-text text-muted" *ngIf="novoImovelForm.controls['dormitorio'].errors?.pattern">
-              Caractere inválido
-            </small>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group"
-             [ngClass]="{'has-danger': novoImovelForm.controls['valor'].invalid && novoImovelForm.controls['valor'].touched}">
+             [ngClass]="{'has-danger': ImovelForm.controls['valor'].invalid && ImovelForm.controls['valor'].touched}">
           <label for="valor-input"
                  class="form-control-label">Valor</label>
           <input id="valor-input"
-                 type="text"
+                 type="number"
                  class="form-control"
-                 [ngClass]="{'form-control-danger': novoImovelForm.controls['valor'].invalid}"
+                 [ngClass]="{'form-control-danger': ImovelForm.controls['valor'].invalid}"
                  formControlName="valor"
                  placeholder="Valor do imóvel">
-          <div *ngIf="novoImovelForm.controls['valor'].invalid && novoImovelForm.controls['valor'].touched">
+          <div *ngIf="ImovelForm.controls['valor'].invalid && ImovelForm.controls['valor'].touched">
             <div class="form-control-feedback"> Oops! Há algo de errado!</div>
             <small class="form-text text-muted"
-                   *ngIf="novoImovelForm.controls['valor'].errors?.required">
-              O campo é obrigatório.
+                   *ngIf="ImovelForm.controls['valor'].errors?.required">O campo é obrigatório.
             </small>
-            <small class="form-text text-muted" *ngIf="novoImovelForm.controls['valor'].errors?.min">
-              O valor mínimo é 100
-            </small>
-            <small class="form-text text-muted" *ngIf="novoImovelForm.controls['valor'].errors?.pattern">
-              Caractere inválido
+            <small class="form-text text-muted"
+                   *ngIf="ImovelForm.controls['valor'].errors?.min">O campo deve ser maior que 100
             </small>
           </div>
         </div>
       </div>
+      <!--Dormitório-->
       <div class="col">
         <div class="form-group"
-             [ngClass]="{'has-danger': novoImovelForm.controls['suite'].invalid && novoImovelForm.controls['suite'].touched}">
+             [ngClass]="{'has-danger': ImovelForm.controls['dormitorio'].invalid && ImovelForm.controls['dormitorio'].touched}">
+          <label for="dormitorio-input"
+                 class="form-control-label">Dormitórios</label>
+          <input id="dormitorio-input"
+                 type="number"
+                 class="form-control"
+                 [ngClass]="{'form-control-danger': ImovelForm.controls['dormitorio'].invalid}"
+                 formControlName="dormitorio"
+                 placeholder="Número de dormitórios">
+          <div *ngIf="ImovelForm.controls['dormitorio'].invalid && ImovelForm.controls['dormitorio'].touched">
+            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+            <small class="form-text text-muted"
+                   *ngIf="ImovelForm.controls['dormitorio'].errors?.min">O campo deve ser maior que 0
+            </small>
+          </div>
+        </div>
+      </div>
+      <!--Suíte-->
+      <div class="col">
+        <div class="form-group"
+             [ngClass]="{'has-danger': ImovelForm.controls['suite'].invalid && ImovelForm.controls['suite'].touched}">
           <label for="suite-input"
                  class="form-control-label">Suítes</label>
           <input id="suite-input"
-                 type="text"
+                 type="number"
                  class="form-control"
-                 [ngClass]="{'form-control-danger': novoImovelForm.controls['suite'].invalid}"
+                 [ngClass]="{'form-control-danger': ImovelForm.controls['suite'].invalid}"
                  formControlName="suite"
-                 placeholder="Número de Suítes">
-          <div *ngIf="novoImovelForm.controls['suite'].invalid && novoImovelForm.controls['suite'].touched">
+                 placeholder="Número de suítes">
+          <div *ngIf="ImovelForm.controls['suite'].invalid && ImovelForm.controls['suite'].touched">
             <div class="form-control-feedback"> Oops! Há algo de errado!</div>
             <small class="form-text text-muted"
-                   *ngIf="novoImovelForm.controls['suite'].errors?.required">
-              O campo é obrigatório.
-            </small>
-            <small class="form-text text-muted" *ngIf="novoImovelForm.controls['suite'].errors?.pattern">
-              Caractere inválido
+                   *ngIf="ImovelForm.controls['suite'].errors?.min">O campo deve ser maior que 0
             </small>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="form-group"
-             [ngClass]="{'has-danger': novoImovelForm.controls['banheiro'].invalid && novoImovelForm.controls['banheiro'].touched}">
-          <label for="banheiro-input"
-                 class="form-control-label">Banheiros</label>
-          <input id="banheiro-input"
-                 type="text"
-                 class="form-control"
-                 [ngClass]="{'form-control-danger': novoImovelForm.controls['banheiro'].invalid}"
-                 formControlName="banheiro"
-                 placeholder="Número de Banheiros">
-          <div *ngIf="novoImovelForm.controls['banheiro'].invalid && novoImovelForm.controls['banheiro'].touched">
-            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
-            <small class="form-text text-muted"
-                   *ngIf="novoImovelForm.controls['banheiro'].errors?.required">
-              O campo é obrigatório.
-            </small>
-            <small class="form-text text-muted" *ngIf="novoImovelForm.controls['banheiro'].errors?.pattern">
-              Caractere inválido
-            </small>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group"
-             [ngClass]="{'has-danger': novoImovelForm.controls['garagem'].invalid && novoImovelForm.controls['garagem'].touched}">
-          <label for="garagem-input"
-                 class="form-control-label">Garagens</label>
-          <input id="garagem-input"
-                 type="text"
-                 class="form-control"
-                 [ngClass]="{'form-control-danger': novoImovelForm.controls['garagem'].invalid}"
-                 formControlName="garagem"
-                 placeholder="Número de garagens">
-          <div *ngIf="novoImovelForm.controls['garagem'].invalid && novoImovelForm.controls['garagem'].touched">
-            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
-            <small class="form-text text-muted"
-                   *ngIf="novoImovelForm.controls['garagem'].errors?.required">
-              O campo é obrigatório.
-            </small>
-            <small class="form-text text-muted" *ngIf="novoImovelForm.controls['garagem'].errors?.pattern">
-              Caractere inválido
-            </small>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group">
-          <label for="mobilia-input"
-                 class="form-control-label">Mobílias</label>
-          <select id="mobilia-input"
-                  class="form-control"
-                  formControlName="mobilia">
-            <option value="{{true}}">Sim</option>
-            <option value="{{false}}">Não</option>
-            <option value="{{null}}"></option>
-          </select>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group">
-          <label for="aservico-input"
-                 class="form-control-label">Área de Serviço</label>
-          <select id="aservico-input"
-                  class="form-control"
-                  formControlName="aservico">
-            <option value="{{true}}">Sim</option>
-            <option value="{{false}}">Não</option>
-            <option value="{{null}}"></option>
-          </select>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group"
-             [ngClass]="{'has-danger': novoImovelForm.controls['aterreno'].invalid && novoImovelForm.controls['aterreno'].touched}">
-          <label for="aterreno-input"
-                 class="form-control-label">Área do terreno</label>
-          <input id="aterreno-input"
-                 type="text"
-                 class="form-control"
-                 [ngClass]="{'form-control-danger': novoImovelForm.controls['aterreno'].invalid}"
-                 formControlName="aterreno"
-                 placeholder="Área do terreno">
-          <div *ngIf="novoImovelForm.controls['aterreno'].invalid && novoImovelForm.controls['aterreno'].touched">
-            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
-            <small class="form-text text-muted"
-                   *ngIf="novoImovelForm.controls['aterreno'].errors?.required">
-              O campo é obrigatório.
-            </small>
-            <small class="form-text text-muted" *ngIf="novoImovelForm.controls['aterreno'].errors?.pattern">
-              Caractere inválido
-            </small>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group"
-             [ngClass]="{'has-danger': novoImovelForm.controls['aconstruida'].invalid && novoImovelForm.controls['aconstruida'].touched}">
-          <label for="aconstruida-input"
-                 class="form-control-label">Área construída</label>
-          <input id="aconstruida-input"
-                 type="text"
-                 class="form-control"
-                 [ngClass]="{'form-control-danger': novoImovelForm.controls['aconstruida'].invalid}"
-                 formControlName="aconstruida"
-                 placeholder="Área construída">
-          <div
-            *ngIf="novoImovelForm.controls['aconstruida'].invalid && novoImovelForm.controls['aconstruida'].touched">
-            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
-            <small class="form-text text-muted"
-                   *ngIf="novoImovelForm.controls['aconstruida'].errors?.required">
-              O campo é obrigatório.
-            </small>
-            <small class="form-text text-muted" *ngIf="novoImovelForm.controls['aconstruida'].errors?.pattern">
-              Caractere inválido
-            </small>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group"
-             [ngClass]="{'has-danger': novoImovelForm.controls['descricao'].invalid && novoImovelForm.controls['descricao'].touched}">
-          <label for="descricao-input"
-                 class="form-control-label">Área construída</label>
-          <textarea id="descricao-input"
-                    class="form-control"
-                    [ngClass]="{'form-control-danger': novoImovelForm.controls['descricao'].invalid}"
-                    formControlName="descricao"
-                    placeholder="Área construída">
-          </textarea>
-          <div
-            *ngIf="novoImovelForm.controls['descricao'].invalid && novoImovelForm.controls['descricao'].touched">
-            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
-            <small class="form-text text-muted"
-                   *ngIf="novoImovelForm.controls['descricao'].errors?.required">
-              O campo é obrigatório.
-            </small>
-            <small class="form-text text-muted" *ngIf="novoImovelForm.controls['descricao'].errors?.pattern">
-              Caractere inválido
-            </small>
-          </div>
-        </div>
-      </div>
-      <div formGroupName="rua" class="col">
-        <div class="form-group"
-             [ngClass]="{'has-danger': novoImovelForm.get('rua').invalid && novoImovelForm.get('rua').touched}">
-          <label for="cep-input"
-                 class="form-control-label">CEP</label>
-          <input id="cep-input"
-                 class="form-control"
-                 [ngClass]="{'form-control-danger': novoImovelForm.get('rua.cep').invalid}"
-                 formControlName="cep"
-                 placeholder="18400000"
-                 (blur)="buscaCep($event.target.value)">
-          <div
-            *ngIf="novoImovelForm.get('rua.cep').invalid && novoImovelForm.get('rua.cep').touched">
-            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
-            <small class="form-text text-muted"
-                   *ngIf="novoImovelForm.get('rua.cep').errors?.required">
-              O campo é obrigatório.
-            </small>
-            <small class="form-text text-muted" *ngIf="novoImovelForm.get('rua.ep').errors?.pattern">
-              Caractere inválido
-            </small>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <button class="btn btn-success" type="submit" [disabled]="novoImovelForm.invalid">Cadastrar</button>
     </div>
   </form>
 </div>
