@@ -17,14 +17,14 @@ export class NovoimovelComponent implements OnInit {
   ngOnInit() {
     this.ImovelForm = this.formBuilder.group({
       numero: [null, Validators.compose([Validators.min(0)])],
-      valor: [null, Validators.compose([Validators.required, Validators.min(100)])],
-      dormitorio: [null, Validators.compose([Validators.required, Validators.min(0)])],
-      suite: [null, Validators.compose([Validators.required, Validators.min(0)])],
-      banheiro: [null, Validators.compose([Validators.required, Validators.min(0)])],
-      garagem: [null, Validators.compose([Validators.required, Validators.min(0)])],
+      valor: [null, Validators.compose([Validators.min(100)])],
+      dormitorio: [null, Validators.compose([Validators.min(0)])],
+      suite: [null, Validators.compose([Validators.min(0)])],
+      banheiro: [null, Validators.compose([Validators.min(0)])],
+      garagem: [null, Validators.compose([Validators.min(0)])],
       descricao: [null, Validators.compose([Validators.required, Validators.minLength(10)])],
-      aterreno: [null, Validators.compose([Validators.required, Validators.min(0)])],
-      aconstruida: [null, Validators.compose([Validators.required, Validators.min(0)])],
+      aterreno: [null, Validators.compose([Validators.min(0)])],
+      aconstruida: [null, Validators.compose([Validators.min(0)])],
       // rua: this.formBuilder.group({
       //   cep: [null, Validators.compose([Validators.required, Validators.pattern(new RegExp('[0-9]{8}'))])],
       //   rua: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
