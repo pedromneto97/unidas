@@ -3,12 +3,12 @@ import {ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot} from '@angul
 import {Observable} from 'rxjs/Observable';
 
 export interface FormCanDeactivate {
-  FormCanDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;
+  CanDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;
 }
 
 @Injectable()
 export class FormCanDeactivateGuard implements CanDeactivate<FormCanDeactivate> {
   canDeactivate(component: FormCanDeactivate, route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return component.FormCanDeactivate ? component.FormCanDeactivate() : true;
+    return component.CanDeactivate ? component.CanDeactivate() : true;
   }
 }
