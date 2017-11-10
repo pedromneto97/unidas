@@ -5,8 +5,8 @@
         <thead>
         <tr>
           <td>
-            <a routerLink="/imoveis/{{imovel.tipo}}/{{imovel.finalidade}}"><< Voltar para
-              {{imovel.tipo}}/{{imovel.finalidade}}</a>
+            <a routerLink="/imoveis/{{imovel.tipo.tipo}}/{{imovel.finalidade.finalidade}}"><< Voltar para
+              {{imovel.tipo.tipo}}/{{imovel.finalidade.finalidade}}</a>
           </td>
         </tr>
         </thead>
@@ -137,7 +137,7 @@
             <b>Cidade:</b> {{imovel.rua.bairro.cidade.cidade}}/{{imovel.rua.bairro.cidade.estado.uf}}
           </p>
           <p>
-            <b *ngIf="imovel.bairro != null">Bairro:</b> {{imovel.rua.bairro.bairro}}
+            <b *ngIf="imovel.rua.bairro != null">Bairro:</b> {{imovel.rua.bairro.bairro}}
           </p>
           <p>
             <b *ngIf="imovel.rua != null">Endereço:</b> {{imovel.rua.rua}}
