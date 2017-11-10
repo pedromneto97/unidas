@@ -1,14 +1,18 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
 
 import {AdminRoutingModule} from './admin-routing.module';
 import {InicialComponent} from './inicial/inicial.component';
 import {AdminComponent} from "./admin.component";
 import {ImoveisComponent} from "./imoveis/imoveis.component";
-import {ImovelService} from "../../services/imovel.service";
 import {NovoimovelComponent} from './novoimovel/novoimovel.component';
 import {EditarimovelComponent} from './editarimovel/editarimovel.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
+import {ImovelService} from "../../services/imovel.service";
+
+import {FormCanDeactivateGuard} from "../../guard/form-can-deactivate.guard";
 
 @NgModule({
   imports: [
@@ -25,7 +29,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     EditarimovelComponent
   ],
   providers: [
-    ImovelService
+    ImovelService,
+    FormCanDeactivateGuard
   ]
 })
 export class AdminModule {
