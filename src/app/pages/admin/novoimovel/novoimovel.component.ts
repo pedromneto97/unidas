@@ -1,17 +1,24 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormCanDeactivateGuard} from "../../../guard/form-can-deactivate.guard";
 
 @Component({
   selector: 'app-novoimovel',
   templateUrl: './novoimovel.component.html',
   styleUrls: ['./novoimovel.component.css']
 })
-export class NovoimovelComponent implements OnInit {
+export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
   ImovelForm: FormGroup;
-
 
   constructor(private formBuilder: FormBuilder) {
     this.formBuilder = new FormBuilder();
+  }
+
+  canDeactivate() {
+    if (this.ImovelForm.dirty) {
+      return window.confirm('Descartar Alterações?');
+    }
+    return true;
   }
 
   ngOnInit() {
