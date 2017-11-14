@@ -13,6 +13,7 @@ import {EditarimovelComponent} from './editarimovel/editarimovel.component';
 import {ImovelService} from "../../services/imovel.service";
 
 import {FormCanDeactivateGuard} from "../../guard/form-can-deactivate.guard";
+import {RuaService} from "../../services/rua.service";
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import {FormCanDeactivateGuard} from "../../guard/form-can-deactivate.guard";
   ],
   providers: [
     ImovelService,
-    FormCanDeactivateGuard
+    FormCanDeactivateGuard,
+    RuaService
   ]
 })
 export class AdminModule {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormCanDeactivateGuard} from "../../../guard/form-can-deactivate.guard";
+import {RuaService} from "../../../services/rua.service";
 
 @Component({
   selector: 'app-novoimovel',
@@ -10,7 +11,7 @@ import {FormCanDeactivateGuard} from "../../../guard/form-can-deactivate.guard";
 export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
   ImovelForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private servicoCep: RuaService) {
     this.formBuilder = new FormBuilder();
   }
 
@@ -32,31 +33,37 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
       descricao: [null, Validators.compose([Validators.required, Validators.minLength(10)])],
       aterreno: [null, Validators.compose([Validators.min(0)])],
       aconstruida: [null, Validators.compose([Validators.min(0)])],
-      // rua: this.formBuilder.group({
-      //   cep: [null, Validators.compose([Validators.required, Validators.pattern(new RegExp('[0-9]{8}'))])],
-      //   rua: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-      //   bairro: this.formBuilder.group({
-      //     bairro: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-      //     cidade: this.formBuilder.group({
-      //       cidade: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-      //       estado: this.formBuilder.group({
-      //         estado: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-      //         uf: [null, Validators.compose([Validators.required, Validators.min(2), Validators.max(2)])]
-      //       })
-      //     })
-      //   }),
-      // }),
+      rua: this.formBuilder.group({
+        cep: [null, Validators.compose([Validators.required, Validators.pattern(new RegExp('[0-9]{8}'))])],
+        rua: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+        bairro: this.formBuilder.group({
+          bairro: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+          cidade: this.formBuilder.group({
+            cidade: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+            estado: this.formBuilder.group({
+              estado: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+              uf: [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(2)])]
+            }),
+          }),
+        }),
+      }),
     })
     ;
 
   }
 
   buscaCep(cep) {
-    console.log(cep);
+    this.servicoCep.getCEP(cep)
+      .then((result) => {
+          console.log(result);
+        }
+      );
   }
+
 
   onSubmit() {
     console.log(this.ImovelForm.value);
+    console.log(this.ImovelForm.controls['aterreno'].value);
   }
 
 }

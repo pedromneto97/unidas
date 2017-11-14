@@ -196,6 +196,163 @@
         </div>
       </div>
     </div>
+    <div formGroupName="rua">
+      <div class="row">
+        <!--CEP-->
+        <div class="col">
+          <div class="form-group"
+               [ngClass]="{'has-danger': ImovelForm.get('rua.cep').invalid && ImovelForm.get('rua.cep').touched}">
+            <label for="cep-input"
+                   class="form-control-label">CEP</label>
+            <input id="cep-input"
+                   type="number"
+                   class="form-control"
+                   [ngClass]="{'form-control-danger': ImovelForm.get('rua.cep').invalid}"
+                   formControlName="cep"
+                   (blur)="buscaCep($event.target.value)"
+                   placeholder="18405000">
+            <div *ngIf="ImovelForm.get('rua.cep').invalid && ImovelForm.get('rua.cep').touched">
+              <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+              <small class="form-text text-muted"
+                     *ngIf="ImovelForm.get('rua.cep').errors?.required">O campo é necessário
+              </small>
+              <small class="form-text text-muted"
+                     *ngIf="ImovelForm.get('rua.cep').errors?.pattern">O campo não é um CEP
+              </small>
+            </div>
+          </div>
+        </div>
+        <!--RUA-->
+        <div class="col">
+          <div class="form-group"
+               [ngClass]="{'has-danger': ImovelForm.get('rua.rua').invalid && ImovelForm.get('rua.rua').touched}">
+            <label for="rua-input"
+                   class="form-control-label">RUA</label>
+            <input id="rua-input"
+                   type="text"
+                   class="form-control"
+                   [ngClass]="{'form-control-danger': ImovelForm.get('rua.rua').invalid}"
+                   formControlName="rua"
+                   placeholder="Logradouro">
+            <div *ngIf="ImovelForm.get('rua.rua').invalid && ImovelForm.get('rua.rua').touched">
+              <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+              <small class="form-text text-muted"
+                     *ngIf="ImovelForm.get('rua.rua').errors?.required">O campo é necessário
+              </small>
+              <small class="form-text text-muted"
+                     *ngIf="ImovelForm.get('rua.rua').errors?.minlength">O campo necessita ter 3 caracteres
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div formGroupName="bairro">
+        <div class="row">
+          <!--BAIRRO-->
+          <div class="col">
+            <div class="form-group"
+                 [ngClass]="{'has-danger': ImovelForm.get('rua.bairro.bairro').invalid && ImovelForm.get('rua.bairro.bairro').touched}">
+              <label for="bairro-input"
+                     class="form-control-label">Bairro</label>
+              <input id="bairro-input"
+                     type="text"
+                     class="form-control"
+                     [ngClass]="{'form-control-danger': ImovelForm.get('rua.bairro.bairro').invalid}"
+                     formControlName="bairro"
+                     placeholder="Bairro">
+              <div *ngIf="ImovelForm.get('rua.bairro.bairro').invalid && ImovelForm.get('rua.bairro.bairro').touched">
+                <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+                <small class="form-text text-muted"
+                       *ngIf="ImovelForm.get('rua.bairro.bairro').errors?.required">O campo é necessário
+                </small>
+                <small class="form-text text-muted"
+                       *ngIf="ImovelForm.get('rua.bairro.bairro').errors?.minlength">O campo necessita ter 3 caracteres
+                </small>
+              </div>
+            </div>
+          </div>
+          <!--CIDADE-->
+          <div class="col" formGroupName="cidade">
+            <div class="form-group"
+                 [ngClass]="{'has-danger': ImovelForm.get('rua.bairro.cidade.cidade').invalid && ImovelForm.get('rua.bairro.cidade.cidade').touched}">
+              <label for="cidade-input"
+                     class="form-control-label">Cidade</label>
+              <input id="cidade-input"
+                     type="text"
+                     class="form-control"
+                     [ngClass]="{'form-control-danger': ImovelForm.get('rua.bairro.cidade.cidade').invalid}"
+                     formControlName="cidade"
+                     placeholder="Cidade">
+              <div
+                *ngIf="ImovelForm.get('rua.bairro.cidade.cidade').invalid && ImovelForm.get('rua.bairro.cidade.cidade').touched">
+                <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+                <small class="form-text text-muted"
+                       *ngIf="ImovelForm.get('rua.bairro.cidade.cidade').errors?.required">O campo é necessário
+                </small>
+                <small class="form-text text-muted"
+                       *ngIf="ImovelForm.get('rua.bairro.cidade.cidade').errors?.minlength">O campo necessita ter 3
+                  caracteres
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" formGroupName="cidade">
+
+          <!--ESTADO-->
+          <div class="col" formGroupName="estado">
+            <div class="form-group"
+                 [ngClass]="{'has-danger': ImovelForm.get('rua.bairro.cidade.estado.estado').invalid && ImovelForm.get('rua.bairro.cidade.estado.estado').touched}">
+              <label for="estado-input"
+                     class="form-control-label">Estado</label>
+              <input id="estado-input"
+                     type="text"
+                     class="form-control"
+                     [ngClass]="{'form-control-danger': ImovelForm.get('rua.bairro.cidade.estado.estado').invalid}"
+                     formControlName="estado"
+                     placeholder="Estado">
+              <div
+                *ngIf="ImovelForm.get('rua.bairro.cidade.estado.estado').invalid && ImovelForm.get('rua.bairro.cidade.estado.estado').touched">
+                <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+                <small class="form-text text-muted"
+                       *ngIf="ImovelForm.get('rua.bairro.cidade.estado.estado').errors?.required">O campo é necessário
+                </small>
+                <small class="form-text text-muted"
+                       *ngIf="ImovelForm.get('rua.bairro.cidade.estado.estado').errors?.minlength">O campo necessita ter
+                  3
+                  caracteres
+                </small>
+              </div>
+            </div>
+          </div>
+          <!--UF-->
+          <div class="col" formGroupName="estado">
+            <div class="form-group"
+                 [ngClass]="{'has-danger': ImovelForm.get('rua.bairro.cidade.estado.uf').invalid && ImovelForm.get('rua.bairro.cidade.estado.uf').touched}">
+              <label for="uf-input"
+                     class="form-control-label">UF</label>
+              <input id="uf-input"
+                     type="text"
+                     class="form-control"
+                     [ngClass]="{'form-control-danger': ImovelForm.get('rua.bairro.cidade.estado.uf').invalid}"
+                     formControlName="uf"
+                     placeholder="UF">
+              <div
+                *ngIf="ImovelForm.get('rua.bairro.cidade.estado.uf').invalid && ImovelForm.get('rua.bairro.cidade.estado.uf').touched">
+                <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+                <small class="form-text text-muted"
+                       *ngIf="ImovelForm.get('rua.bairro.cidade.estado.uf').errors?.required">O campo é necessário
+                </small>
+                <small class="form-text text-muted"
+                       *ngIf="ImovelForm.get('rua.bairro.cidade.estado.uf').errors?.minlength || ImovelForm.get('rua.bairro.cidade.estado.uf').errors?.maxlength">O campo tem apenas 2 caracteres
+                  caracteres
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col">
         <button type="submit"
