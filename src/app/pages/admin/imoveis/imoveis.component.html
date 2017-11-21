@@ -8,24 +8,32 @@
         <img src="/images/1.jpg" class="foto rounded">
       </td>
       <td>
-        Endereço: {{imovel.rua}},{{imovel.numero}}
+        Endereço: {{imovel.rua.rua}},{{imovel.numero}}
         <br>
-        Bairro: {{imovel.bairro}}
+        Bairro: {{imovel.rua.bairro.bairro}}
         <br>
-        Cidade: {{imovel.cidade}}/{{imovel.uf}}
+        Cidade: {{imovel.rua.bairro.cidade.cidade}}/{{imovel.rua.bairro.cidade.estado.uf}}
       </td>
       <td class="coluna">
-        <p *ngIf="imovel.cep != null">CEP: {{imovel.cep}}</p>
+        <p *ngIf="imovel.rua.cep != null">CEP: {{imovel.rua.cep}}</p>
       </td>
-      <td class="coluna">
-        <button routerLink="/admin/editarimovel/{{imovel.id_imovel}}" class="btn btn-primary">Editar Imóvel</button>
-      </td>
-      <td class="coluna">
-        <button (click)="pdf(imovel.id_imovel)" class="btn btn-warning">Gerar pdf para pasta
+      <td>
+        <button routerLink="/admin/editarimovel/{{imovel.id}}" class="btn btn-primary">
+          <i class="fa fa-pencil-square-o fa-lg"></i>
+          Editar Imóvel
         </button>
       </td>
-      <td class="coluna">
-        <button (click)="apagarImovel(imovel.id_imovel)" class="btn btn-danger">Apagar imóvel</button>
+      <td>
+        <button (click)="pdf(imovel.id)" class="btn btn-warning">
+          <i class="fa fa-print fa-lg"></i>
+          Gerar pdf para pasta
+        </button>
+      </td>
+      <td>
+        <button (click)="apagarImovel(imovel.id)" class="btn btn-danger">
+          <i class="fa fa-trash-o fa-lg"></i>
+          Apagar imóvel
+        </button>
       </td>
     </tr>
     </tbody>
