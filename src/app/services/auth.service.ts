@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   logout() {
-    const url = `//${this.base_url}logout`;
+    const url = `//${this.base_url}/logout`;
     const headers = new Headers({
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.getToken()}`
