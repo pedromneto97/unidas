@@ -62,8 +62,7 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
 
 
   onSubmit() {
-    console.log(this.ImovelForm.value);
-    console.log(this.ImovelForm.controls['aterreno'].value);
+
   }
 
 }

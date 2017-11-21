@@ -358,9 +358,14 @@
       <div class="col">
         <button type="submit"
                 [disabled]="ImovelForm.invalid"
-                class="btn btn-block btn-default">Salvar
+                class="btn btn-success btn-default">
+          <i class="fa fa-save fa-lg"></i>
+          Salvar
         </button>
       </div>
+    </div>
+    <div class="row">
+      Formulário: {{ImovelForm.value | json}}
     </div>
   </form>
 </div>
