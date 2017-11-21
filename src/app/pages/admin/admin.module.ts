@@ -14,6 +14,7 @@ import {ImovelService} from "../../services/imovel.service";
 
 import {FormCanDeactivateGuard} from "../../guard/form-can-deactivate.guard";
 import {RuaService} from "../../services/rua.service";
+import {AuthService} from "../../services/auth.service";
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import {RuaService} from "../../services/rua.service";
   providers: [
     ImovelService,
     FormCanDeactivateGuard,
-    RuaService
+    RuaService,
+    AuthService
   ]
 })
 export class AdminModule {

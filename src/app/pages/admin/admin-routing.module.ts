@@ -7,12 +7,14 @@ import {ImoveisComponent} from "./imoveis/imoveis.component";
 import {NovoimovelComponent} from "./novoimovel/novoimovel.component";
 
 import {FormCanDeactivateGuard} from "../../guard/form-can-deactivate.guard";
+import {EditarimovelComponent} from "./editarimovel/editarimovel.component";
 
 const routes: Routes = [{
   path: '', component: AdminComponent, children: [
     {path: '', component: InicialComponent},
     {path: 'imoveis', component: ImoveisComponent},
-    {path: 'novoimovel', component: NovoimovelComponent, canDeactivate: [FormCanDeactivateGuard]}
+    {path: 'novoimovel', component: NovoimovelComponent, canDeactivate: [FormCanDeactivateGuard]},
+    {path: 'editarimovel/:id', component: EditarimovelComponent, canDeactivate: [FormCanDeactivateGuard]}
   ]
 }];
 
