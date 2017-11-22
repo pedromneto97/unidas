@@ -210,7 +210,11 @@
                    [ngClass]="{'form-control-danger': ImovelForm.get('rua.cep').invalid}"
                    formControlName="cep"
                    (blur)="buscaCep($event.target.value)"
-                   placeholder="18405000
+                   placeholder="18405000">
+            <input
+              type="hidden"
+              class="form-control"
+              formControlName="id">
             <div *ngIf="ImovelForm.get('rua.cep').invalid && ImovelForm.get('rua.cep').touched">
               <div class="form-control-feedback"> Oops! Há algo de errado!</div>
               <small class="form-text text-muted"

@@ -4,6 +4,7 @@ import {FormCanDeactivateGuard} from "../../../guard/form-can-deactivate.guard";
 import {RuaService} from "../../../services/rua.service";
 import {Imovel} from "../../../model/imovel";
 import {CidadeService} from "../../../services/cidade.service";
+import {BairroService} from "../../../services/bairro.service";
 
 @Component({
   selector: 'app-novoimovel',
@@ -15,7 +16,7 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
   Imovel: Imovel;
   flag: boolean = true;
 
-  constructor(private formBuilder: FormBuilder, private servicoCep: RuaService, private  cidade: CidadeService) {
+  constructor(private formBuilder: FormBuilder, private servicoCep: RuaService, private  cidade: CidadeService, private bairro: BairroService) {
     this.formBuilder = new FormBuilder();
   }
 
@@ -38,13 +39,17 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
       aterreno: [null, Validators.compose([Validators.min(0)])],
       aconstruida: [null, Validators.compose([Validators.min(0)])],
       rua: this.formBuilder.group({
-        cep: [null, Validators.compose([Validators.required, Validators.pattern(new RegExp('[0-9]{8}'))])],
+        id: [null],
+        cep: [null, Validators.compose([Validators.required, Validators.pattern(new RegExp('^[0-9]{8}$'))])],
         rua: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
         bairro: this.formBuilder.group({
+          id: [null],
           bairro: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
           cidade: this.formBuilder.group({
+            id: [null],
             cidade: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
             estado: this.formBuilder.group({
+              id: [null],
               estado: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
               uf: [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(2)])]
             }),
@@ -57,12 +62,19 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
   }
 
   buscaCep(cep) {
-    if (this.ImovelForm.get('rua.cep').invalid)
+    if (this.ImovelForm.get('rua.cep').invalid) {
+      this.ImovelForm.get('rua').reset();
+      this.ImovelForm.get('rua.rua').enable();
+      this.ImovelForm.get('rua.bairro.bairro').enable();
+      this.ImovelForm.get('rua.bairro.cidade.cidade').enable();
+      this.ImovelForm.get('rua.bairro.cidade.estado.estado').enable();
+      this.ImovelForm.get('rua.bairro.cidade.estado.uf').enable();
       return;
+    }
     let cepDB, cepbusca;
+    //Busca o CEP no banco
     this.servicoCep.cep(cep)
       .then((resultado) => {
-        console.log(resultado);
         cepDB = resultado;
         if (cepDB != null) {
           this.patchformDB(cepDB);
@@ -72,36 +84,76 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
           this.ImovelForm.get('rua.bairro.cidade.estado.estado').disable();
           this.ImovelForm.get('rua.bairro.cidade.estado.uf').disable();
         } else {
+          /*
+           * Busca o CEP fora
+           */
           this.servicoCep.getCEP(cep)
             .then((result) => {
-                console.log(result);
                 cepbusca = result;
                 if (cepbusca.cep != null) {
                   this.ImovelForm.get('rua.rua').enable();
-                  this.ImovelForm.get('rua.bairro.bairro').enable();
-                  let busca = {
-                    cidade: cepbusca.localidade,
-                    uf: cepbusca.uf
-                  }
-                  let cid;
-                  this.cidade.busca(busca)
-                    .then((res) => {
-                      cid = res;
-                      if (cid != null) {
-                        console.log(cid);
-                        this.patchformCompleto(cepbusca, cid);
-                      } else {
-                        console.log("Cidade não encontrada");
-                        /*
-                        * Necessário fazer tratamento aqui
-                        * */
-                        this.ImovelForm.get('rua.bairro.cidade.cidade').enable();
-                        this.ImovelForm.get('rua.bairro.cidade.estado.estado').enable();
-                        this.ImovelForm.get('rua.bairro.cidade.estado.uf').enable();
-                        this.patchformBusca(cepbusca);
+                  /*
+                    Busca Bairro
+                   */
+                  let bairro = {
+                    bairro: cepbusca.bairro
+                  };
+                  this.bairro.busca(bairro).then((res) => {
+                    bairro = res;
+                    if (bairro != null) {
+                      this.ImovelForm.get('rua.bairro.bairro').disable();
+                      /*
+                      *Busca cidade
+                      */
+                      let busca = {
+                        cidade: cepbusca.localidade,
+                        uf: cepbusca.uf
                       }
-                    });
+                      let cid;
+                      this.cidade.busca(busca)
+                        .then((res) => {
+                          cid = res;
+                          if (cid != null) {
+                            this.ImovelForm.get('rua.bairro.cidade.cidade').disable();
+                            this.ImovelForm.get('rua.bairro.cidade.estado.estado').disable();
+                            this.ImovelForm.get('rua.bairro.cidade.estado.uf').disable();
+                            this.bairroCidade(cepbusca, bairro, cid);
+                          }
+                        });
+                    } else {
+                      /*
+                      Bairro não encontrado
+                       */
+                      this.ImovelForm.get('rua.bairro.bairro').enable();
+                      let busca = {
+                        cidade: cepbusca.localidade,
+                        uf: cepbusca.uf
+                      }
+                      let cid;
+                      this.cidade.busca(busca)
+                        .then((res) => {
+                          cid = res;
+                          if (cid != null) {
+                            this.cepCidade(cepbusca, cid);
+                            this.ImovelForm.get('rua.bairro.cidade.cidade').disable();
+                            this.ImovelForm.get('rua.bairro.cidade.estado.estado').disable();
+                            this.ImovelForm.get('rua.bairro.cidade.estado.uf').disable();
+                          } else {
+                            this.ImovelForm.get('rua.bairro.cidade.cidade').enable();
+                            this.ImovelForm.get('rua.bairro.cidade.estado.estado').enable();
+                            this.ImovelForm.get('rua.bairro.cidade.estado.uf').enable();
+                            this.apenasCep(cepbusca);
+                          }
+                        });
+                    }
+                  });
+
                 } else {
+                  this.ImovelForm.get('rua.rua').enable();
+                  this.ImovelForm.get('rua.bairro.bairro').enable();
+                  this.ImovelForm.get('rua.bairro.cidade.cidade').enable();
+                  this.ImovelForm.get('rua.bairro.cidade.estado.estado').enable();
+                  this.ImovelForm.get('rua.bairro.cidade.estado.uf').enable();
                   console.log("Nenhum cep encontrado");
                   /*
                    * Necessário fazer tratamento aqui
@@ -116,13 +168,17 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
   patchformDB(imovel) {
     this.ImovelForm.patchValue({
       rua: {
+        id: imovel[0].id,
         cep: imovel[0].cep,
         rua: imovel[0].rua,
         bairro: {
+          id: imovel[0].bairro.id,
           bairro: imovel[0].bairro.bairro,
           cidade: {
+            id: imovel[0].bairro.cidade.id,
             cidade: imovel[0].bairro.cidade.cidade,
             estado: {
+              id: imovel[0].bairro.cidade.estado.id,
               estado: imovel[0].bairro.cidade.estado.estado,
               uf: imovel[0].bairro.cidade.estado.uf
             }
@@ -132,41 +188,88 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
     });
   }
 
-  patchformBusca(imovel) {
-    let cep: number;
-    cep = parseInt(imovel.cep.substr(0, 5) + imovel.cep.substr(6, 8));
-    this.ImovelForm.patchValue({
-      rua: {
-        cep: cep,
-        rua: imovel.logradouro,
-        bairro: {
-          bairro: imovel.bairro,
-          cidade: {
-            cidade: imovel.localidade,
-            estado: {
-              estado: imovel.estado,
-              uf: imovel.uf
-            }
+  cepCidade(cep, cidade) {
+    let c: number;
+    c = parseInt(cep.cep.substr(0, 5) + cep.cep.substr(6, 8));
+    let resultado = {
+      cep: c,
+      rua: cep.logradouro,
+      bairro: {
+        bairro: cep.bairro,
+        cidade: {
+          id: cidade[0].id,
+          cidade: cidade[0].cidade,
+          estado: {
+            id: cidade[0].estado.id,
+            estado: cidade[0].estado.estado,
+            uf: cidade[0].estado.uf
           }
         }
       }
-    });
+    }
+    this.patchformCompleto(resultado);
   }
 
-  patchformCompleto(imovel, cid) {
-    let cep: number;
-    cep = parseInt(imovel.cep.substr(0, 5) + imovel.cep.substr(6, 8));
+  bairroCidade(cep, bairro, cidade) {
+    let c: number;
+    c = parseInt(cep.cep.substr(0, 5) + cep.cep.substr(6, 8));
+    let resultado = {
+      cep: c,
+      rua: cep.logradouro,
+      bairro: {
+        id: bairro[0].id,
+        bairro: bairro[0].bairro,
+        cidade: {
+          id: cidade[0].id,
+          cidade: cidade[0].cidade,
+          estado: {
+            id: cidade[0].estado.id,
+            estado: cidade[0].estado.estado,
+            uf: cidade[0].estado.uf
+          }
+        }
+      }
+    }
+    this.patchformCompleto(resultado);
+  }
+
+  apenasCep(cep) {
+    let c: number;
+    c = parseInt(cep.cep.substr(0, 5) + cep.cep.substr(6, 8));
+    let resultado = {
+      cep: c,
+      rua: cep.logradouro,
+      bairro: {
+        bairro: cep.bairro,
+        cidade: {
+          cidade: cep.localidade,
+          estado: {
+            estado: null,
+            uf: cep.uf
+          }
+        }
+      }
+    }
+    this.patchformCompleto(resultado);
+  }
+
+  patchformCompleto(imovel) {
+    console.log(imovel);
+    this.ImovelForm.get('rua').reset();
     this.ImovelForm.patchValue({
       rua: {
-        cep: cep,
-        rua: imovel.logradouro,
+        cep: imovel.cep,
+        rua: imovel.rua,
         bairro: {
-          bairro: imovel.bairro,
+          id: imovel.bairro.id,
+          bairro: imovel.bairro.bairro,
           cidade: {
-            cidade: imovel.localidade,
+            id: imovel.bairro.cidade.id,
+            cidade: imovel.bairro.cidade.cidade,
             estado: {
-              estado: cid[0].estado.estado,
-              uf: imovel.uf
+              id: imovel.bairro.cidade.estado.id,
+              estado: imovel.bairro.cidade.estado.estado,
+              uf: imovel.bairro.cidade.estado.uf
             }
           }
         }
