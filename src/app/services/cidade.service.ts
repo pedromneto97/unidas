@@ -26,7 +26,7 @@ export class CidadeService {
       .catch(this.handleError);
   }
 
-  getRuas() {
+  getCidades() {
     const url = `${this.url}`;
     const headers = new Headers({
       'Accept': 'application/json'
