@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormCanDeactivateGuard} from "../../../guard/form-can-deactivate.guard";
 import {RuaService} from "../../../services/rua.service";
+import {Imovel} from "../../../model/imovel";
 
 @Component({
   selector: 'app-novoimovel',
@@ -10,6 +11,7 @@ import {RuaService} from "../../../services/rua.service";
 })
 export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
   ImovelForm: FormGroup;
+  Imovel: Imovel;
 
   constructor(private formBuilder: FormBuilder, private servicoCep: RuaService) {
     this.formBuilder = new FormBuilder();
@@ -53,16 +55,52 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
   }
 
   buscaCep(cep) {
+    if (this.ImovelForm.get('rua.cep').invalid)
+      return;
+    let cepBD, cepbusca;
+    let flag: boolean = false;
+    this.servicoCep.cep(cep)
+      .then((resultado) => {
+        console.log(resultado);
+        cepBD = resultado;
+        if (cepBD[0].cep != null) {
+          flag = true;
+          this.patchform(cepBD);
+        }
+      });
     this.servicoCep.getCEP(cep)
       .then((result) => {
           console.log(result);
+          cepbusca = result;
+          if (cepbusca.cep != null && flag === false) {
+            console.log('Aqui');
+          }
         }
       );
   }
 
+  patchform(imovel) {
+    this.ImovelForm.patchValue({
+      rua: {
+        cep: imovel[0].cep,
+        rua: imovel[0].rua,
+        bairro: {
+          bairro: imovel[0].bairro.bairro,
+          cidade: {
+            cidade: imovel[0].bairro.cidade.cidade,
+            estado: {
+              estado: imovel[0].bairro.cidade.estado.estado,
+              uf: imovel[0].bairro.cidade.estado.uf
+            }
+          }
+        }
+      }
+    });
+  }
 
   onSubmit() {
-
+    this.Imovel = this.ImovelForm.value;
+    console.log(this.Imovel);
   }
 
 }
