@@ -20,10 +20,10 @@ export class RuaService {
   getCEP(cep): Promise<any> | any {
     const headers = new Headers({
       'Accept': 'application/json',
-      'Authorization': 'Token token=2cc886faaad3ed3a320e82b9c9e69651'
+      //'Authorization': 'Token token=2cc886faaad3ed3a320e82b9c9e69651'
     });
-    // const url = `https://viacep.com.br/ws/${cep}/json/`;
-    const url = `http://www.cepaberto.com/api/v2/ceps.json?cep=${cep}`;
+    const url = `https://viacep.com.br/ws/${cep}/json/`;
+    //const url = `http://www.cepaberto.com/api/v2/ceps.json?cep=${cep}`;
     return this.http.get(url, {headers: headers})
       .toPromise()
       .then((response: Response) => response.json())
