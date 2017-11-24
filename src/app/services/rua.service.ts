@@ -32,9 +32,6 @@ export class RuaService {
 
   cep(cep) {
     const url = `${this.url}/cep/${cep}`;
-    const headers = new Headers({
-      'Accept': 'application/json'
-    });
     return this.http.get(url, {headers: this.header})
       .toPromise()
       .then((response: Response) => response.json())
@@ -43,9 +40,6 @@ export class RuaService {
 
   getRua(id) {
     const url = `${this.url}/${id}`;
-    const headers = new Headers({
-      'Accept': 'application/json'
-    });
     return this.http.get(url, {headers: this.header})
       .toPromise()
       .then((response: Response) => response.json())
@@ -54,9 +48,6 @@ export class RuaService {
 
   getRuas() {
     const url = `${this.url}`;
-    const headers = new Headers({
-      'Accept': 'application/json'
-    });
     return this.http.get(url, {headers: this.header})
       .toPromise()
       .then((response: Response) => response.json())

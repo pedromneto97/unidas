@@ -17,9 +17,6 @@ export class CidadeService {
 
   getCidade(id) {
     const url = `${this.url}/${id}`;
-    const headers = new Headers({
-      'Accept': 'application/json'
-    });
     return this.http.get(url, {headers: this.header})
       .toPromise()
       .then((response: Response) => response.json())
@@ -28,9 +25,6 @@ export class CidadeService {
 
   getCidades() {
     const url = `${this.url}`;
-    const headers = new Headers({
-      'Accept': 'application/json'
-    });
     return this.http.get(url, {headers: this.header})
       .toPromise()
       .then((response: Response) => response.json())
