@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {FormCanDeactivateGuard} from "../../../guard/form-can-deactivate.guard";
+import {FormCanDeactivate} from "../../../guard/form-can-deactivate.guard";
 import {RuaService} from "../../../services/rua.service";
 import {Imovel} from "../../../model/imovel";
 import {CidadeService} from "../../../services/cidade.service";
@@ -11,17 +11,18 @@ import {BairroService} from "../../../services/bairro.service";
   templateUrl: './novoimovel.component.html',
   styleUrls: ['./novoimovel.component.css']
 })
-export class NovoimovelComponent implements OnInit, FormCanDeactivateGuard {
+export class NovoimovelComponent implements OnInit, FormCanDeactivate {
   ImovelForm: FormGroup;
   Imovel: Imovel;
   flag: boolean = true;
 
-  constructor(private formBuilder: FormBuilder, private servicoCep: RuaService, private  cidade: CidadeService, private bairro: BairroService) {
+  constructor(private formBuilder: FormBuilder, private servicoCep: RuaService, private  cidade: CidadeService,
+              private bairro: BairroService) {
     this.formBuilder = new FormBuilder();
   }
 
-  canDeactivate() {
-    if (this.ImovelForm.dirty) {
+  CanDeactivate() {
+    if (this.ImovelForm.dirty && this.flag) {
       return window.confirm('Descartar Alterações?');
     }
     return true;

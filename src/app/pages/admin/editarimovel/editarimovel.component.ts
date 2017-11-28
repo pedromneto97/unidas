@@ -3,15 +3,17 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ImovelService} from "../../../services/imovel.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
+import {FormCanDeactivate} from "../../../guard/form-can-deactivate.guard";
 
 @Component({
   selector: 'app-editarimovel',
   templateUrl: './editarimovel.component.html',
   styleUrls: ['./editarimovel.component.css']
 })
-export class EditarimovelComponent implements OnInit, OnDestroy {
+export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactivate {
   ImovelForm: FormGroup;
   inscricao: Subscription;
+  flag = true;
 
   constructor(private formBuilder: FormBuilder, private imovel: ImovelService, private rota: ActivatedRoute) {
     this.formBuilder = new FormBuilder();
@@ -51,6 +53,13 @@ export class EditarimovelComponent implements OnInit, OnDestroy {
     })
     ;
 
+  }
+
+  CanDeactivate() {
+    if (this.ImovelForm.touched && this.flag) {
+      return window.confirm('Descartar Alterações?');
+    }
+    return true;
   }
 
   ngOnDestroy() {
@@ -94,6 +103,7 @@ export class EditarimovelComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     console.log(this.ImovelForm.value);
+    this.flag = false;
   }
 
 
