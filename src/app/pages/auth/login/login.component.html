@@ -1,3 +1,65 @@
-<p>
-  login works!
-</p>
+<div class="container-fluid background">
+  <div class="col-12 mx-auto my-auto">
+    <img src="/images/logo_cort.png" class="logo img-fluid align-self-center">
+  </div>
+  <div class="col-md-6 mx-auto my-auto">
+    <form
+      [formGroup]="LoginForm"
+      (ngSubmit)="onSubmit()">
+      <h2 class="text-dark">Login</h2>
+      <div class="form-group"
+           [ngClass]="{'has-danger': LoginForm.controls['username'].invalid && LoginForm.controls['username'].touched}">
+        <label for="username-input"
+               class="form-control-label text-dark">Usuário</label>
+        <input id="username-input"
+               type="text"
+               class="form-control"
+               [ngClass]="{'form-control-danger': LoginForm.controls['username'].invalid}"
+               formControlName="username"
+               placeholder="Usuário">
+        <div *ngIf="LoginForm.controls['username'].invalid && LoginForm.controls['username'].touched">
+          <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+          <small class="form-text text-muted"
+                 *ngIf="LoginForm.controls['username'].errors?.required">O campo é obrigatório.
+          </small>
+          <small class="form-text text-muted"
+                 *ngIf="LoginForm.controls['username'].errors?.minlength">O campo deve ter mais que 3 caracteres
+          </small>
+
+          <small class="form-text text-muted"
+                 *ngIf="LoginForm.controls['username'].errors?.maxlength">O campo deve ter menos que 10 caracteres
+          </small>
+        </div>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'has-danger': LoginForm.controls['password'].invalid && LoginForm.controls['password'].touched}">
+        <label for="password-input"
+               class="form-control-label text-dark">Senha</label>
+        <input id="password-input"
+               type="password"
+               class="form-control"
+               [ngClass]="{'form-control-danger': LoginForm.controls['password'].invalid}"
+               formControlName="password"
+               placeholder="******">
+        <div *ngIf="LoginForm.controls['password'].invalid && LoginForm.controls['password'].touched">
+          <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+          <small class="form-text text-muted"
+                 *ngIf="LoginForm.controls['password'].errors?.required">O campo é obrigatório.
+          </small>
+          <small class="form-text text-muted"
+                 *ngIf="LoginForm.controls['password'].errors?.minlength">O campo deve ter mais que 6 caracteres
+          </small>
+          <small class="form-text text-muted"
+                 *ngIf="LoginForm.controls['password'].errors?.maxlength">O campo deve ter menos que 16 caracteres
+          </small>
+        </div>
+      </div>
+      <button type="submit"
+              [disabled]="LoginForm.invalid"
+              class="btn btn-success btn-default">
+        <i class="fa fa-sign-in fa-lg"></i>
+        LOGIN
+      </button>
+    </form>
+  </div>
+</div>
