@@ -7,7 +7,12 @@ import {RotaGuard} from "./guard/rota.guard";
 const appRoutes: Routes = [
   {path: '', loadChildren: 'app/pages/public/public.module#PublicModule'},
   {path: 'auth', loadChildren: 'app/pages/auth/auth.module#AuthModule', canActivate: [RotaGuard]},
-  {path: 'admin', loadChildren: 'app/pages/admin/admin.module#AdminModule', canActivate: [AuthGuard]},
+  {
+    path: 'admin',
+    loadChildren: 'app/pages/admin/admin.module#AdminModule',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
+  },
 ];
 
 @NgModule({
