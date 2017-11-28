@@ -9,12 +9,8 @@ export class AuthService {
   headers: Headers;
 
   constructor(private http: Http) {
-    this.base_url = 'localhost:8000/api/';
+    this.base_url = 'localhost:8000/api';
     this.headers = new Headers({'Accept': 'application/json'});
-  }
-
-  isLoggedIn() {
-    return localStorage.getItem('API_TOKEN') ? true : false;
   }
 
   getToken() {
@@ -23,8 +19,7 @@ export class AuthService {
 
 
   login(user): Promise<any> {
-    const url = `//${this.base_url}login`;
-
+    const url = `//${this.base_url}/login`;
 
     return this.http.post(url, user, {headers: this.headers})
       .toPromise()
