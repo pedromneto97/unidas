@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot} from '@angul
 import {Observable} from 'rxjs/Observable';
 
 export interface FormCanDeactivate {
-  CanDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;
+  CanDeactivate(): Observable<boolean> | Promise<boolean> | boolean;
 }
 
 @Injectable()
