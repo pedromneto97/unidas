@@ -5,6 +5,8 @@ import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routing.module';
+import {AuthGuard} from "./guard/auth.guard";
+import {RotaGuard} from "./guard/rota.guard";
 
 @NgModule({
   declarations: [
@@ -16,7 +18,7 @@ import {AppRoutingModule} from './app.routing.module';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthGuard, RotaGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
