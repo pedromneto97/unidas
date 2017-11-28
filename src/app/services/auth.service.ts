@@ -9,7 +9,7 @@ export class AuthService {
   headers: Headers;
 
   constructor(private http: Http) {
-    this.base_url = 'localhost:8000/api';
+    this.base_url = 'localhost:8000/api/auth';
     this.headers = new Headers({'Accept': 'application/json'});
   }
 
