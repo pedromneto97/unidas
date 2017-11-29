@@ -20,7 +20,8 @@ const routes: Routes = [{
       component: EditarimovelComponent,
       canDeactivate: [FormCanDeactivateGuard],
       resolve: {imovel: ImovelResolver},
-    }
+    },
+    {path: '/**', redirectTo: ''}
   ]
 }];
 

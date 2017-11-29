@@ -13,6 +13,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     canLoad: [AuthGuard]
   },
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

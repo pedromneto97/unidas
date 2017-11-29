@@ -17,7 +17,7 @@ const routes: Routes = [{
     {path: 'imovel/:id', component: ImovelComponent, resolve: {imovel: ImovelResolver}},
     {path: 'imoveis/:tipo/:finalidade', component: ImoveisComponent, resolve: {imovel: ImovelResolver}},
     {path: 'imoveis/:tipo', component: ImoveisComponent, resolve: {imovel: ImovelResolver}},
-    {path: 'imoveis/:finalidade', component: ImoveisComponent, resolve: {imovel: ImovelResolver}}
+    {path: 'imoveis/:finalidade', component: ImoveisComponent, resolve: {imovel: ImovelResolver}},
   ]
 }];
 
