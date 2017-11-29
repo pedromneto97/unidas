@@ -1,4 +1,4 @@
 export class Finalidade {
-  id: number;
-  finalidade: string;
+  public id: number;
+  public finalidade: string;
 }

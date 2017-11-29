@@ -1,9 +1,9 @@
 import {Bairro} from "./bairro";
 
 export class Rua {
-  id: number;
-  id_bairro: number;
-  cep: number;
-  rua: string;
-  bairro: Bairro;
+  public id: number;
+  public id_bairro: number;
+  public cep: number;
+  public rua: string;
+  public bairro: Bairro;
 }

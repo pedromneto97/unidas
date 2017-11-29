@@ -1,8 +1,8 @@
 export class Interesse {
-  id: number;
-  nome: string;
-  telefone: string;
-  email: string;
-  atendido: boolean;
+  public id: number;
+  public nome: string;
+  public telefone: string;
+  public email: string;
+  public atendido: boolean;
 
 }

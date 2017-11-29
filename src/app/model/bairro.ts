@@ -1,10 +1,10 @@
 import {Cidade} from "./cidade";
 
 export class Bairro {
-  id: number
-  id_bairro: number;
-  id_cidade: number;
-  bairro: string;
-  cidade: Cidade;
+  public id: number
+  public id_bairro: number;
+  public id_cidade: number;
+  public bairro: string;
+  public cidade: Cidade;
 
 }

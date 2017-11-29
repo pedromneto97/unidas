@@ -1,5 +1,9 @@
 export class Estado {
-  id: number;
-  estado: string;
-  uf: string;
+  public id: number;
+  public estado: string;
+  public uf: string;
+
+  constructor() {
+
+  }
 }

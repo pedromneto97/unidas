@@ -1,5 +1,5 @@
 export class Foto {
-  id: number;
-  id_imovel: number;
-  foto: string;
+  public id: number;
+  public id_imovel: number;
+  public foto: string;
 }

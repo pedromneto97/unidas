@@ -1,4 +1,4 @@
 export class Tipo {
-  id: number;
-  tipo: string;
+  public id: number;
+  public tipo: string;
 }

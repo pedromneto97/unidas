@@ -1,8 +1,8 @@
 import {Estado} from "./estado";
 
 export class Cidade {
-  id: number;
-  id_estado: number;
-  cidade: string;
-  estado: Estado;
+  public id: number;
+  public id_estado: number;
+  public cidade: string;
+  public estado: Estado;
 }
