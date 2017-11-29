@@ -173,6 +173,49 @@
       </div>
     </div>
     <div class="row">
+      <!--Finalidade-->
+      <div class="col">
+        <div class="form-group"
+             [ngClass]="{'has-danger': ImovelForm.controls['id_finalidade'].invalid && ImovelForm.controls['id_finalidade'].touched}">
+          <label for="id_finalidade-input"
+                 class="form-control-label">Finalidade</label>
+          <select id="id_finalidade-input"
+                  class="form-control"
+                  [ngClass]="{'form-control-danger': ImovelForm.controls['id_finalidade'].invalid}"
+                  formControlName="id_finalidade"
+                  placeholder="Descrição">
+            <option *ngFor="let finalidade of Finalidade" value="{{finalidade.id}}">{{finalidade.finalidade}}</option>
+          </select>
+          <div *ngIf="ImovelForm.controls['id_finalidade'].invalid && ImovelForm.controls['id_finalidade'].touched">
+            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+            <small class="form-text text-muted"
+                   *ngIf="ImovelForm.controls['id_finalidade'].errors?.required">O campo é necessário
+            </small>
+          </div>
+        </div>
+      </div>
+      <!--Tipo-->
+      <div class="col">
+        <div class="form-group"
+             [ngClass]="{'has-danger': ImovelForm.controls['id_tipo'].invalid && ImovelForm.controls['id_tipo'].touched}">
+          <label for="id_tipo-input"
+                 class="form-control-label">Tipo</label>
+          <select id="id_tipo-input"
+                  class="form-control"
+                  [ngClass]="{'form-control-danger': ImovelForm.controls['id_tipo'].invalid}"
+                  formControlName="id_tipo">
+            <option *ngFor="let tipo of Tipo" value="{{tipo.id}}">
+              {{tipo.tipo}}
+            </option>
+          </select>
+          <div *ngIf="ImovelForm.controls['id_tipo'].invalid && ImovelForm.controls['id_tipo'].touched">
+            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+            <small class="form-text text-muted"
+                   *ngIf="ImovelForm.controls['id_tipo'].errors?.required">O campo é necessário
+            </small>
+          </div>
+        </div>
+      </div>
       <!--Descrição-->
       <div class="col">
         <div class="form-group"

@@ -5,6 +5,10 @@ import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {FormCanDeactivate} from "../../../guard/form-can-deactivate.guard";
 import {Imovel} from "../../../model/imovel";
+import {Finalidade} from "../../../model/finalidade";
+import {Tipo} from "../../../model/tipo";
+import {FinalidadeService} from "../../../services/finalidade.service";
+import {TipoService} from "../../../services/tipo.service";
 
 @Component({
   selector: 'app-editarimovel',
@@ -16,8 +20,11 @@ export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactiva
   Imovel: Imovel;
   inscricao: Subscription;
   flag = true;
+  Tipo: Tipo[];
+  Finalidade: Finalidade[];
 
-  constructor(private formBuilder: FormBuilder, private imovel: ImovelService, private rota: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private imovel: ImovelService, private rota: ActivatedRoute,
+              private finalidade: FinalidadeService, private tipo: TipoService) {
     this.formBuilder = new FormBuilder();
   }
 
@@ -32,6 +39,8 @@ export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactiva
       descricao: [null, Validators.compose([Validators.required, Validators.minLength(10)])],
       aterreno: [null, Validators.compose([Validators.min(0)])],
       aconstruida: [null, Validators.compose([Validators.min(0)])],
+      id_tipo: [null, Validators.required],
+      id_finalidade: [null, Validators.required],
       rua: this.formBuilder.group({
         cep: [null, Validators.compose([Validators.required, Validators.pattern(new RegExp('[0-9]{8}'))])],
         rua: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
@@ -51,7 +60,14 @@ export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactiva
       this.Imovel = data.imovel[0];
       this.patchform(this.Imovel);
     });
-
+    this.finalidade.getFinalidades()
+      .then((fim: Finalidade[]) => {
+        this.Finalidade = fim;
+      });
+    this.tipo.getTipos()
+      .then((tipo: Tipo[]) => {
+        this.Tipo = tipo;
+      });
   }
 
   CanDeactivate() {

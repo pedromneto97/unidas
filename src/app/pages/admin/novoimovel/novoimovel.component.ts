@@ -5,6 +5,10 @@ import {RuaService} from "../../../services/rua.service";
 import {Imovel} from "../../../model/imovel";
 import {CidadeService} from "../../../services/cidade.service";
 import {BairroService} from "../../../services/bairro.service";
+import {FinalidadeService} from "../../../services/finalidade.service";
+import {Finalidade} from "../../../model/finalidade";
+import {TipoService} from "../../../services/tipo.service";
+import {Tipo} from "../../../model/tipo";
 
 @Component({
   selector: 'app-novoimovel',
@@ -14,10 +18,12 @@ import {BairroService} from "../../../services/bairro.service";
 export class NovoimovelComponent implements OnInit, FormCanDeactivate {
   ImovelForm: FormGroup;
   Imovel: Imovel;
+  Finalidade: Finalidade[];
+  Tipo: Tipo[];
   flag: boolean = true;
 
   constructor(private formBuilder: FormBuilder, private servicoCep: RuaService, private  cidade: CidadeService,
-              private bairro: BairroService) {
+              private bairro: BairroService, private finalidade: FinalidadeService, private tipo: TipoService) {
     this.formBuilder = new FormBuilder();
   }
 
@@ -39,6 +45,8 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivate {
       descricao: [null, Validators.compose([Validators.required, Validators.minLength(10)])],
       aterreno: [null, Validators.compose([Validators.min(0)])],
       aconstruida: [null, Validators.compose([Validators.min(0)])],
+      id_finalidade: [null, Validators.required],
+      id_tipo: [null, Validators.required],
       rua: this.formBuilder.group({
         id: [null],
         cep: [null, Validators.compose([Validators.required, Validators.pattern(new RegExp('^[0-9]{8}$'))])],
@@ -57,9 +65,15 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivate {
           }),
         }),
       }),
-    })
-    ;
-
+    });
+    this.finalidade.getFinalidades()
+      .then((fim: Finalidade[]) => {
+        this.Finalidade = fim;
+      });
+    this.tipo.getTipos()
+      .then((tipo: Tipo[]) => {
+        this.Tipo = tipo;
+      });
   }
 
   buscaCep(cep) {
@@ -280,6 +294,8 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivate {
 
   onSubmit() {
     this.Imovel = this.ImovelForm.value;
+    this.Imovel.id_rua = this.Imovel.rua.id;
+    this.Imovel.rua = null
     console.log(this.Imovel);
   }
 
