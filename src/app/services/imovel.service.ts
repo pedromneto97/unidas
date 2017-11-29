@@ -32,6 +32,30 @@ export class ImovelService {
       .catch(this.handleError);
   }
 
+  getFinalidade(id: number) {
+    const url = `${this.url}/finalidade/${id}`;
+    return this.http.get(url, {headers: this.header})
+      .toPromise()
+      .then((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
+  getTipo(id: number) {
+    const url = `${this.url}/tipo/${id}`;
+    return this.http.get(url, {headers: this.header})
+      .toPromise()
+      .then((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
+  getTipoFinalidade(idtipo: number, idfinalidade: number) {
+    const url = `${this.url}/busca/${idtipo}/${idfinalidade}`;
+    return this.http.get(url, {headers: this.header})
+      .toPromise()
+      .then((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
   store(formulario) {
     const url = `${this.url}`;
     const headers = new Headers({
