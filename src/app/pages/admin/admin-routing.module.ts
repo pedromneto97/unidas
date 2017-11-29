@@ -8,13 +8,19 @@ import {NovoimovelComponent} from "./novoimovel/novoimovel.component";
 
 import {FormCanDeactivateGuard} from "../../guard/form-can-deactivate.guard";
 import {EditarimovelComponent} from "./editarimovel/editarimovel.component";
+import {ImovelResolver} from "../../guard/imovel.resolver";
 
 const routes: Routes = [{
   path: '', component: AdminComponent, children: [
     {path: '', component: InicialComponent},
-    {path: 'imoveis', component: ImoveisComponent},
+    {path: 'imoveis', component: ImoveisComponent, resolve: {imovel: ImovelResolver}},
     {path: 'novoimovel', component: NovoimovelComponent, canDeactivate: [FormCanDeactivateGuard]},
-    {path: 'editarimovel/:id', component: EditarimovelComponent, canDeactivate: [FormCanDeactivateGuard]}
+    {
+      path: 'editarimovel/:id',
+      component: EditarimovelComponent,
+      canDeactivate: [FormCanDeactivateGuard],
+      resolve: {imovel: ImovelResolver},
+    }
   ]
 }];
 

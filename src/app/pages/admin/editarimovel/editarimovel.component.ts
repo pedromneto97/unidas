@@ -4,6 +4,7 @@ import {ImovelService} from "../../../services/imovel.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {FormCanDeactivate} from "../../../guard/form-can-deactivate.guard";
+import {Imovel} from "../../../model/imovel";
 
 @Component({
   selector: 'app-editarimovel',
@@ -12,6 +13,7 @@ import {FormCanDeactivate} from "../../../guard/form-can-deactivate.guard";
 })
 export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactivate {
   ImovelForm: FormGroup;
+  Imovel: Imovel;
   inscricao: Subscription;
   flag = true;
 
@@ -20,12 +22,6 @@ export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactiva
   }
 
   ngOnInit() {
-    this.inscricao = this.rota.params.subscribe(
-      (Params: any) => {
-        this.buscaimovel(Params['id']);
-      }
-    );
-
     this.ImovelForm = this.formBuilder.group({
       numero: [null, Validators.compose([Validators.min(0)])],
       valor: [null, Validators.compose([Validators.min(100)])],
@@ -50,8 +46,11 @@ export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactiva
           }),
         }),
       }),
-    })
-    ;
+    });
+    this.inscricao = this.rota.data.subscribe((data: { imovel: Imovel }) => {
+      this.Imovel = data.imovel[0];
+      this.patchform(this.Imovel);
+    });
 
   }
 
@@ -66,34 +65,27 @@ export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactiva
     this.inscricao.unsubscribe();
   }
 
-  buscaimovel(id) {
-    this.imovel.getImovel(id)
-      .then((imovel) => {
-        this.patchform(imovel);
-      });
-  }
-
   patchform(imovel) {
     this.ImovelForm.patchValue({
-      numero: imovel[0].numero,
-      valor: imovel[0].valor,
-      dormitorio: imovel[0].dormitorio,
-      suite: imovel[0].suite,
-      banheiro: imovel[0].banheiro,
-      garagem: imovel[0].garagem,
-      descricao: imovel[0].descricao,
-      aterreno: imovel[0].aterreno,
-      aconstruida: imovel[0].aconstruida,
+      numero: imovel.numero,
+      valor: imovel.valor,
+      dormitorio: imovel.dormitorio,
+      suite: imovel.suite,
+      banheiro: imovel.banheiro,
+      garagem: imovel.garagem,
+      descricao: imovel.descricao,
+      aterreno: imovel.aterreno,
+      aconstruida: imovel.aconstruida,
       rua: {
-        cep: imovel[0].rua.cep,
-        rua: imovel[0].rua.rua,
+        cep: imovel.rua.cep,
+        rua: imovel.rua.rua,
         bairro: {
-          bairro: imovel[0].rua.bairro.bairro,
+          bairro: imovel.rua.bairro.bairro,
           cidade: {
-            cidade: imovel[0].rua.bairro.cidade.cidade,
+            cidade: imovel.rua.bairro.cidade.cidade,
             estado: {
-              estado: imovel[0].rua.bairro.cidade.estado.estado,
-              uf: imovel[0].rua.bairro.cidade.estado.uf
+              estado: imovel.rua.bairro.cidade.estado.estado,
+              uf: imovel.rua.bairro.cidade.estado.uf
             }
           }
         }

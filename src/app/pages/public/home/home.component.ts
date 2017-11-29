@@ -1,12 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 
 import {Imovel} from "../../../model/imovel";
-import {Rua} from "../../../model/rua";
-import {Bairro} from "../../../model/bairro";
-import {Cidade} from "../../../model/cidade";
-import {Estado} from "../../../model/estado";
-
-import {ImovelService} from "../../../services/imovel.service";
+import {ActivatedRoute} from "@angular/router";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-home',
@@ -16,18 +12,18 @@ import {ImovelService} from "../../../services/imovel.service";
 export class HomeComponent implements OnInit {
 
   imoveis: Imovel[];
+  inscricao: Subscription;
 
 
-  constructor(private servico: ImovelService) {
-    this.busca();
+  constructor(private rota: ActivatedRoute) {
+
   }
 
-  busca() {
-    this.servico.getImoveis()
-      .then(imovel => this.imoveis = imovel);
-  }
 
   ngOnInit() {
+    this.inscricao = this.rota.data.subscribe((data: { imovel: Imovel[] }) => {
+      this.imoveis = data.imovel;
+    });
   }
 
 
