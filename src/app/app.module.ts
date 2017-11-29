@@ -7,6 +7,8 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routing.module';
 import {AuthGuard} from "./guard/auth.guard";
 import {RotaGuard} from "./guard/rota.guard";
+import {ImovelResolver} from "./guard/imovel.resolver";
+import {ImovelService} from "./services/imovel.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,7 @@ import {RotaGuard} from "./guard/rota.guard";
     HttpModule,
     AppRoutingModule
   ],
-  providers: [AuthGuard, RotaGuard],
+  providers: [AuthGuard, RotaGuard, ImovelResolver, ImovelService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
