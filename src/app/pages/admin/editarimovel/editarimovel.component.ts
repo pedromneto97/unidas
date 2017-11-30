@@ -29,6 +29,18 @@ export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactiva
   }
 
   ngOnInit() {
+    this.finalidade.getFinalidades()
+      .then((fim: Finalidade[]) => {
+        this.Finalidade = fim;
+      });
+    this.tipo.getTipos()
+      .then((tipo: Tipo[]) => {
+        this.Tipo = tipo;
+      });
+
+    this.inscricao = this.rota.data.subscribe((data: { imovel: Imovel }) => {
+      this.Imovel = data.imovel[0];
+    });
     this.ImovelForm = this.formBuilder.group({
       numero: [null, Validators.compose([Validators.min(0)])],
       valor: [null, Validators.compose([Validators.min(100)])],
@@ -39,8 +51,8 @@ export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactiva
       descricao: [null, Validators.compose([Validators.required, Validators.minLength(10)])],
       aterreno: [null, Validators.compose([Validators.min(0)])],
       aconstruida: [null, Validators.compose([Validators.min(0)])],
-      id_tipo: [null, Validators.required],
-      id_finalidade: [null, Validators.required],
+      id_tipo: [this.Imovel.id_tipo, Validators.required],
+      id_finalidade: [this.Imovel.id_finalidade, Validators.required],
       rua: this.formBuilder.group({
         cep: [null, Validators.compose([Validators.required, Validators.pattern(new RegExp('[0-9]{8}'))])],
         rua: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
@@ -56,18 +68,8 @@ export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactiva
         }),
       }),
     });
-    this.inscricao = this.rota.data.subscribe((data: { imovel: Imovel }) => {
-      this.Imovel = data.imovel[0];
-      this.patchform(this.Imovel);
-    });
-    this.finalidade.getFinalidades()
-      .then((fim: Finalidade[]) => {
-        this.Finalidade = fim;
-      });
-    this.tipo.getTipos()
-      .then((tipo: Tipo[]) => {
-        this.Tipo = tipo;
-      });
+    this.patchform(this.Imovel);
+
   }
 
   CanDeactivate() {
