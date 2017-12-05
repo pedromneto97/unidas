@@ -1,16 +1,17 @@
 import {Injectable} from '@angular/core';
-import {Headers, Http, Response} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpResponse} from "selenium-webdriver/http";
 
 @Injectable()
 export class AuthService {
 
   base_url: string;
-  headers: Headers;
+  headers: HttpHeaders;
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
     this.base_url = 'localhost:8000/api/auth';
-    this.headers = new Headers({'Accept': 'application/json'});
+    this.headers = new HttpHeaders({'Accept': 'application/json'});
   }
 
   getToken() {
@@ -23,13 +24,13 @@ export class AuthService {
 
     return this.http.post(url, user, {headers: this.headers})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse) => response)
       .catch(this.handleError);
   }
 
   logout() {
     const url = `//${this.base_url}/logout`;
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.getToken()}`
     });

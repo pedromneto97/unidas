@@ -1,17 +1,18 @@
 import {Injectable} from '@angular/core';
-import {Headers, Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
+import {Imovel} from "../model/imovel";
 
 @Injectable()
 export class ImovelService {
   url: string;
-  header: Headers;
+  header: HttpHeaders;
   token: any;
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
     this.url = 'http://localhost:8000/api/imovel';
-    this.header = new Headers({
+    this.header = new HttpHeaders({
       'Content-Type': 'application/json'
     });
     this.token = localStorage.getItem('API_TOKEN');
@@ -20,7 +21,7 @@ export class ImovelService {
   getImoveis() {
     return this.http.get(this.url, {headers: this.header})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<Imovel>) => response)
       .catch(this.handleError);
   }
 
@@ -28,7 +29,7 @@ export class ImovelService {
     const url = `${this.url}/${id}`;
     return this.http.get(url, {headers: this.header})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<Imovel>) => response)
       .catch(this.handleError);
   }
 
@@ -36,7 +37,7 @@ export class ImovelService {
     const url = `${this.url}/finalidade/${id}`;
     return this.http.get(url, {headers: this.header})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<Imovel>) => response)
       .catch(this.handleError);
   }
 
@@ -44,7 +45,7 @@ export class ImovelService {
     const url = `${this.url}/tipo/${id}`;
     return this.http.get(url, {headers: this.header})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<Imovel>) => response)
       .catch(this.handleError);
   }
 
@@ -52,43 +53,43 @@ export class ImovelService {
     const url = `${this.url}/busca/${idtipo}/${idfinalidade}`;
     return this.http.get(url, {headers: this.header})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<Imovel>) => response)
       .catch(this.handleError);
   }
 
   store(formulario) {
     const url = `${this.url}`;
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.post(url, formulario, {headers: this.header})
+    return this.http.post(url, formulario, {headers: headers})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<Imovel>) => response)
       .catch(this.handleError);
   }
 
   update(id: number, formulario) {
     const url = `${this.url}/${id}`;
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.put(url, formulario, {headers: this.header})
+    return this.http.put(url, formulario, {headers: headers})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<Imovel>) => response)
       .catch(this.handleError);
   }
 
   delete(id: number) {
     const url = `${this.url}/${id}`;
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.delete(url, {headers: this.header})
+    return this.http.delete(url, {headers: headers})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<any>) => response)
       .catch(this.handleError);
   }
 

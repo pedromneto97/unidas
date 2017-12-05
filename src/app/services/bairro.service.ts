@@ -1,26 +1,27 @@
 import {Injectable} from '@angular/core';
-import {Headers, Http, Response} from "@angular/http";
+import {Bairro} from "../model/bairro";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 
 @Injectable()
 export class BairroService {
 
   url: string;
   token: any;
-  header: Headers;
+  header: HttpHeaders;
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
     this.url = 'http://localhost:8000/api/bairro';
-    this.header = new Headers({
+    this.header = new HttpHeaders({
       'Content-Type': 'application/json'
     });
     this.token = localStorage.getItem('API_TOKEN');
   }
 
-  busca(form) {
+  busca(form): Promise<Bairro> {
     const url = `${this.url}/busca`;
     return this.http.post(url, form, {headers: this.header})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<Bairro>) => response)
       .catch(this.handleError);
   }
 
@@ -28,7 +29,7 @@ export class BairroService {
     const url = `${this.url}/${id}`;
     return this.http.get(url, {headers: this.header})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<Bairro>) => response)
       .catch(this.handleError);
   }
 
@@ -36,43 +37,43 @@ export class BairroService {
     const url = `${this.url}`;
     return this.http.get(url, {headers: this.header})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<Bairro>) => response)
       .catch(this.handleError);
   }
 
-  store(formulario) {
+  store(formulario): Promise<Bairro> {
     const url = `${this.url}`;
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.post(url, formulario, {headers: this.header})
+    return this.http.post(url, formulario, {headers: headers})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<Bairro>) => response)
       .catch(this.handleError);
   }
 
   update(id: number, formulario) {
     const url = `${this.url}/${id}`;
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.put(url, formulario, {headers: this.header})
+    return this.http.put(url, formulario, {headers: headers})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<Bairro>) => response)
       .catch(this.handleError);
   }
 
   delete(id: number) {
     const url = `${this.url}/${id}`;
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.delete(url, {headers: this.header})
+    return this.http.delete(url, {headers: headers})
       .toPromise()
-      .then((response: Response) => response.json())
+      .then((response: HttpResponse<any>) => response)
       .catch(this.handleError);
   }
 
