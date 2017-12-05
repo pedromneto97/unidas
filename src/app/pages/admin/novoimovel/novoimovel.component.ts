@@ -9,6 +9,9 @@ import {FinalidadeService} from "../../../services/finalidade.service";
 import {Finalidade} from "../../../model/finalidade";
 import {TipoService} from "../../../services/tipo.service";
 import {Tipo} from "../../../model/tipo";
+import {ImovelService} from "../../../services/imovel.service";
+import {Bairro} from "../../../model/bairro";
+import {Rua} from "../../../model/rua";
 
 @Component({
   selector: 'app-novoimovel',
@@ -20,10 +23,11 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivate {
   Imovel: Imovel;
   Finalidade: Finalidade[];
   Tipo: Tipo[];
-  flag: boolean = true;
+  flag = true;
 
   constructor(private formBuilder: FormBuilder, private servicoCep: RuaService, private  cidade: CidadeService,
-              private bairro: BairroService, private finalidade: FinalidadeService, private tipo: TipoService) {
+              private bairro: BairroService, private finalidade: FinalidadeService, private tipo: TipoService,
+              private rua: RuaService, private imov: ImovelService) {
     this.formBuilder = new FormBuilder();
   }
 
@@ -293,10 +297,42 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivate {
   }
 
   onSubmit() {
+    let bairro: Bairro = new Bairro();
+    let rua: Rua = new Rua();
+
     this.Imovel = this.ImovelForm.value;
-    this.Imovel.id_rua = this.Imovel.rua.id;
-    this.Imovel.rua = null
-    console.log(this.Imovel);
+
+    if (this.Imovel.id_rua == null) {
+      rua = this.Imovel.rua;
+      console.log('1' + rua);
+      if (this.Imovel.rua.bairro.id == null) {
+        bairro = this.Imovel.rua.bairro;
+        bairro.id_cidade = bairro.cidade.id;
+        console.log('2' + bairro);
+        this.bairro.store(bairro)
+          .then((res) => {
+            rua.bairro = res;
+            rua.id_bairro = rua.bairro.id;
+            console.log('3');
+            console.log(rua);
+          });
+      } else {
+        rua.id_bairro = rua.bairro.id;
+      }
+      this.rua.store(rua)
+        .then((res) => {
+          this.Imovel.rua = res;
+          this.Imovel.id_rua = this.Imovel.rua.id;
+          console.log('4' + this.Imovel);
+        });
+    } else {
+      this.Imovel.id_rua = this.Imovel.rua.id;
+    }
+    console.log('5' + this.Imovel);
+    this.imov.store(this.Imovel)
+      .then((res) => {
+        this.Imovel = res;
+      });
   }
 
 }

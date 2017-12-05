@@ -11,15 +11,15 @@ import {NovoimovelComponent} from './novoimovel/novoimovel.component';
 import {EditarimovelComponent} from './editarimovel/editarimovel.component';
 
 import {ImovelService} from "../../services/imovel.service";
-
-import {FormCanDeactivateGuard} from "../../guard/form-can-deactivate.guard";
 import {RuaService} from "../../services/rua.service";
-import {AuthService} from "../../services/auth.service";
 import {CidadeService} from "../../services/cidade.service";
 import {EstadoService} from "../../services/estado.service";
 import {BairroService} from "../../services/bairro.service";
 import {FinalidadeService} from "../../services/finalidade.service";
 import {TipoService} from "../../services/tipo.service";
+
+import {FormCanDeactivateGuard} from "../../guard/form-can-deactivate.guard";
+import {AuthService} from "../../services/auth.service";
 
 @NgModule({
   imports: [
