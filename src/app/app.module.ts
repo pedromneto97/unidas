@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routing.module';
@@ -9,6 +8,7 @@ import {AuthGuard} from "./guard/auth.guard";
 import {RotaGuard} from "./guard/rota.guard";
 import {ImovelResolver} from "./guard/imovel.resolver";
 import {ImovelService} from "./services/imovel.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import {ImovelService} from "./services/imovel.service";
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [AuthGuard, RotaGuard, ImovelResolver, ImovelService],
