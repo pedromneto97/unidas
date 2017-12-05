@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, CanLoad, Router, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
+import {ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot} from '@angular/router';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanLoad {
@@ -9,18 +8,26 @@ export class AuthGuard implements CanActivate, CanLoad {
   }
 
   canActivate(next: ActivatedRouteSnapshot,
-              state: RouterStateSnapshot): Observable<boolean> | boolean {
-    if (this.Logado())
-      return true;
-    this.router.navigate(['/auth/login']);
-    return false;
+              state: RouterStateSnapshot): Promise<boolean> | boolean {
+    return new Promise<boolean>(resolve => {
+      if (this.Logado()) {
+        resolve(true);
+      } else {
+        this.router.navigate(['/auth/login']);
+        resolve(false);
+      }
+    });
   }
 
-  canLoad(route: Router): Observable<boolean> | boolean {
-    if (this.Logado())
-      return true;
-    this.router.navigate(['/auth/login']);
-    return false;
+  canLoad(route: Route): Promise<boolean> | boolean {
+    return new Promise<boolean>(resolve => {
+      if (this.Logado()) {
+        resolve(true);
+      } else {
+        this.router.navigate(['/auth/login']);
+        resolve(false);
+      }
+    });
   }
 
   private Logado() {
