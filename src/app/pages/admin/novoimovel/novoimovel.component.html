@@ -213,6 +213,42 @@
           </div>
         </div>
       </div>
+      <!--Área de Serviço-->
+      <div class="col">
+        <div class="form-group"
+             [ngClass]="{'has-danger': ImovelForm.controls['aservico'].invalid && ImovelForm.controls['aservico'].touched}">
+          <label for="aservico-input"
+                 class="form-control-label">Área de Serviço</label>
+          <select id="aservico-input"
+                  class="form-control"
+                  [ngClass]="{'form-control-danger': ImovelForm.controls['aservico'].invalid}"
+                  formControlName="aservico">
+            <option value="0">Não</option>
+            <option value="1">Sim</option>
+          </select>
+          <div *ngIf="ImovelForm.controls['aservico'].invalid && ImovelForm.controls['aservico'].touched">
+            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+          </div>
+        </div>
+      </div>
+      <!--Mobília-->
+      <div class="col">
+        <div class="form-group"
+             [ngClass]="{'has-danger': ImovelForm.controls['mobilia'].invalid && ImovelForm.controls['mobilia'].touched}">
+          <label for="mobilia-input"
+                 class="form-control-label">Mobília</label>
+          <select id="mobilia-input"
+                  class="form-control"
+                  [ngClass]="{'form-control-danger': ImovelForm.controls['mobilia'].invalid}"
+                  formControlName="mobilia">
+            <option value="0">Não</option>
+            <option value="1">Sim</option>
+          </select>
+          <div *ngIf="ImovelForm.controls['mobilia'].invalid && ImovelForm.controls['mobilia'].touched">
+            <div class="form-control-feedback"> Oops! Há algo de errado!</div>
+          </div>
+        </div>
+      </div>
       <!--Descrição-->
       <div class="col">
         <div class="form-group"
@@ -408,6 +444,12 @@
                 class="btn btn-success btn-default">
           <i class="fa fa-save fa-lg"></i>
           Salvar
+        </button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-warning" (click)="onReset()">
+          <i class="fa fa-eraser fa-lg"></i>
+          Limpar formulário
         </button>
       </div>
     </div>

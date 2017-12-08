@@ -39,7 +39,7 @@ export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactiva
       });
 
     this.inscricao = this.rota.data.subscribe((data: { imovel: Imovel }) => {
-      this.Imovel = data.imovel[0];
+      this.Imovel = data.imovel;
     });
     this.ImovelForm = this.formBuilder.group({
       numero: [null, Validators.compose([Validators.min(0)])],

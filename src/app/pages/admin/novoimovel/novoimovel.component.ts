@@ -51,6 +51,8 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivate {
       aconstruida: [null, Validators.compose([Validators.min(0)])],
       id_finalidade: [null, Validators.required],
       id_tipo: [null, Validators.required],
+      mobilia: [null],
+      aservico: [null],
       rua: this.formBuilder.group({
         id: [null],
         cep: [null, Validators.compose([Validators.required, Validators.pattern(new RegExp('^[0-9]{8}$'))])],
@@ -313,26 +315,42 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivate {
           .then((res) => {
             rua.bairro = res;
             rua.id_bairro = rua.bairro.id;
-            console.log('3');
-            console.log(rua);
+            this.rua.store(rua)
+              .then((resp) => {
+                this.Imovel.rua = resp;
+                this.Imovel.id_rua = this.Imovel.rua.id;
+                this.imov.store(this.Imovel)
+                  .then((resposta) => {
+                    this.Imovel = resposta;
+                  });
+              });
+
           });
       } else {
         rua.id_bairro = rua.bairro.id;
+        this.rua.store(rua)
+          .then((res) => {
+            this.Imovel.rua = res;
+            this.Imovel.id_rua = this.Imovel.rua.id;
+            this.imov.store(this.Imovel)
+              .then((resp) => {
+                this.Imovel = resp;
+              });
+          });
       }
-      this.rua.store(rua)
-        .then((res) => {
-          this.Imovel.rua = res;
-          this.Imovel.id_rua = this.Imovel.rua.id;
-          console.log('4' + this.Imovel);
-        });
+
     } else {
       this.Imovel.id_rua = this.Imovel.rua.id;
+      this.imov.store(this.Imovel)
+        .then((res) => {
+          this.Imovel = res;
+        });
     }
-    console.log('5' + this.Imovel);
-    this.imov.store(this.Imovel)
-      .then((res) => {
-        this.Imovel = res;
-      });
   }
 
+  onReset() {
+
+    if (this.ImovelForm.dirty && window.confirm("Deseja limpar o formulário?"))
+      this.ImovelForm.reset();
+  }
 }
