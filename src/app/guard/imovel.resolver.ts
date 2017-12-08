@@ -65,8 +65,8 @@ export class ImovelResolver implements Resolve<Imovel> {
             break;
           default:
             finalidade = 0;
-            return this.imovel.getTipoFinalidade(tipo, finalidade);
         }
+        return this.imovel.getTipoFinalidade(tipo, finalidade);
       } else {
         //Somente tipo
         return this.imovel.getTipo(tipo);
