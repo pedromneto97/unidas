@@ -347,10 +347,7 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivate {
         });
     }
   }
+  onReset(){
 
-  onReset() {
-
-    if (this.ImovelForm.dirty && window.confirm("Deseja limpar o formulário?"))
-      this.ImovelForm.reset();
   }
 }
