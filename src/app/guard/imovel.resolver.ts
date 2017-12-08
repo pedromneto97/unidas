@@ -96,7 +96,7 @@ export class ImovelResolver implements Resolve<Imovel> {
     if (id != null) {
       return this.imovel.getImovel(id);
     } else {
-      return this.imovel.getImoveis();
+      return this.imovel.getImoveisLimite();
     }
   }
 }
