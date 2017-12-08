@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-12" *ngFor="let imovel of imoveis">
+    <div class="col-12">
       <table class="table table-responsive table-hover">
         <thead>
         <tr>
           <td>
-            <a routerLink="/imoveis/{{imovel.tipo.tipo}}/{{imovel.finalidade.finalidade}}"><< Voltar para
-              {{imovel.tipo.tipo}}/{{imovel.finalidade.finalidade}}</a>
+            <a routerLink="/imoveis/{{this.imovel.tipo.tipo}}/{{this.imovel.finalidade.finalidade}}"><< Voltar para
+              {{this.imovel.tipo.tipo}}/{{this.imovel.finalidade.finalidade}}</a>
           </td>
         </tr>
         </thead>
@@ -128,57 +128,57 @@
         <div class="col-sm-4">
           <h4 class="page-header">Detalhes do imóvel: </h4>
           <p>
-            <b>Finalidade:</b> {{imovel.finalidade.finalidade}}
+            <b>Finalidade:</b> {{this.imovel.finalidade.finalidade}}
           </p>
           <p>
-            <b>Tipo:</b> {{imovel.tipo.tipo}}
+            <b>Tipo:</b> {{this.imovel.tipo.tipo}}
           </p>
           <p>
-            <b>Cidade:</b> {{imovel.rua.bairro.cidade.cidade}}/{{imovel.rua.bairro.cidade.estado.uf}}
+            <b>Cidade:</b> {{this.imovel.rua.bairro.cidade.cidade}}/{{this.imovel.rua.bairro.cidade.estado.uf}}
           </p>
           <p>
-            <b *ngIf="imovel.rua.bairro != null">Bairro:</b> {{imovel.rua.bairro.bairro}}
+            <b *ngIf="this.imovel.rua.bairro != null">Bairro:</b> {{this.imovel.rua.bairro.bairro}}
           </p>
           <p>
-            <b *ngIf="imovel.rua != null">Endereço:</b> {{imovel.rua.rua}}
+            <b *ngIf="this.imovel.rua != null">Endereço:</b> {{this.imovel.rua.rua}}
           </p>
-          <p *ngIf="imovel.aterreno != null">
-            <b>Área Terreno:</b> {{imovel.aterreno}} m²
+          <p *ngIf="this.imovel.aterreno != null">
+            <b>Área Terreno:</b> {{this.imovel.aterreno}} m²
           </p>
           <p>
-            <b *ngIf="imovel.aconstruida != null">Área Construída:</b> {{imovel.aconstruida}} m²
+            <b *ngIf="this.imovel.aconstruida != null">Área Construída:</b> {{this.imovel.aconstruida}} m²
           </p>
         </div>
         <div class="col-sm-3">
           <br>
           <p>
             <b> Descrição:</b>
-            {{imovel.descricao}}
+            {{this.imovel.descricao}}
           </p>
-          <p *ngIf="imovel.dormitorio != null">
-            {{imovel.dormitorio}} Dormitórios
+          <p *ngIf="this.imovel.dormitorio != null">
+            {{this.imovel.dormitorio}} Dormitórios
           </p>
-          <p *ngIf="imovel.suite != null">
-            {{imovel.suite}} Suíte
+          <p *ngIf="this.imovel.suite != null">
+            {{this.imovel.suite}} Suíte
           </p>
-          <p *ngIf="imovel.banheiro != null">
-            {{imovel.banheiro}} Banheiros
+          <p *ngIf="this.imovel.banheiro != null">
+            {{this.imovel.banheiro}} Banheiros
           </p>
-          <p *ngIf="imovel.garagem != null">
-            {{imovel.garagem}} Garagens
+          <p *ngIf="this.imovel.garagem != null">
+            {{this.imovel.garagem}} Garagens
           </p>
-          <p *ngIf="imovel.aservico != null">
-            <b *ngIf="imovel.aservico != null">Área de Serviço: </b>
-            {{imovel.aservico == 1 ? "Sim" : "Não"}}
+          <p *ngIf="this.imovel.aservico != null">
+            <b *ngIf="this.imovel.aservico != null">Área de Serviço: </b>
+            {{this.imovel.aservico == 1 ? "Sim" : "Não"}}
           </p>
           <p>
-            <b *ngIf="imovel.mobilia != null">Mobíliado:</b>
-            {{imovel.mobilia == 1 ? "Sim" : "Não"}}
+            <b *ngIf="this.imovel.mobilia != null">Mobíliado:</b>
+            {{this.imovel.mobilia == 1 ? "Sim" : "Não"}}
           </p>
         </div>
         <div class="col-sm-7 offset-md-5">
           <h4>
-            <b *ngIf="imovel.valor != null">Valor: R${{imovel.valor}}</b>
+            <b *ngIf="this.imovel.valor != null">Valor: R${{this.imovel.valor}}</b>
           </h4>
         </div>
       </div>

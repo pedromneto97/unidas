@@ -11,7 +11,7 @@ import {Imovel} from "../../../model/imovel";
 
 export class ImovelComponent implements OnInit, OnDestroy {
 
-  imoveis: Imovel;
+  imovel: Imovel;
   id: number;
   inscricao: Subscription;
   interesse: any;
@@ -21,7 +21,8 @@ export class ImovelComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.inscricao = this.rota.data.subscribe((data: { imovel: Imovel }) => {
-      this.imoveis = data.imovel;
+      this.imovel = data.imovel;
+      console.log(this.imovel);
     });
   }
 
