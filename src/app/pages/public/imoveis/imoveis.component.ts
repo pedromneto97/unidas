@@ -4,7 +4,6 @@ import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 
 import {Imovel} from "../../../model/imovel";
-import {ImovelService} from "../../../services/imovel.service";
 
 @Component({
   selector: 'app-imoveis',
@@ -16,22 +15,27 @@ export class ImoveisComponent implements OnInit, OnDestroy {
   error: Error;
   rotatipo: string;
   rotafinalidade: string;
-  private tipo: number;
-  private finalidade: number;
-  private inscricao: Subscription;
+  private route: Subscription;
+  private lista: Subscription;
 
-  constructor(private servico: ImovelService, private rota: ActivatedRoute) {
+  constructor(private rota: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.inscricao = this.rota.data.subscribe((data: { imovel: Imovel[] }) => {
+    this.lista = this.rota.data.subscribe((data: { imovel: Imovel[] }) => {
       this.imoveis = data.imovel;
     });
+    this.route = this.rota.params.subscribe((valores) => {
+      this.rotatipo = valores['tipo'];
+      this.rotafinalidade = valores['finalidade'];
+    });
+
   }
 
 
   ngOnDestroy() {
-    this.inscricao.unsubscribe();
+    this.lista.unsubscribe();
+    this.route.unsubscribe();
   }
 
 }
