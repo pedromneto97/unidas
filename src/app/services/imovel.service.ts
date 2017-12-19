@@ -19,17 +19,20 @@ export class ImovelService {
   }
 
   getImoveis() {
-    return this.http.get(this.url, {headers: this.header})
+    const url = `${this.url}/todos`;
+    return this.http.get(url, {headers: this.header})
       .toPromise()
       .then((response: HttpResponse<Imovel>) => response)
       .catch(this.handleError);
   }
+
   getImoveisLimite() {
     return this.http.get(this.url, {headers: this.header})
       .toPromise()
       .then((response: HttpResponse<Imovel>) => response)
       .catch(this.handleError);
   }
+
   getImovel(id: number) {
     const url = `${this.url}/${id}`;
     return this.http.get(url, {headers: this.header})
