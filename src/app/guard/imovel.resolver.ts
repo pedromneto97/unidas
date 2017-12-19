@@ -14,6 +14,7 @@ export class ImovelResolver implements Resolve<Imovel> {
     let id = route.params['id'];
     let tipo = route.params['tipo'];
     let finalidade = route.params['finalidade'];
+    console.log(route);
     if (tipo != null) {
       switch (tipo) {
         case 'residencial':
@@ -96,7 +97,9 @@ export class ImovelResolver implements Resolve<Imovel> {
     if (id != null) {
       return this.imovel.getImovel(id);
     } else {
-      return this.imovel.getImoveisLimite();
+      if (route.url.length === 0)
+        return this.imovel.getImoveisLimite();
+      return this.imovel.getImoveis();
     }
   }
 }
