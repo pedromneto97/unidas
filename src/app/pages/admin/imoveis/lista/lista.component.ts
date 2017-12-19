@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {Imovel} from "../../../model/imovel";
+import {Imovel} from "../../../../model/imovel";
 import {Subscription} from "rxjs/Subscription";
-import {ImovelService} from "../../../services/imovel.service";
+import {ImovelService} from "../../../../services/imovel.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-imoveis',
-  templateUrl: './imoveis.component.html',
-  styleUrls: ['./imoveis.component.css']
+  templateUrl: './lista.component.html',
+  styleUrls: ['./lista.component.css']
 })
-export class ImoveisComponent implements OnInit {
+export class ListaImovelComponent implements OnInit {
 
   imoveis: Imovel[];
   error: Error;

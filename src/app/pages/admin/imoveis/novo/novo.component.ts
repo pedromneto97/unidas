@@ -1,24 +1,26 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {FormCanDeactivate} from "../../../guard/form-can-deactivate.guard";
-import {RuaService} from "../../../services/rua.service";
-import {Imovel} from "../../../model/imovel";
-import {CidadeService} from "../../../services/cidade.service";
-import {BairroService} from "../../../services/bairro.service";
-import {FinalidadeService} from "../../../services/finalidade.service";
-import {Finalidade} from "../../../model/finalidade";
-import {TipoService} from "../../../services/tipo.service";
-import {Tipo} from "../../../model/tipo";
-import {ImovelService} from "../../../services/imovel.service";
-import {Bairro} from "../../../model/bairro";
-import {Rua} from "../../../model/rua";
+import {FormCanDeactivate} from "../../../../guard/form-can-deactivate.guard";
+
+import {RuaService} from "../../../../services/rua.service";
+import {CidadeService} from "../../../../services/cidade.service";
+import {BairroService} from "../../../../services/bairro.service";
+import {FinalidadeService} from "../../../../services/finalidade.service";
+import {TipoService} from "../../../../services/tipo.service";
+import {ImovelService} from "../../../../services/imovel.service";
+
+import {Finalidade} from "../../../../model/finalidade";
+import {Bairro} from "../../../../model/bairro";
+import {Rua} from "../../../../model/rua";
+import {Tipo} from "../../../../model/tipo";
+import {Imovel} from "../../../../model/imovel";
 
 @Component({
   selector: 'app-novoimovel',
-  templateUrl: './novoimovel.component.html',
-  styleUrls: ['./novoimovel.component.css']
+  templateUrl: './novo.component.html',
+  styleUrls: ['./novo.component.css']
 })
-export class NovoimovelComponent implements OnInit, FormCanDeactivate {
+export class NovoImovelComponent implements OnInit, FormCanDeactivate {
   ImovelForm: FormGroup;
   Imovel: Imovel;
   Finalidade: Finalidade[];
@@ -347,7 +349,8 @@ export class NovoimovelComponent implements OnInit, FormCanDeactivate {
         });
     }
   }
-  onReset(){
+
+  onReset() {
 
   }
 }

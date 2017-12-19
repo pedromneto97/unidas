@@ -1,21 +1,23 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {FormCanDeactivate} from "../../../../guard/form-can-deactivate.guard";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ImovelService} from "../../../services/imovel.service";
-import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
-import {FormCanDeactivate} from "../../../guard/form-can-deactivate.guard";
-import {Imovel} from "../../../model/imovel";
-import {Finalidade} from "../../../model/finalidade";
-import {Tipo} from "../../../model/tipo";
-import {FinalidadeService} from "../../../services/finalidade.service";
-import {TipoService} from "../../../services/tipo.service";
+import {ActivatedRoute} from "@angular/router";
+
+import {ImovelService} from "../../../../services/imovel.service";
+import {FinalidadeService} from "../../../../services/finalidade.service";
+import {TipoService} from "../../../../services/tipo.service";
+
+import {Imovel} from "../../../../model/imovel";
+import {Tipo} from "../../../../model/tipo";
+import {Finalidade} from "../../../../model/finalidade";
 
 @Component({
   selector: 'app-editarimovel',
-  templateUrl: './editarimovel.component.html',
-  styleUrls: ['./editarimovel.component.css']
+  templateUrl: './editar.component.html',
+  styleUrls: ['./editar.component.css']
 })
-export class EditarimovelComponent implements OnInit, OnDestroy, FormCanDeactivate {
+export class EditarImovelComponent implements OnInit, OnDestroy, FormCanDeactivate {
   ImovelForm: FormGroup;
   Imovel: Imovel;
   inscricao: Subscription;

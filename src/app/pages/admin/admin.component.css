@@ -27,6 +27,8 @@
 
 .corpo {
   margin-top: 20px;
+  height: 100%;
+  position: relative;
 }
 
 .logo {
@@ -46,7 +48,8 @@
 
 footer {
   width: 100%;
-  bottom: 0;
+  height: 10vh;
+  bottom: 0 !important;
   position: relative;
   margin: 50px 0 0 0;
   background-color: #e40613;
@@ -59,10 +62,5 @@ footer a {
 
 footer a:hover {
   color: #ffffff;;
-}
-
-.img-foot {
-  max-width: 170px;
-  align-self: center;
 }
 
