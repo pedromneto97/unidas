@@ -15,8 +15,6 @@ import {RuaService} from "../../services/rua.service";
 import {CidadeService} from "../../services/cidade.service";
 import {EstadoService} from "../../services/estado.service";
 import {BairroService} from "../../services/bairro.service";
-import {FinalidadeService} from "../../services/finalidade.service";
-import {TipoService} from "../../services/tipo.service";
 
 import {FormCanDeactivateGuard} from "../../guard/form-can-deactivate.guard";
 import {AuthService} from "../../services/auth.service";
@@ -40,12 +38,10 @@ import {EstadoResolver} from "../../guard/estado.resolver";
 import {ListaTipoComponent} from './tipos/lista/lista.component';
 import {NovoTipoComponent} from './tipos/novo/novo.component';
 import {EditarTipoComponent} from './tipos/editar/editar.component';
-import {TipoResolver} from "../../guard/tipo.resolver";
 
 import {ListaFinalidadeComponent} from "./finalidades/lista/lista.component";
 import {EditarFinalidadeComponent} from "./finalidades/editar/editar.component";
 import {NovoFinalidadeComponent} from "./finalidades/novo/novo.component";
-import {FinalidadeResolver} from "../../guard/finalidade.resolver";
 
 import {ListaInteresseComponent} from './interesses/lista/lista.component';
 import {TodosInteresseComponent} from './interesses/todos/todos.component';
@@ -92,14 +88,10 @@ import {InteresseResolver} from "../../guard/interesse.resolver";
     CidadeService,
     EstadoService,
     BairroService,
-    FinalidadeService,
-    TipoService,
     RuaResolver,
     BairroResolver,
     CidadeResolver,
     EstadoResolver,
-    TipoResolver,
-    FinalidadeResolver,
     InteresseResolver
   ]
 })
