@@ -11,7 +11,11 @@ export class FinalidadeResolver implements Resolve<Finalidade> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-    const id = route.params['id'];
+    let id;
+    if (route.params['id'] != null)
+      id = route.params['id'];
+    if (route.params['finalidade'] != null)
+      id = route.params['finalidade'];
     if (id != null) {
       return this.finalidade.getFinalidade(id);
     } else {

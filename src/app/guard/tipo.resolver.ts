@@ -11,7 +11,11 @@ export class TipoResolver implements Resolve<Tipo> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-    const id = route.params['id'];
+    let id;
+    if (route.params['id'] != null)
+      id = route.params['id'];
+    if (route.params['tipo'] != null)
+      id = route.params['tipo'];
     if (id != null) {
       return this.tipo.getTipo(id);
     } else {

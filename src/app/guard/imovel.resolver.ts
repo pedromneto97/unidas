@@ -15,57 +15,7 @@ export class ImovelResolver implements Resolve<Imovel> {
     let tipo = route.params['tipo'];
     let finalidade = route.params['finalidade'];
     if (tipo != null) {
-      switch (tipo) {
-        case 'residencial':
-          tipo = 1;
-          break;
-        case 'Residencial':
-          tipo = 1;
-          break;
-        case 'comercial':
-          tipo = 2;
-          break;
-        case 'Comercial' :
-          tipo = 2;
-          break;
-        case 'kitnet':
-          tipo = 3;
-          break;
-        case 'Kitnet':
-          tipo = 3;
-          break;
-        case 'rural':
-          tipo = 4;
-          break;
-        case 'Rural':
-          tipo = 4;
-          break;
-        case 'terreno':
-          tipo = 5;
-          break;
-        case 'Terreno':
-          tipo = 5;
-          break;
-        default:
-          tipo = 0;
-      }
       if (finalidade != null) {
-        switch (finalidade) {
-          case 'venda':
-            finalidade = 1;
-            break;
-          case 'Venda':
-            finalidade = 1;
-            break;
-          case 'aluguel':
-            finalidade = 2;
-            break;
-          case 'Aluguel':
-            finalidade = 2;
-            break;
-          default:
-            finalidade = 0;
-        }
         return this.imovel.getTipoFinalidade(tipo, finalidade);
       } else {
         //Somente tipo
@@ -74,22 +24,6 @@ export class ImovelResolver implements Resolve<Imovel> {
     } else {
       if (finalidade != null) {
         //Somente Finalidade
-        switch (finalidade) {
-          case 'venda':
-            finalidade = 1;
-            break;
-          case 'Venda':
-            finalidade = 1;
-            break;
-          case 'aluguel':
-            finalidade = 2;
-            break;
-          case 'Aluguel':
-            finalidade = 2;
-            break;
-          default:
-            finalidade = 0;
-        }
         this.imovel.getFinalidade(finalidade);
       }
     }
