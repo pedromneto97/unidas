@@ -1,6 +1,8 @@
 <div class="col-12">
   <h4>
-    {{rotatipo | camelCase}} >> {{rotafinalidade | camelCase}}
+    <td *ngIf="tipo != null">{{tipo.tipo}}</td>
+    <td *ngIf="tipo != null && finalidade != null">  >>  </td>
+    <td *ngIf="finalidade != null">{{finalidade.finalidade}}</td>
     <br>
     <br>
   </h4>

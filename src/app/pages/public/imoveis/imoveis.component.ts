@@ -4,6 +4,8 @@ import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 
 import {Imovel} from "../../../model/imovel";
+import {Tipo} from "../../../model/tipo";
+import {Finalidade} from "../../../model/finalidade";
 
 @Component({
   selector: 'app-imoveis',
@@ -12,22 +14,22 @@ import {Imovel} from "../../../model/imovel";
 })
 export class ImoveisComponent implements OnInit, OnDestroy {
   imoveis: Imovel[];
+  tipo: Tipo;
+  finalidade: Finalidade;
   error: Error;
-  rotatipo: string;
-  rotafinalidade: string;
-  private route: Subscription;
   private lista: Subscription;
 
   constructor(private rota: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.lista = this.rota.data.subscribe((data: { imovel: Imovel[] }) => {
+
+    this.lista = this.rota.data.subscribe((data: { imovel: Imovel[], tipo: Tipo, finalidade: Finalidade }) => {
       this.imoveis = data.imovel;
-    });
-    this.route = this.rota.params.subscribe((valores) => {
-      this.rotatipo = valores['tipo'];
-      this.rotafinalidade = valores['finalidade'];
+      if (data.tipo != null)
+        this.tipo = data.tipo;
+      if (data.finalidade != null)
+        this.finalidade = data.finalidade;
     });
 
   }
@@ -35,7 +37,6 @@ export class ImoveisComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.lista.unsubscribe();
-    this.route.unsubscribe();
   }
 
 }

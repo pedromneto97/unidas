@@ -8,6 +8,8 @@ import {ImovelComponent} from "./imovel/imovel.component";
 import {ImoveisComponent} from "./imoveis/imoveis.component";
 import {PublicComponent} from "./public.component";
 import {ImovelResolver} from "../../guard/imovel.resolver";
+import {TipoResolver} from "../../guard/tipo.resolver";
+import {FinalidadeResolver} from "../../guard/finalidade.resolver";
 
 const routes: Routes = [{
   path: '', component: PublicComponent, children: [
@@ -15,9 +17,12 @@ const routes: Routes = [{
     {path: 'empresa', component: EmpresaComponent},
     {path: 'regraslocacao', component: RegraslocacaoComponent},
     {path: 'imovel/:id', component: ImovelComponent, resolve: {imovel: ImovelResolver}},
-    {path: 'imoveis/:tipo/:finalidade', component: ImoveisComponent, resolve: {imovel: ImovelResolver}},
-    {path: 'imoveis/:tipo', component: ImoveisComponent, resolve: {imovel: ImovelResolver}},
-    {path: 'imoveis/:finalidade', component: ImoveisComponent, resolve: {imovel: ImovelResolver}},
+    {
+      path: 'imoveis/:tipo/:finalidade',
+      component: ImoveisComponent,
+      resolve: {imovel: ImovelResolver, tipo: TipoResolver, finalidade: FinalidadeResolver}
+    },
+    {path: 'imoveis/:tipo', component: ImoveisComponent, resolve: {imovel: ImovelResolver, tipo: TipoResolver}},
   ]
 }];
 

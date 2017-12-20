@@ -22,54 +22,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdow">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="Residencial" data-toggle="dropdown"
+        <li *ngFor="let tp of tipo" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="{{tp.tipo}}" data-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false">
-            Residencial
+            {{tp.tipo}}
           </a>
-          <div class="dropdown-menu" aria-labelledby="Residencial">
-            <a class="dropdown-item" routerLink="/imoveis/residencial/venda">Vendas</a>
-            <a class="dropdown-item" routerLink="/imoveis/residencial/aluguel">Aluguel</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="Comercial" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Comercial
-          </a>
-          <div class="dropdown-menu" aria-labelledby="Comercial">
-            <a class="dropdown-item" routerLink="/imoveis/comercial/venda">Vendas</a>
-            <a class="dropdown-item" routerLink="/imoveis/comercial/aluguel">Aluguel</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="Kitnet" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Kitnet
-          </a>
-          <div class="dropdown-menu" aria-labelledby="Kitnet">
-            <a class="dropdown-item" routerLink="/imoveis/kitnet/venda">Vendas</a>
-            <a class="dropdown-item" routerLink="/imoveis/kitnet/aluguel">Aluguel</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="Rural" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Imóveis Rurais
-          </a>
-          <div class="dropdown-menu" aria-labelledby="Rural">
-            <a class="dropdown-item" routerLink="/imoveis/rural/venda">Vendas</a>
-            <a class="dropdown-item" routerLink="/imoveis/rural/comercial">Aluguel</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="Terreno" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Terreno
-          </a>
-          <div class="dropdown-menu" aria-labelledby="Terreno">
-            <a class="dropdown-item" routerLink="/imoveis/terreno/venda">Vendas</a>
-            <a class="dropdown-item" routerLink="/imoveis/terreno/aluguel">Aluguel</a>
+          <div class="dropdown-menu" aria-labelledby="[tp.tipo]">
+            <a class="dropdown-item" *ngFor="let fim of finalidade"
+               routerLink="/imoveis/{{tp.id}}/{{fim.id}}">{{fim.finalidade}}</a>
           </div>
         </li>
         <li class="nav-item">
