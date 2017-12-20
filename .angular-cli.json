@@ -8,7 +8,7 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
- "images",
+        "images",
         "assets",
         "documentos",
         "favicon.ico"
@@ -26,11 +26,12 @@
         "../node_modules/font-awesome/css/font-awesome.css"
       ],
       "scripts": [
- "../node_modules/jquery/dist/jquery.js",
+        "./assets/js/script.js",
+        "../node_modules/jquery/dist/jquery.js",
         "../node_modules/tether/dist/js/tether.js",
         "../node_modules/popper.js/dist/umd/popper.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.js"
-],
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
