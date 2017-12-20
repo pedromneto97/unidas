@@ -11,10 +11,9 @@ export class ImovelResolver implements Resolve<Imovel> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-    let id = route.params['id'];
+    const id = route.params['id'];
     let tipo = route.params['tipo'];
     let finalidade = route.params['finalidade'];
-    console.log(route);
     if (tipo != null) {
       switch (tipo) {
         case 'residencial':
