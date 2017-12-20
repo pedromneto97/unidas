@@ -23,15 +23,34 @@ import {AuthService} from "../../services/auth.service";
 
 import {EditarRuaComponent} from './ruas/editar/editar.component';
 import {ListaRuaComponent} from './ruas/lista/lista.component';
+import {RuaResolver} from "../../guard/rua.resolver";
 
 import {ListaBairroComponent} from './bairros/lista/lista.component';
 import {EditarBairroComponent} from './bairros/editar/editar.component';
+import {BairroResolver} from "../../guard/bairro.resolver";
 
 import {ListaCidadeComponent} from "./cidades/lista/lista.component";
 import {EditarCidadeComponent} from "./cidades/editar/editar.component";
+import {CidadeResolver} from "../../guard/cidade.resolver";
 
 import {ListaEstadoComponent} from "./estados/lista/lista.component";
 import {EditarEstadoComponent} from "./estados/editar/editar.component";
+import {EstadoResolver} from "../../guard/estado.resolver";
+
+import {ListaTipoComponent} from './tipos/lista/lista.component';
+import {NovoTipoComponent} from './tipos/novo/novo.component';
+import {EditarTipoComponent} from './tipos/editar/editar.component';
+import {TipoResolver} from "../../guard/tipo.resolver";
+
+import {ListaFinalidadeComponent} from "./finalidades/lista/lista.component";
+import {EditarFinalidadeComponent} from "./finalidades/editar/editar.component";
+import {NovoFinalidadeComponent} from "./finalidades/novo/novo.component";
+import {FinalidadeResolver} from "../../guard/finalidade.resolver";
+
+import {ListaInteresseComponent} from './interesses/lista/lista.component';
+import {TodosInteresseComponent} from './interesses/todos/todos.component';
+import {InteresseComponent} from './interesses/interesse/interesse.component';
+import {InteresseResolver} from "../../guard/interesse.resolver";
 
 @NgModule({
   imports: [
@@ -53,7 +72,16 @@ import {EditarEstadoComponent} from "./estados/editar/editar.component";
     ListaCidadeComponent,
     EditarCidadeComponent,
     ListaEstadoComponent,
-    EditarEstadoComponent
+    EditarEstadoComponent,
+    ListaFinalidadeComponent,
+    EditarFinalidadeComponent,
+    NovoFinalidadeComponent,
+    ListaTipoComponent,
+    EditarTipoComponent,
+    NovoTipoComponent,
+    ListaInteresseComponent,
+    TodosInteresseComponent,
+    InteresseComponent
 
   ],
   providers: [
@@ -65,7 +93,14 @@ import {EditarEstadoComponent} from "./estados/editar/editar.component";
     EstadoService,
     BairroService,
     FinalidadeService,
-    TipoService
+    TipoService,
+    RuaResolver,
+    BairroResolver,
+    CidadeResolver,
+    EstadoResolver,
+    TipoResolver,
+    FinalidadeResolver,
+    InteresseResolver
   ]
 })
 export class AdminModule {
