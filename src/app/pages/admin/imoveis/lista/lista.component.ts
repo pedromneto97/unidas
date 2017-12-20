@@ -13,13 +13,9 @@ export class ListaImovelComponent implements OnInit {
 
   imoveis: Imovel[];
   error: Error;
-  rotatipo: string;
-  rotafinalidade: string;
-  private tipo: number;
-  private finalidade: number;
   private inscricao: Subscription;
 
-  constructor(private servico: ImovelService, private rota: ActivatedRoute) {
+  constructor(private rota: ActivatedRoute) {
   }
 
   pdf(id) {
