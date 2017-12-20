@@ -10,6 +10,10 @@ import {ImovelResolver} from "./guard/imovel.resolver";
 import {ImovelService} from "./services/imovel.service";
 import {HttpClientModule} from "@angular/common/http";
 import {InteresseService} from "./services/interesse.service";
+import {TipoService} from "./services/tipo.service";
+import {FinalidadeService} from "./services/finalidade.service";
+import {TipoResolver} from "./guard/tipo.resolver";
+import {FinalidadeResolver} from "./guard/finalidade.resolver";
 
 @NgModule({
   declarations: [
@@ -21,7 +25,17 @@ import {InteresseService} from "./services/interesse.service";
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthGuard, RotaGuard, ImovelResolver, ImovelService, InteresseService],
+  providers: [
+    AuthGuard,
+    RotaGuard,
+    ImovelResolver,
+    ImovelService,
+    InteresseService,
+    TipoService,
+    FinalidadeService,
+    TipoResolver,
+    FinalidadeResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
