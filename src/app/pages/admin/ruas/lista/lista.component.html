@@ -1,3 +1,34 @@
-<p>
-  lista works!
-</p>
+<div class="col-12">
+  <table class="table table-responsive table-hover">
+    <thead>
+    </thead>
+    <tbody>
+    <tr *ngFor="let rua of ruas">
+      <td>
+        Endereço: {{rua.rua}}
+      </td>
+      <td>
+        <p *ngIf="rua.cep != null">CEP: {{rua.cep}}</p>
+      </td>
+      <td>
+        Bairro: {{rua.bairro.bairro}}
+      </td>
+      <td>
+        {{rua.bairro.cidade.cidade}} - {{rua.bairro.cidade.estado.estado}}
+      </td>
+      <td>
+        <button routerLink="/admin/ruas/editar/{{rua.id}}" class="btn btn-primary">
+          <i class="fa fa-pencil-square-o fa-lg"></i>
+          Editar Rua
+        </button>
+      </td>
+      <td>
+        <button (click)="apagarRua(rua.id)" class="btn btn-danger">
+          <i class="fa fa-trash-o fa-lg"></i>
+          Apagar Rua
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {Subscription} from "rxjs/Subscription";
+import {Rua} from "../../../../model/rua";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-lista',
@@ -7,10 +10,20 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ListaRuaComponent implements OnInit {
 
-  constructor() {
+  public ruas: Rua[];
+  private inscricao: Subscription;
+
+  constructor(private rota: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.inscricao = this.rota.data.subscribe((data: { rua: Rua[] }) => {
+      this.ruas = data.rua;
+    });
+  }
+
+  apagarRua(id) {
+    console.log(id);
   }
 
 }
