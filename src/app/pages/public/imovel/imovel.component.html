@@ -169,11 +169,11 @@
           </p>
           <p *ngIf="this.imovel.aservico != null">
             <b *ngIf="this.imovel.aservico != null">Área de Serviço: </b>
-            {{this.imovel.aservico == 1 ? "Sim" : "Não"}}
+            {{this.imovel.aservico === true ? "Sim" : "Não"}}
           </p>
           <p>
             <b *ngIf="this.imovel.mobilia != null">Mobíliado:</b>
-            {{this.imovel.mobilia == 1 ? "Sim" : "Não"}}
+            {{this.imovel.mobilia === true ? "Sim" : "Não"}}
           </p>
         </div>
         <div class="col-sm-7 offset-md-5">

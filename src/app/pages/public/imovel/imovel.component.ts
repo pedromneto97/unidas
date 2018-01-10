@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {Imovel} from "../../../model/imovel";
+import {Imovel} from '../../../model/imovel';
 
 @Component({
   selector: 'app-imovel',
@@ -28,6 +28,10 @@ export class ImovelComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.inscricao.unsubscribe();
+  }
+
+  onSubmit(form) {
+    console.log(form);
   }
 
 }
