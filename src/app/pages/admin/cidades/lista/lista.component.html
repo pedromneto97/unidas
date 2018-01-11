@@ -1,3 +1,28 @@
-<p>
-  lista works!
-</p>
+<div class="col-12">
+  <table class="table table-responsive table-hover">
+    <thead>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cidade of cidades">
+      <td>
+        Cidade: {{cidade.cidade}}
+      </td>
+      <td>
+        Estado: {{cidade.estado.estado}}
+      </td>
+      <td>
+        <button routerLink="/admin/cidades/editar/{{cidade.id}}" class="btn btn-primary">
+          <i class="fa fa-pencil-square-o fa-lg"></i>
+          Editar Cidade
+        </button>
+      </td>
+      <td>
+        <button (click)="apagar(cidade.id)" class="btn btn-danger">
+          <i class="fa fa-trash-o fa-lg"></i>
+          Apagar Cidade
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
