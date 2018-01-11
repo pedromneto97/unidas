@@ -1,3 +1,27 @@
-<p>
-  lista works!
-</p>
+<div class="col-12">
+  Buscar estado
+  <input id="busca" type="text" (keyup)="busca($event.target.value)">
+  <table id="tabela" class="table table-responsive table-hover">
+    <thead>
+    </thead>
+    <tbody>
+    <tr *ngFor="let estado of lista">
+      <td>
+        Bairro: {{estado.estado}}
+      </td>
+      <td>
+        <button routerLink="/admin/estados/editar/{{estado.id}}" class="btn btn-primary">
+          <i class="fa fa-pencil-square-o fa-lg"></i>
+          Editar Estado
+        </button>
+      </td>
+      <td>
+        <button (click)="apagar(estado.id)" class="btn btn-danger">
+          <i class="fa fa-trash-o fa-lg"></i>
+          Apagar Estado
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
