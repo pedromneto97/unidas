@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Subscription} from "rxjs/Subscription";
-import {Rua} from "../../../../model/rua";
-import {ActivatedRoute} from "@angular/router";
+import {Subscription} from 'rxjs/Subscription';
+import {Rua} from '../../../../model/rua';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-lista',
@@ -22,7 +22,7 @@ export class ListaRuaComponent implements OnInit {
     });
   }
 
-  apagarRua(id) {
+  apagar(id) {
     console.log(id);
   }
 
