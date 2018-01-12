@@ -5,8 +5,9 @@
       <input id="busca"
              type="text"
              (keyup)="busca($event.target.value)"
-             placeholder="Cidade, estado, uf"
-             class="form-control">
+             placeholder="Cidade, estado ou uf"
+             class="form-control"
+             aria-describedby="Procure a cidade por cidade, estado ou uf">
     </div>
   </div>
   <table class="table table-responsive table-hover">
