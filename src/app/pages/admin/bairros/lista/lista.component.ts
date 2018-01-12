@@ -11,7 +11,9 @@ import {ActivatedRoute} from '@angular/router';
 export class ListaBairroComponent implements OnInit {
 
   public bairros: Bairro[];
+  public lista: Bairro[];
   public inscricao: Subscription;
+  p = 1;
 
   constructor(private rota: ActivatedRoute) {
   }
@@ -19,6 +21,7 @@ export class ListaBairroComponent implements OnInit {
   ngOnInit() {
     this.inscricao = this.rota.data.subscribe((data: { bairro: Bairro[] }) => {
       this.bairros = data.bairro;
+      this.lista = data.bairro;
     });
   }
 
@@ -26,4 +29,31 @@ export class ListaBairroComponent implements OnInit {
     console.log(id);
   }
 
+  busca(busca) {
+    if (busca == null || busca === '') {
+      this.lista = this.bairros;
+      return;
+    }
+    this.lista = [];
+    let aux: RegExp;
+    aux = new RegExp(busca, 'gi');
+    this.bairros.forEach(e => {
+      let add = false;
+      if (!e.bairro.search(aux)) {
+        this.lista.push(e);
+        add = true;
+      }
+      if (!add && !e.cidade.cidade.search(aux)) {
+        this.lista.push(e);
+        add = true;
+      }
+      if (!add && !e.cidade.estado.estado.search(aux)) {
+        this.lista.push(e);
+        add = true;
+      }
+      if (!add && !e.cidade.estado.uf.search(aux)) {
+        this.lista.push(e);
+      }
+    });
+  }
 }

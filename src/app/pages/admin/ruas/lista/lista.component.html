@@ -1,9 +1,20 @@
 <div class="col-12">
+  <div class="form-group row">
+    <label class="col-2 col-form-label"> Buscar Rua</label>
+    <div class="col-8">
+      <input id="busca"
+             type="text"
+             (keyup)="busca($event.target.value)"
+             placeholder="Rua, cep,bairro, cidade, estado ou uf"
+             class="form-control"
+             aria-describedby="Procure a rua por rua, cep, bairro, cidade, estado ou uf">
+    </div>
+  </div>
   <table class="table table-responsive table-hover">
     <thead>
     </thead>
     <tbody>
-    <tr *ngFor="let rua of ruas">
+    <tr *ngFor="let rua of lista | paginate: {itemsPerPage: 10, currentPage: p}">
       <td>
         Endereço: {{rua.rua}}
       </td>
@@ -29,6 +40,15 @@
         </button>
       </td>
     </tr>
+    <pagination-controls
+      (pageChange)="p = $event"
+      previousLabel="Anterior"
+      nextLabel="Próximo"
+      autoHide="true"
+      screenReaderPaginationLabel="Paginação"
+      screenReaderPageLabel="Página"
+      screenReaderCurrentLabel="Página atual">
+    </pagination-controls>
     </tbody>
   </table>
 </div>
