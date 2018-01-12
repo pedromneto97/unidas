@@ -1,13 +1,15 @@
 <div class="col-12">
-  Buscar estado
-  <input id="busca" type="text" (keyup)="busca($event.target.value)">
+  Buscar Estado:
+  <input id="busca" type="text" (keyup)="busca($event.target.value)" placeholder="Estado, uf">
+  <br>
+  <br>
   <table id="tabela" class="table table-responsive table-hover">
     <thead>
     </thead>
     <tbody>
-    <tr *ngFor="let estado of lista">
+    <tr *ngFor="let estado of lista | paginate: {itemsPerPage: 10, currentPage: p}">
       <td>
-        Bairro: {{estado.estado}}
+        Estado: {{estado.estado}}
       </td>
       <td>
         <button routerLink="/admin/estados/editar/{{estado.id}}" class="btn btn-primary">
@@ -22,6 +24,15 @@
         </button>
       </td>
     </tr>
+    <pagination-controls
+      (pageChange)="p = $event"
+      previousLabel="Anterior"
+      nextLabel="Próximo"
+      autoHide="true"
+      screenReaderPaginationLabel="Paginação"
+      screenReaderPageLabel="Página"
+      screenReaderCurrentLabel="Página atual">
+    </pagination-controls>
     </tbody>
   </table>
 </div>

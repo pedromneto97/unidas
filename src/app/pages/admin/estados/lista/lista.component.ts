@@ -13,6 +13,7 @@ export class ListaEstadoComponent implements OnInit, OnDestroy {
   public estados: Estado[];
   public lista: Estado[];
   private inscricao: Subscription;
+  public p = 1;
 
   constructor(private rota: ActivatedRoute) {
   }
@@ -32,7 +33,12 @@ export class ListaEstadoComponent implements OnInit, OnDestroy {
     this.lista = [];
     const aux = new RegExp(busca, 'i');
     this.estados.forEach(e => {
+      let add = false;
       if (!e.estado.search(aux)) {
+        this.lista.push(e);
+        add = true;
+      }
+      if (!add && !e.uf.search(aux)) {
         this.lista.push(e);
       }
     });
