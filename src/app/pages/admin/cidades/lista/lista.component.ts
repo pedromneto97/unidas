@@ -11,7 +11,9 @@ import {Cidade} from '../../../../model/cidade';
 export class ListaCidadeComponent implements OnInit {
 
   public cidades: Cidade[];
+  public lista: Cidade[];
   private inscricao: Subscription;
+  public p = 1;
 
   constructor(private rota: ActivatedRoute) {
   }
@@ -19,6 +21,7 @@ export class ListaCidadeComponent implements OnInit {
   ngOnInit() {
     this.inscricao = this.rota.data.subscribe((data: { cidade: Cidade[] }) => {
       this.cidades = data.cidade;
+      this.lista = data.cidade;
     });
   }
 
@@ -26,4 +29,26 @@ export class ListaCidadeComponent implements OnInit {
     console.log(id);
   }
 
+  busca(busca) {
+    if (busca == null || busca === '') {
+      this.lista = this.cidades;
+      return;
+    }
+    this.lista = [];
+    const aux = new RegExp(busca, 'i');
+    this.cidades.forEach(e => {
+      let add = false;
+      if (!e.cidade.search(aux)) {
+        this.lista.push(e);
+        add = true;
+      }
+      if (!add && !e.estado.estado.search(aux)) {
+        this.lista.push(e);
+        add = true;
+      }
+      if (!add && !e.estado.uf.search(aux)) {
+        this.lista.push(e);
+      }
+    });
+  }
 }
