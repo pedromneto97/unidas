@@ -1,19 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {FormCanDeactivate} from "../../../../guard/form-can-deactivate.guard";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormCanDeactivate} from '../../../../guard/form-can-deactivate.guard';
 
-import {RuaService} from "../../../../services/rua.service";
-import {CidadeService} from "../../../../services/cidade.service";
-import {BairroService} from "../../../../services/bairro.service";
-import {FinalidadeService} from "../../../../services/finalidade.service";
-import {TipoService} from "../../../../services/tipo.service";
-import {ImovelService} from "../../../../services/imovel.service";
+import {RuaService} from '../../../../services/rua.service';
+import {CidadeService} from '../../../../services/cidade.service';
+import {BairroService} from '../../../../services/bairro.service';
+import {FinalidadeService} from '../../../../services/finalidade.service';
+import {TipoService} from '../../../../services/tipo.service';
+import {ImovelService} from '../../../../services/imovel.service';
 
-import {Finalidade} from "../../../../model/finalidade";
-import {Bairro} from "../../../../model/bairro";
-import {Rua} from "../../../../model/rua";
-import {Tipo} from "../../../../model/tipo";
-import {Imovel} from "../../../../model/imovel";
+import {Finalidade} from '../../../../model/finalidade';
+import {Bairro} from '../../../../model/bairro';
+import {Rua} from '../../../../model/rua';
+import {Tipo} from '../../../../model/tipo';
+import {Imovel} from '../../../../model/imovel';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-novoimovel',
@@ -29,7 +30,7 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
 
   constructor(private formBuilder: FormBuilder, private servicoCep: RuaService, private  cidade: CidadeService,
               private bairro: BairroService, private finalidade: FinalidadeService, private tipo: TipoService,
-              private rua: RuaService, private imov: ImovelService) {
+              private rua: RuaService, private imov: ImovelService, private router: Router) {
     this.formBuilder = new FormBuilder();
   }
 
@@ -95,7 +96,7 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
       return;
     }
     let cepDB, cepbusca;
-    //Busca o CEP no banco
+    // Busca o CEP no banco
     this.servicoCep.cep(cep)
       .then((resultado) => {
         cepDB = resultado;
@@ -128,10 +129,10 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
                       /*
                       *Busca cidade
                       */
-                      let busca = {
+                      const busca = {
                         cidade: cepbusca.localidade,
                         uf: cepbusca.uf
-                      }
+                      };
                       let cid;
                       this.cidade.busca(busca)
                         .then((res) => {
@@ -148,10 +149,10 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
                       Bairro não encontrado
                        */
                       this.ImovelForm.get('rua.bairro.bairro').enable();
-                      let busca = {
+                      const busca = {
                         cidade: cepbusca.localidade,
                         uf: cepbusca.uf
-                      }
+                      };
                       let cid;
                       this.cidade.busca(busca)
                         .then((res) => {
@@ -177,7 +178,7 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
                   this.ImovelForm.get('rua.bairro.cidade.cidade').enable();
                   this.ImovelForm.get('rua.bairro.cidade.estado.estado').enable();
                   this.ImovelForm.get('rua.bairro.cidade.estado.uf').enable();
-                  console.log("Nenhum cep encontrado");
+                  console.log('Nenhum cep encontrado');
                   /*
                    * Necessário fazer tratamento aqui
                    */
@@ -213,8 +214,8 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
 
   cepCidade(cep, cidade) {
     let c: number;
-    c = parseInt(cep.cep.substr(0, 5) + cep.cep.substr(6, 8));
-    let resultado = {
+    c = parseInt(cep.cep.substr(0, 5) + cep.cep.substr(6, 8), 10);
+    const resultado = {
       cep: c,
       rua: cep.logradouro,
       bairro: {
@@ -229,14 +230,14 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
           }
         }
       }
-    }
+    };
     this.patchformCompleto(resultado);
   }
 
   bairroCidade(cep, bairro, cidade) {
     let c: number;
-    c = parseInt(cep.cep.substr(0, 5) + cep.cep.substr(6, 8));
-    let resultado = {
+    c = parseInt(cep.cep.substr(0, 5) + cep.cep.substr(6, 8), 10);
+    const resultado = {
       cep: c,
       rua: cep.logradouro,
       bairro: {
@@ -252,14 +253,14 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
           }
         }
       }
-    }
+    };
     this.patchformCompleto(resultado);
   }
 
   apenasCep(cep) {
     let c: number;
-    c = parseInt(cep.cep.substr(0, 5) + cep.cep.substr(6, 8));
-    let resultado = {
+    c = parseInt(cep.cep.substr(0, 5) + cep.cep.substr(6, 8), 10);
+    const resultado = {
       cep: c,
       rua: cep.logradouro,
       bairro: {
@@ -272,7 +273,7 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
           }
         }
       }
-    }
+    };
     this.patchformCompleto(resultado);
   }
 
@@ -305,6 +306,7 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
     let rua: Rua = new Rua();
 
     this.Imovel = this.ImovelForm.value;
+    this.Imovel.id_rua = this.Imovel.rua.id;
 
     if (this.Imovel.id_rua == null) {
       rua = this.Imovel.rua;
@@ -324,12 +326,14 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
                 this.imov.store(this.Imovel)
                   .then((resposta) => {
                     this.Imovel = resposta;
+                    window.alert('Imóvel cadastrado');
+                    this.flag = false;
+                    this.router.navigate(['/admin/imoveis/lista']);
                   });
               });
 
           });
       } else {
-        rua.id_bairro = rua.bairro.id;
         this.rua.store(rua)
           .then((res) => {
             this.Imovel.rua = res;
@@ -337,6 +341,9 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
             this.imov.store(this.Imovel)
               .then((resp) => {
                 this.Imovel = resp;
+                window.alert('Imóvel cadastrado');
+                this.flag = false;
+                this.router.navigate(['/admin/imoveis/lista']);
               });
           });
       }
@@ -346,11 +353,16 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
       this.imov.store(this.Imovel)
         .then((res) => {
           this.Imovel = res;
+          window.alert('Imóvel cadastrado');
+          this.flag = false;
+          this.router.navigate(['/admin/imoveis/lista']);
         });
     }
   }
 
   onReset() {
-
+    if (window.confirm('Deseja limpar o formulário?')) {
+      this.ImovelForm.reset();
+    }
   }
 }
