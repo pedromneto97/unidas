@@ -1,8 +1,14 @@
 <div class="col-12">
-  Buscar Estado:
-  <input id="busca" type="text" (keyup)="busca($event.target.value)" placeholder="Estado, uf">
-  <br>
-  <br>
+  <div class="form-group row">
+    <label class="col-3 col-form-label">Buscar Estado:</label>
+    <div class="col-8">
+      <input id="busca"
+             class="form-control"
+             type="text"
+             (keyup)="busca($event.target.value)"
+             placeholder="Estado, uf">
+    </div>
+  </div>
   <table id="tabela" class="table table-responsive table-hover">
     <thead>
     </thead>
