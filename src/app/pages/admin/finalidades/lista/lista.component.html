@@ -1,3 +1,45 @@
-<p>
-  lista works!
-</p>
+<div class="col-12">
+  <div class="form-group row">
+    <label class="col-4 col-form-label">Buscar Finalidade:</label>
+    <div class="col-8">
+      <input id="busca"
+             class="form-control"
+             type="text"
+             (keyup)="busca($event.target.value)"
+             placeholder="Finalidade"
+             aria-describedby="Procure o finalidade">
+    </div>
+  </div>
+  <table id="tabela" class="table table-responsive table-hover">
+    <thead>
+    </thead>
+    <tbody>
+    <tr *ngFor="let finalidade of lista | paginate: {itemsPerPage: 10, currentPage: p}">
+      <td>
+        Finalidade: {{finalidade.finalidade}}
+      </td>
+      <td>
+        <button routerLink="/admin/tipos/editar/{{finalidade.id}}" class="btn btn-primary">
+          <i class="fa fa-pencil-square-o fa-lg"></i>
+          Editar Finalidade
+        </button>
+      </td>
+      <td>
+        <button (click)="apagar(finalidade.id)" class="btn btn-danger">
+          <i class="fa fa-trash-o fa-lg"></i>
+          Apagar Finalidade
+        </button>
+      </td>
+    </tr>
+    <pagination-controls
+      (pageChange)="p = $event"
+      previousLabel="Anterior"
+      nextLabel="Próximo"
+      autoHide="true"
+      screenReaderPaginationLabel="Paginação"
+      screenReaderPageLabel="Página"
+      screenReaderCurrentLabel="Página atual">
+    </pagination-controls>
+    </tbody>
+  </table>
+</div>
