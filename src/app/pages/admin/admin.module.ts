@@ -48,6 +48,7 @@ import {TodosInteresseComponent} from './interesses/todos/todos.component';
 import {InteresseComponent} from './interesses/interesse/interesse.component';
 import {InteresseResolver} from '../../guard/interesse.resolver';
 import {NgxPaginationModule, PaginatePipe} from 'ngx-pagination';
+import {FileUploadModule} from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import {NgxPaginationModule, PaginatePipe} from 'ngx-pagination';
     AdminRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FileUploadModule
   ],
   declarations: [
     AdminComponent,

@@ -14,12 +14,14 @@ import {Bairro} from '../../../../model/bairro';
 import {Rua} from '../../../../model/rua';
 import {Tipo} from '../../../../model/tipo';
 import {Imovel} from '../../../../model/imovel';
+
 import {Router} from '@angular/router';
+import {FileUploader} from 'ng2-file-upload';
 
 @Component({
   selector: 'app-novoimovel',
   templateUrl: './novo.component.html',
-  styleUrls: ['./novo.component.css']
+  styleUrls: ['./novo.component.css'],
 })
 export class NovoImovelComponent implements OnInit, FormCanDeactivate {
   ImovelForm: FormGroup;
@@ -27,11 +29,22 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
   Finalidade: Finalidade[];
   Tipo: Tipo[];
   flag = true;
+  URL = 'http://localhost:8000/api/foto';
+  public uploader: FileUploader = new FileUploader({
+    url: this.URL,
+    method: 'POST',
+    itemAlias: 'foto'
+  });
+  public hasBaseDropZoneOver = false;
 
   constructor(private formBuilder: FormBuilder, private servicoCep: RuaService, private  cidade: CidadeService,
               private bairro: BairroService, private finalidade: FinalidadeService, private tipo: TipoService,
               private rua: RuaService, private imov: ImovelService, private router: Router) {
     this.formBuilder = new FormBuilder();
+  }
+
+  public fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
   }
 
   CanDeactivate() {
@@ -310,11 +323,9 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
 
     if (this.Imovel.id_rua == null) {
       rua = this.Imovel.rua;
-      console.log('1' + rua);
       if (this.Imovel.rua.bairro.id == null) {
         bairro = this.Imovel.rua.bairro;
         bairro.id_cidade = bairro.cidade.id;
-        console.log('2' + bairro);
         this.bairro.store(bairro)
           .then((res) => {
             rua.bairro = res;
@@ -326,6 +337,9 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
                 this.imov.store(this.Imovel)
                   .then((resposta) => {
                     this.Imovel = resposta;
+                    this.uploader.options.method = 'post';
+                    this.uploader.options.additionalParameter = {'id_imovel': this.Imovel.id};
+                    this.uploader.uploadAll();
                     window.alert('Imóvel cadastrado');
                     this.flag = false;
                     this.router.navigate(['/admin/imoveis/lista']);
@@ -334,6 +348,7 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
 
           });
       } else {
+        rua.id_bairro = rua.bairro.id;
         this.rua.store(rua)
           .then((res) => {
             this.Imovel.rua = res;
@@ -341,6 +356,8 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
             this.imov.store(this.Imovel)
               .then((resp) => {
                 this.Imovel = resp;
+                this.uploader.options.additionalParameter = {'id_imovel': this.Imovel.id};
+                this.uploader.uploadAll();
                 window.alert('Imóvel cadastrado');
                 this.flag = false;
                 this.router.navigate(['/admin/imoveis/lista']);
@@ -353,6 +370,10 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
       this.imov.store(this.Imovel)
         .then((res) => {
           this.Imovel = res;
+          this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
+            form.append('id_imovel', this.Imovel.id);
+          };
+          this.uploader.uploadAll();
           window.alert('Imóvel cadastrado');
           this.flag = false;
           this.router.navigate(['/admin/imoveis/lista']);

@@ -438,6 +438,40 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-6">
+        <div ng2FileDrop
+             [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+             (fileOver)="fileOverBase($event)"
+             [uploader]="uploader"
+             class="well my-drop-zone">
+          Solte as fotos aqui
+        </div>
+        <p>Ou</p>
+        <input type="file" ng2FileSelect [uploader]="uploader" multiple/>
+      </div>
+      <div class="col-6">
+        <table class="table table-responsive">
+          <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Ação</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of uploader.queue">
+            <td><strong>{{ item?.file?.name }}</strong></td>
+            <td nowrap>
+              <button type="button" class="btn btn-danger btn-xs"
+                      (click)="item.remove()">
+                <span class="fa fa-trash"></span> Remove
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
       <div class="col">
         <button type="submit"
                 [disabled]="ImovelForm.invalid"
