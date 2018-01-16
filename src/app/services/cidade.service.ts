@@ -9,7 +9,7 @@ export class CidadeService {
   header: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.url = `${window.location.hostname}/api/cidade`;
+    this.url = `http://${window.location.hostname}/api/cidade`;
     this.header = new HttpHeaders({
       'Content-Type': 'application/json'
     });

@@ -10,7 +10,7 @@ export class AuthService {
   headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.base_url = `${window.location.hostname}/api/auth`;
+    this.base_url = `http://${window.location.hostname}/api/auth`;
     this.headers = new HttpHeaders({'Accept': 'application/json'});
   }
 

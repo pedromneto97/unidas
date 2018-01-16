@@ -10,7 +10,7 @@ export class BairroService {
   header: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.url = `${window.location.hostname}/api/bairro`;
+    this.url = `http://${window.location.hostname}/api/bairro`;
     this.header = new HttpHeaders({
       'Content-Type': 'application/json'
     });

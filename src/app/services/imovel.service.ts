@@ -11,7 +11,7 @@ export class ImovelService {
   token: any;
 
   constructor(private http: HttpClient) {
-    this.url = `${window.location.hostname}/api/imovel`;
+    this.url = `http://${window.location.hostname}/api/imovel`;
     this.header = new HttpHeaders({
       'Content-Type': 'application/json'
     });

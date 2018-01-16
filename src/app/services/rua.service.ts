@@ -11,7 +11,7 @@ export class RuaService {
   header: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.url = `${window.location.hostname}/api/rua`;
+    this.url = `http://${window.location.hostname}/api/rua`;
     this.header = new HttpHeaders({
       'Content-Type': 'application/json'
     });
