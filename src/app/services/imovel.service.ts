@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
-import {Imovel} from "../model/imovel";
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {Imovel} from '../model/imovel';
 
 @Injectable()
 export class ImovelService {
@@ -11,7 +11,7 @@ export class ImovelService {
   token: any;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:8000/api/imovel';
+    this.url = `${window.location.hostname}/api/imovel`;
     this.header = new HttpHeaders({
       'Content-Type': 'application/json'
     });

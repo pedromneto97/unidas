@@ -10,7 +10,7 @@ export class FinalidadeService {
   header: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:8000/api/finalidade';
+    this.url = `${window.location.hostname}/api/finalidade`;
     this.header = new HttpHeaders({
       'Content-Type': 'application/json'
     });

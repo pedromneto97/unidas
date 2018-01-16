@@ -9,7 +9,7 @@ export class TipoService {
   header: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:8000/api/tipo';
+    this.url = `${window.location.hostname}/api/tipo`;
     this.header = new HttpHeaders({
       'Content-Type': 'application/json'
     });

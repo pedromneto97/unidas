@@ -10,7 +10,7 @@ export class EstadoService {
   header: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:8000/api/estado';
+    this.url = `${window.location.hostname}/api/estado`;
     this.header = new HttpHeaders({
       'Content-Type': 'application/json'
     });
