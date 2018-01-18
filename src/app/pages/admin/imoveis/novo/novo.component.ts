@@ -341,8 +341,9 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
                 this.imov.store(this.Imovel)
                   .then((resposta) => {
                     this.Imovel = resposta;
-                    this.uploader.options.method = 'post';
-                    this.uploader.options.additionalParameter = {'id_imovel': this.Imovel.id};
+                    this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
+                      form.append('id_imovel', this.Imovel.id);
+                    };
                     this.uploader.uploadAll();
                     window.alert('Imóvel cadastrado');
                     this.flag = false;
@@ -360,7 +361,9 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
             this.imov.store(this.Imovel)
               .then((resp) => {
                 this.Imovel = resp;
-                this.uploader.options.additionalParameter = {'id_imovel': this.Imovel.id};
+                this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
+                  form.append('id_imovel', this.Imovel.id);
+                };
                 this.uploader.uploadAll();
                 window.alert('Imóvel cadastrado');
                 this.flag = false;

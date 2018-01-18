@@ -223,6 +223,7 @@
                   class="form-control"
                   [ngClass]="{'form-control-danger': ImovelForm.controls['aservico'].invalid}"
                   formControlName="aservico">
+            <option selected value="null"></option>
             <option value="0">Não</option>
             <option value="1">Sim</option>
           </select>
@@ -241,6 +242,7 @@
                   class="form-control"
                   [ngClass]="{'form-control-danger': ImovelForm.controls['mobilia'].invalid}"
                   formControlName="mobilia">
+            <option selected value="null"></option>
             <option value="0">Não</option>
             <option value="1">Sim</option>
           </select>
