@@ -30,8 +30,6 @@ export class ImovelResolver implements Resolve<Imovel> {
     if (id != null) {
       return this.imovel.getImovel(id);
     } else {
-      if (route.url.length === 0)
-        return this.imovel.getImoveisLimite();
       return this.imovel.getImoveis();
     }
   }
