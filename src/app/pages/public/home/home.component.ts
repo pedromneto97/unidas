@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 
-import {Imovel} from "../../../model/imovel";
-import {ActivatedRoute} from "@angular/router";
-import {Subscription} from "rxjs/Subscription";
+import {Imovel} from '../../../model/imovel';
+import {ActivatedRoute} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
+import {element} from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import {Subscription} from "rxjs/Subscription";
 export class HomeComponent implements OnInit {
 
   imoveis: Imovel[];
+  lista: Imovel[];
   inscricao: Subscription;
 
 
@@ -23,6 +25,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.inscricao = this.rota.data.subscribe((data: { imovel: Imovel[] }) => {
       this.imoveis = data.imovel;
+    });
+    this.lista = [];
+    this.imoveis.forEach(i => {
+      if (i.foto.length > 0 && this.lista.length < 8) {
+        this.lista.push(i);
+      }
     });
   }
 
