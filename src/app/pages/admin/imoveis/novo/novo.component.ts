@@ -29,11 +29,12 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
   Finalidade: Finalidade[];
   Tipo: Tipo[];
   flag = true;
-  URL = 'http://localhost:8000/api/foto';
+  URL = `http://${window.location.hostname}/api/foto`;
   public uploader: FileUploader = new FileUploader({
     url: this.URL,
     method: 'POST',
-    itemAlias: 'foto'
+    headers: [],
+    itemAlias: 'foto',
   });
   public hasBaseDropZoneOver = false;
 
@@ -96,6 +97,9 @@ export class NovoImovelComponent implements OnInit, FormCanDeactivate {
       .then((tipo: Tipo[]) => {
         this.Tipo = tipo;
       });
+    this.uploader.onAfterAddingFile = (file: any) => {
+      file.withCredentials = false;
+    };
   }
 
   buscaCep(cep) {
