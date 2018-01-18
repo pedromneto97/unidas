@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AuthGuard} from "./guard/auth.guard";
-import {RotaGuard} from "./guard/rota.guard";
-import {TipoResolver} from "./guard/tipo.resolver";
-import {FinalidadeResolver} from "./guard/finalidade.resolver";
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from './guard/auth.guard';
+import {RotaGuard} from './guard/rota.guard';
+import {TipoResolver} from './guard/tipo.resolver';
+import {FinalidadeResolver} from './guard/finalidade.resolver';
 
 
 const appRoutes: Routes = [
@@ -23,7 +23,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, {enableTracing: false})],
+  imports: [RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule],
 })
 
