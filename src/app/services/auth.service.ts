@@ -10,7 +10,7 @@ export class AuthService {
   headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.base_url = 'localhost:8000/api/auth';
+    this.base_url = `http://${window.location.hostname}/api/auth`;
     this.headers = new HttpHeaders({'Accept': 'application/json'});
   }
 
@@ -20,7 +20,7 @@ export class AuthService {
 
 
   login(user): Promise<any> {
-    const url = `//${this.base_url}/login`;
+    const url = `${this.base_url}/login`;
 
     return this.http.post(url, user, {headers: this.headers})
       .toPromise()
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   logout() {
-    const url = `//${this.base_url}/logout`;
+    const url = `${this.base_url}/logout`;
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.getToken()}`

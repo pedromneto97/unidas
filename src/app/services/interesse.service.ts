@@ -9,7 +9,7 @@ export class InteresseService {
   header: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:8000/api/interesse';
+    this.url = `http://${window.location.hostname}/api/interesse`;
     this.header = new HttpHeaders({
       'Content-Type': 'application/json'
     });
