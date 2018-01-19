@@ -3,6 +3,7 @@ import {Imovel} from '../../../../model/imovel';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute} from '@angular/router';
 import {isNumber} from 'util';
+import {ImovelService} from '../../../../services/imovel.service';
 
 @Component({
   selector: 'app-imoveis',
@@ -15,16 +16,38 @@ export class ListaImovelComponent implements OnInit {
   public lista: Imovel[];
   private inscricao: Subscription;
   public p = 1;
+  public flag = {
+    tipo: null,
+    f: false,
+    mensagem: null
+  };
 
-  constructor(private rota: ActivatedRoute) {
+  constructor(private rota: ActivatedRoute, private im: ImovelService) {
   }
 
   pdf(id) {
     console.log(id);
   }
 
-  apagarImovel(id) {
-    console.log(id);
+  apagar(id, i) {
+    const aux = 'Deseja mesmo apagar o imóvel: '.concat(id);
+    if (window.confirm(aux)) {
+      this.im.delete(id).subscribe(value => {
+        },
+        err => {
+          if (err.status === 200) {
+            this.flag.f = true;
+            this.flag.mensagem = err.error.text.concat('    ID: '.concat(id));
+            this.flag.tipo = 'sucesso';
+            this.imoveis.splice(i, 1);
+            this.lista.splice(i, 1);
+          } else {
+            this.flag.f = true;
+            this.flag.mensagem = err.error.text;
+            this.flag.tipo = 'erro';
+          }
+        });
+    }
   }
 
   ngOnInit() {
