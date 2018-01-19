@@ -13,13 +13,20 @@ import {ImoveisComponent} from './imoveis/imoveis.component';
 import {CamelCasePipe} from '../../pipes/camel-case.pipe';
 import {ImovelService} from '../../services/imovel.service';
 import {NgxPaginationModule, PaginatePipe} from 'ngx-pagination';
+import {AlertModule, BsDropdownModule, CarouselModule, CollapseModule, ModalModule, TooltipModule} from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
     PublicRoutingModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BsDropdownModule,
+    ModalModule,
+    TooltipModule,
+    CollapseModule,
+    AlertModule,
+    CarouselModule
   ],
   declarations: [
     PublicComponent,

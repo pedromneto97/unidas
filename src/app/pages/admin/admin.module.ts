@@ -49,6 +49,7 @@ import {InteresseComponent} from './interesses/interesse/interesse.component';
 import {InteresseResolver} from '../../guard/interesse.resolver';
 import {NgxPaginationModule, PaginatePipe} from 'ngx-pagination';
 import {FileUploadModule} from 'ng2-file-upload';
+import {AlertModule, BsDropdownModule, CollapseModule, ModalModule, TooltipModule} from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -57,7 +58,12 @@ import {FileUploadModule} from 'ng2-file-upload';
     ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule,
-    FileUploadModule
+    FileUploadModule,
+    BsDropdownModule,
+    ModalModule,
+    TooltipModule,
+    CollapseModule,
+    AlertModule
   ],
   declarations: [
     AdminComponent,
