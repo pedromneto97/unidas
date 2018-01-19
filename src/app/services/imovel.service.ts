@@ -3,6 +3,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Imovel} from '../model/imovel';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ImovelService {
@@ -21,13 +22,6 @@ export class ImovelService {
   getImoveis() {
     const url = `${this.url}/todos`;
     return this.http.get(url, {headers: this.header})
-      .toPromise()
-      .then((response: HttpResponse<Imovel>) => response)
-      .catch(this.handleError);
-  }
-
-  getImoveisLimite() {
-    return this.http.get(this.url, {headers: this.header})
       .toPromise()
       .then((response: HttpResponse<Imovel>) => response)
       .catch(this.handleError);
@@ -89,16 +83,14 @@ export class ImovelService {
       .catch(this.handleError);
   }
 
-  delete(id: number) {
+  delete(id: number): Observable<HttpResponse<any>> {
     const url = `${this.url}/${id}`;
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.token}`
     });
     return this.http.delete(url, {headers: headers})
-      .toPromise()
-      .then((response: HttpResponse<any>) => response)
-      .catch(this.handleError);
+      .map((response: HttpResponse<any>) => response);
   }
 
   handleError(error: any): Promise<any> {
