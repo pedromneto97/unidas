@@ -26,11 +26,7 @@
         "../node_modules/font-awesome/css/font-awesome.css"
       ],
       "scripts": [
-        "./assets/js/script.js",
-        "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/tether/dist/js/tether.js",
-        "../node_modules/popper.js/dist/umd/popper.min.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.js"
+        "./assets/js/script.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
