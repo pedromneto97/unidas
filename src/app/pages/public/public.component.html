@@ -15,34 +15,31 @@
   </div>
   <nav class="navbar navbar-expand-md navbar-light bg-faded">
     <a class="navbar-brand" href="#">Unidas</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarNavDropdow" aria-controls="navbarNavDropdow" aria-expanded="false"
-            aria-label="Toggle navigation">
+    <button (click)="isCollapsed = !isCollapsed" class="navbar-toggler" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdow">
-      <ul class="navbar-nav mr-auto">
-        <li *ngFor="let tp of tipo" class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="{{tp.tipo}}" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
+    <div [collapse]="isCollapsed" class="collapse navbar-collapse" id="navbarNavDropdow">
+      <ul dropdown class="navbar-nav mr-auto">
+        <li dropdown *ngFor="let tp of tipo" class="nav-item dropdown" [routerLinkActive]="['active']">
+          <a dropdownToggle role="button" class="nav-link dropdown-toggle" id="{{tp.tipo}}">
             {{tp.tipo}}
           </a>
-          <div class="dropdown-menu" aria-labelledby="[tp.tipo]">
+          <div *dropdownMenu class="dropdown-menu" aria-labelledby="[tp.tipo]">
             <a class="dropdown-item" *ngFor="let fim of finalidade"
-               routerLink="/imoveis/{{tp.id}}/{{fim.id}}">{{fim.finalidade}}</a>
+               routerLink="/imoveis/{{tp.id}}/{{fim.id}}" [routerLinkActive]="['active']">
+              {{fim.finalidade}}</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Anuncie seu imóvel</a>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" href="#" [routerLinkActive]="['active']">Anuncie seu imóvel</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="Institucional" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
+        <li dropdown class="nav-item dropdown" [routerLinkActive]="['active']">
+          <a dropdownToggle class="nav-link dropdown-toggle" role="button" id="Institucional">
             Institucional
           </a>
-          <div class="dropdown-menu" aria-labelledby="Institucional">
-            <a class="dropdown-item" routerLink="/empresa">A Empresa</a>
-            <a class="dropdown-item" routerLink="/regraslocacao">Regras de Locação</a>
+          <div *dropdownMenu class="dropdown-menu" aria-labelledby="Institucional">
+            <a class="dropdown-item" routerLink="/empresa" [routerLinkActive]="['active']">A Empresa</a>
+            <a class="dropdown-item" routerLink="/regraslocacao" [routerLinkActive]="['active']">Regras de Locação</a>
           </div>
         </li>
       </ul>
@@ -53,11 +50,13 @@
     </div>
   </nav>
 </div>
+
 <div class="container corpo">
   <div class="row">
     <router-outlet></router-outlet>
   </div>
 </div>
+
 <footer>
   <div class="container-fluid">
     <div class="row" style="padding-left: 15px">

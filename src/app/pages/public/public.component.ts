@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Subscription} from "rxjs/Subscription";
-import {Tipo} from "../../model/tipo";
-import {Finalidade} from "../../model/finalidade";
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
+import {Tipo} from '../../model/tipo';
+import {Finalidade} from '../../model/finalidade';
 
 @Component({
   selector: 'app-public',
@@ -13,6 +13,7 @@ export class PublicComponent implements OnInit, OnDestroy {
   public tipo: Tipo[];
   public finalidade: Finalidade[];
   private inscricao: Subscription;
+  public isCollapsed = false;
 
   constructor(private route: ActivatedRoute, private router: Router) {
   }

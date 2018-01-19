@@ -14,19 +14,16 @@
   </div>
   <nav class="navbar navbar-expand-md navbar-light bg-faded">
     <a class="navbar-brand" routerLink="/admin">Administração</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarNavDropdow" aria-controls="navbarNavDropdow" aria-expanded="false"
-            aria-label="Toggle navigation">
+    <button (click)="isCollapsed = !isCollapsed" class="navbar-toggler" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdow">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown" [routerLinkActive]="['active']">
-          <a class="nav-link dropdown-toggle" href="#" id="Imovel" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
+    <div [collapse]="isCollapsed" class="collapse navbar-collapse" id="navbarNavDropdow">
+      <ul dropdown class="navbar-nav mr-auto">
+        <li dropdown class="nav-item dropdown" [routerLinkActive]="['active']">
+          <a dropdownToggle role="button" class="nav-link dropdown-toggle" id="Imovel">
             Imoveis
           </a>
-          <div class="dropdown-menu" aria-labelledby="Imovel">
+          <div *dropdownMenu class="dropdown-menu" aria-labelledby="Imovel">
             <a class="dropdown-item" [routerLinkActive]="['active']"
                routerLink="/admin/imoveis/lista">Lista de imóveis</a>
             <a class="dropdown-item" [routerLinkActive]="['active']" routerLink="/admin/imoveis/novo">Novo imóvel</a>
@@ -44,34 +41,31 @@
         <li class="nav-item" [routerLinkActive]="['active']">
           <a class="nav-link" routerLink="/admin/estados/lista">Estados</a>
         </li>
-        <li class="nav-item dropdown" [routerLinkActive]="['active']">
-          <a class="nav-link dropdown-toggle" href="#" id="finalidade" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
+        <li dropdown class="nav-item dropdown" [routerLinkActive]="['active']">
+          <a dropdownToggle class="nav-link dropdown-toggle" role="button" id="finalidade">
             Finalidades
           </a>
-          <div class="dropdown-menu" aria-labelledby="finalidade">
+          <div *dropdownMenu class="dropdown-menu" aria-labelledby="finalidade">
             <a class="dropdown-item" routerLink="/admin/finalidades/lista" [routerLinkActive]="['active']">Lista de
               finalidades</a>
             <a class="dropdown-item" routerLink="/admin/finalidades/novo" [routerLinkActive]="['active']">Nova
               finalidade</a>
           </div>
         </li>
-        <li class="nav-item dropdown" [routerLinkActive]="['active']">
-          <a class="nav-link dropdown-toggle" href="#" id="tipo" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
+        <li dropdown class="nav-item dropdown" [routerLinkActive]="['active']">
+          <a dropdownToggle class="nav-link dropdown-toggle" role="button" id="tipo">
             Tipos
           </a>
-          <div class="dropdown-menu" aria-labelledby="tipo">
+          <div *dropdownMenu class="dropdown-menu" aria-labelledby="tipo">
             <a class="dropdown-item" routerLink="/admin/tipos/lista" [routerLinkActive]="['active']">Lista de tipos</a>
             <a class="dropdown-item" routerLink="/admin/tipos/novo" [routerLinkActive]="['active']">Novo tipo</a>
           </div>
         </li>
-        <li class="nav-item dropdown" [routerLinkActive]="['active']">
-          <a class="nav-link dropdown-toggle" href="#" id="interesse" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
+        <li dropdown class="nav-item dropdown" [routerLinkActive]="['active']">
+          <a dropdownToggle class="nav-link dropdown-toggle" role="button" id="interesse">
             Interesses
           </a>
-          <div class="dropdown-menu" aria-labelledby="interesse">
+          <div *dropdownMenu class="dropdown-menu" aria-labelledby="interesse">
             <a class="dropdown-item" routerLink="/admin/interesses/lista" [routerLinkActive]="['active']">Lista de
               interesses</a>
             <a class="dropdown-item" routerLink="/admin/interesses/todos" [routerLinkActive]="['active']">Todos os

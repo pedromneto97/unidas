@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "../../services/auth.service";
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,6 +8,7 @@ import {AuthService} from "../../services/auth.service";
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  public isCollapsed = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private auth: AuthService) {
   }
