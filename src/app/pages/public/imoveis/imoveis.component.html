@@ -6,9 +6,9 @@
     <br>
     <br>
   </h4>
-  <div class="aviso" *ngIf="imoveis.length === 0">
-    <h3>Nenhum imóvel nesta categoria encontrado</h3>
-  </div>
+  <alert type="warning" *ngIf="imoveis.length === 0">
+    <h3 class="alert-heading">Nenhum imóvel nesta categoria encontrado</h3>
+  </alert>
   <table class="table table-responsive table-hover">
     <thead>
     </thead>
