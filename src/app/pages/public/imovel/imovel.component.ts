@@ -38,6 +38,7 @@ export class ImovelComponent implements OnInit, OnDestroy {
       email: [null, Validators.compose([])],
       id_imovel: [this.imovel.id]
     });
+    this.formSubscribe();
   }
 
   ngOnDestroy() {
@@ -50,7 +51,7 @@ export class ImovelComponent implements OnInit, OnDestroy {
   }
 
   formSubscribe() {
-    const changes$ = this.InteresseForm.controls.type.valueChanges;
+    const changes$ = this.InteresseForm.valueChanges;
     changes$.subscribe(contato => {
       console.log(contato);
     });

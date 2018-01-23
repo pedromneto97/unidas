@@ -55,7 +55,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form #interesse="ngForm" [ngForm]="InteresseForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="InteresseForm" (ngSubmit)="onSubmit()">
               <div class="modal-body">
                 <div class="form-group"
                      [ngClass]="{'has-danger': InteresseForm.controls['nome'].invalid && InteresseForm.controls['nome'].touched}">
