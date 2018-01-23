@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Imovel} from '../../../../model/imovel';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute} from '@angular/router';
@@ -10,11 +10,13 @@ import {ImovelService} from '../../../../services/imovel.service';
   templateUrl: './lista.component.html',
   styleUrls: ['./lista.component.css']
 })
-export class ListaImovelComponent implements OnInit {
+export class ListaImovelComponent implements OnInit, OnDestroy {
 
   public imoveis: Imovel[];
   public lista: Imovel[];
   private inscricao: Subscription;
+  private delete: Subscription;
+  private dflag = false;
   public p = 1;
   public flag = {
     tipo: null,
@@ -32,7 +34,7 @@ export class ListaImovelComponent implements OnInit {
   apagar(id, i) {
     const aux = 'Deseja mesmo apagar o imóvel: '.concat(id);
     if (window.confirm(aux)) {
-      this.im.delete(id).subscribe(value => {
+      this.delete = this.im.delete(id).subscribe(value => {
         },
         err => {
           if (err.status === 200) {
@@ -47,6 +49,7 @@ export class ListaImovelComponent implements OnInit {
             this.flag.tipo = 'erro';
           }
         });
+      this.dflag = true;
     }
   }
 
@@ -55,6 +58,13 @@ export class ListaImovelComponent implements OnInit {
       this.imoveis = data.imovel;
       this.lista = data.imovel;
     });
+  }
+
+  ngOnDestroy() {
+    this.inscricao.unsubscribe();
+    if (this.dflag) {
+      this.delete.unsubscribe();
+    }
   }
 
   busca(busca) {
