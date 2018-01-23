@@ -33,6 +33,7 @@ export class ImovelComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.inscricao.unsubscribe();
+    this.modalref.hide();
   }
 
   onSubmit(form) {
