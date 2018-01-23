@@ -4,5 +4,6 @@ export class Interesse {
   public telefone: string;
   public email: string;
   public atendido: boolean;
+  public id_imovel: number;
 
 }
