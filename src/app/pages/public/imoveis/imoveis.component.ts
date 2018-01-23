@@ -17,7 +17,6 @@ export class ImoveisComponent implements OnInit, OnDestroy {
   lista: Imovel[];
   tipo: Tipo;
   finalidade: Finalidade;
-  error: Error;
   private inscricao: Subscription;
   public p = 1;
 
