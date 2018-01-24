@@ -62,19 +62,19 @@
                   <label for="nome"
                          class="form-control-label">Nome</label>
                   <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome"
-                         [ngClass]="{'form-control-danger': ImovelForm.controls['nome'].invalid}">
+                         [ngClass]="{'form-control-danger': InteresseForm.controls['nome'].invalid}">
                 </div>
                 <div class="form-group"
                      [ngClass]="{'has-danger': InteresseForm.controls['telefone'].invalid && InteresseForm.controls['telefone'].touched}">
                   <label for="celular">Celular</label>
                   <input type="number" class="form-control" name="celular" id="celular" placeholder="15997850280"
-                         [ngClass]="{'form-control-danger': ImovelForm.controls['telefone'].invalid}">
+                         [ngClass]="{'form-control-danger': InteresseForm.controls['telefone'].invalid}">
                 </div>
                 <div class="form-group"
                      [ngClass]="{'has-danger': InteresseForm.controls['email'].invalid && InteresseForm.controls['email'].touched}">
                   <label for="email">E-mail</label>
                   <input type="email" class="form-control" name="email" id="email" placeholder="email@email.com"
-                         [ngClass]="{'form-control-danger': ImovelForm.controls['email'].invalid}">
+                         [ngClass]="{'form-control-danger': InteresseForm.controls['email'].invalid}">
                 </div>
               </div>
               <div class="modal-footer">

@@ -34,8 +34,8 @@ export class ImovelComponent implements OnInit, OnDestroy {
     });
     this.InteresseForm = this.formBuilder.group({
       nome: [null, Validators.compose([Validators.required, Validators.min(3)])],
-      telefone: [null, Validators.compose([])],
-      email: [null, Validators.compose([])],
+      telefone: [null, Validators.compose([Validators.required])],
+      email: [null, Validators.compose([Validators.required])],
       id_imovel: [this.imovel.id]
     });
     this.formSubscribe();
@@ -58,7 +58,7 @@ export class ImovelComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate() {
-    if (window.confirm('Deseja mesmo fechar o formulário?') && this.InteresseForm.dirty) {
+    if (this.InteresseForm.dirty && window.confirm('Deseja mesmo fechar o formulário?')) {
       this.modalref.hide();
     }
   }
