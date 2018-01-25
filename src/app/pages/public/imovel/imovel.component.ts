@@ -108,7 +108,7 @@ export class ImovelComponent implements OnInit, OnDestroy {
 
     });
 
-    this.telefone = this.InteresseForm.controls.email.valueChanges.subscribe(email => {
+    this.email = this.InteresseForm.controls.email.valueChanges.subscribe(email => {
       if (email != null && !this.InteresseForm.controls.email.invalid && !flage) {
         flage = true;
         this.InteresseForm.controls.telefone.setValidators([
