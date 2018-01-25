@@ -14,6 +14,7 @@ import {CamelCasePipe} from '../../pipes/camel-case.pipe';
 import {ImovelService} from '../../services/imovel.service';
 import {NgxPaginationModule, PaginatePipe} from 'ngx-pagination';
 import {AlertModule, BsDropdownModule, CarouselModule, CollapseModule, ModalModule, TooltipModule} from 'ngx-bootstrap';
+import {SearchComponent} from './search/search.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import {AlertModule, BsDropdownModule, CarouselModule, CollapseModule, ModalModu
     RegraslocacaoComponent,
     ImovelComponent,
     ImoveisComponent,
+    SearchComponent,
     CamelCasePipe
   ],
   providers: [
