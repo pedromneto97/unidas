@@ -75,6 +75,7 @@ export class ImovelComponent implements OnInit, OnDestroy {
     });
     this.InteresseForm.reset();
     this.InteresseForm.patchValue({
+      atendido: false,
       id_imovel: this.imovel.id
     });
     this.modalref.hide();
