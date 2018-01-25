@@ -3,7 +3,6 @@ import {Component, OnInit} from '@angular/core';
 import {Imovel} from '../../../model/imovel';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {element} from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -27,11 +26,13 @@ export class HomeComponent implements OnInit {
       this.imoveis = data.imovel;
     });
     this.lista = [];
-    this.imoveis.forEach(i => {
-      if (i.foto.length > 0 && this.lista.length < 8) {
-        this.lista.push(i);
-      }
-    });
+    if (this.imoveis.length > 0) {
+      this.imoveis.forEach(i => {
+        if (i.foto.length > 0 && this.lista.length < 8) {
+          this.lista.push(i);
+        }
+      });
+    }
   }
 
 
