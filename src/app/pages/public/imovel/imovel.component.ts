@@ -6,6 +6,7 @@ import {BsModalRef, BsModalService, CarouselConfig} from 'ngx-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {InteresseService} from '../../../services/interesse.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import {isObjectEmpty} from 'ngx-bootstrap/chronos/utils/type-checks';
 
 @Component({
   selector: 'app-imovel',
@@ -35,25 +36,33 @@ export class ImovelComponent implements OnInit, OnDestroy {
     this.inscricao = this.rota.data.subscribe((data: { imovel: Imovel }) => {
       this.imovel = data.imovel;
     });
-    this.InteresseForm = this.formBuilder.group({
-      nome: [null, Validators.compose([Validators.required,
-        Validators.pattern(new RegExp('(?=^.{2,60}$)^[A-Z][a-z]+(?:[ ](?:das?|dos?|de|e|[A-Z][a-z]+))*$'))])],
-      telefone: [null, Validators.compose([Validators.required,
-        Validators.pattern(new RegExp('^\\([1-9]{2}\\)[2-9][0-9]{3,4}\\-[0-9]{4}$', 'g'))])],
-      email: [null, Validators.compose([Validators.required,
-        Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')
-      ])],
-      atendido: [false],
-      id_imovel: [this.imovel.id]
-    });
-    this.formSubscribe();
+    if (!isObjectEmpty(this.imovel)) {
+      this.InteresseForm = this.formBuilder.group({
+        nome: [null, Validators.compose([Validators.required,
+          Validators.pattern(new RegExp('(?=^.{2,60}$)^[A-Z][a-z]+(?:[ ](?:das?|dos?|de|e|[A-Z][a-z]+))*$'))])],
+        telefone: [null, Validators.compose([Validators.required,
+          Validators.pattern(new RegExp('^\\([1-9]{2}\\)[2-9][0-9]{3,4}\\-[0-9]{4}$', 'g'))])],
+        email: [null, Validators.compose([Validators.required,
+          Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')
+        ])],
+        atendido: [false],
+        id_imovel: [this.imovel.id]
+      });
+      this.formSubscribe();
+    } else {
+      this.imovel = null;
+    }
   }
 
   ngOnDestroy() {
     this.inscricao.unsubscribe();
-    this.modalref.hide();
-    this.telefone.unsubscribe();
-    this.email.unsubscribe();
+    if (this.modalref != null) {
+      this.modalref.hide();
+    }
+    if (this.imovel === null || !isObjectEmpty(this.imovel)) {
+      this.telefone.unsubscribe();
+      this.email.unsubscribe();
+    }
   }
 
   onSubmit() {

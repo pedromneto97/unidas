@@ -1,6 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12" *ngIf="this.imovel === null">
+      <alert type="danger">
+        <h3 class="alert-heading">Nenhum imóvel encontrado</h3>
+      </alert>
+    </div>
+    <div class="col-12" *ngIf="this.imovel != null">
       <table class="table table-responsive table-hover">
         <thead>
         <tr>
@@ -11,8 +16,8 @@
         </tr>
         </thead>
       </table>
-      <div class="row" *ngIf="imovel.foto.length > 0">
-        <div class="col-sm-5">
+      <div class="row">
+        <div class="col-sm-5" *ngIf="imovel.foto.length > 0">
           <a (click)="onClick(imagem)" data-toggle="modal" data-target="#imagem">
             <figure class="figure">
               <img src="assets/images/{{imovel.foto[0].foto}}" class="figure-img img-fluid rounded exibicao">
@@ -43,6 +48,62 @@
           <!--Fim do modal-->
           <br>
           <br>
+          <!--Fim do modal-->
+        </div>
+        <div class="col-sm-4">
+          <h4 class="page-header">Detalhes do imóvel: </h4>
+          <p>
+            <b>Finalidade:</b> {{this.imovel.finalidade.finalidade}}
+          </p>
+          <p>
+            <b>Tipo:</b> {{this.imovel.tipo.tipo}}
+          </p>
+          <p>
+            <b>Cidade:</b> {{this.imovel.rua.bairro.cidade.cidade}}/{{this.imovel.rua.bairro.cidade.estado.uf}}
+          </p>
+          <p *ngIf="this.imovel.rua.bairro != null">
+            <b>Bairro:</b> {{this.imovel.rua.bairro.bairro}}
+          </p>
+          <p *ngIf="this.imovel.rua != null">
+            <b>Endereço:</b> {{this.imovel.rua.rua}}
+          </p>
+          <p *ngIf="this.imovel.aterreno != null">
+            <b>Área Terreno:</b> {{this.imovel.aterreno}} m²
+          </p>
+          <p *ngIf="this.imovel.aconstruida != null">
+            <b>Área Construída:</b> {{this.imovel.aconstruida}} m²
+          </p>
+        </div>
+        <div class="col-sm-3">
+          <br>
+          <p>
+            <b> Descrição:</b>
+            {{this.imovel.descricao}}
+          </p>
+          <p *ngIf="this.imovel.dormitorio != null">
+            {{this.imovel.dormitorio}} Dormitórios
+          </p>
+          <p *ngIf="this.imovel.suite != null">
+            {{this.imovel.suite}} Suíte
+          </p>
+          <p *ngIf="this.imovel.banheiro != null">
+            {{this.imovel.banheiro}} Banheiros
+          </p>
+          <p *ngIf="this.imovel.garagem != null">
+            {{this.imovel.garagem}} Garagens
+          </p>
+          <p *ngIf="this.imovel.aservico != null">
+            <b>Área de Serviço: </b>
+            {{this.imovel.aservico === true ? "Sim" : "Não"}}
+          </p>
+          <p *ngIf="this.imovel.mobilia != null">
+            <b>Mobíliado:</b>
+            {{this.imovel.mobilia === true ? "Sim" : "Não"}}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5">
           <button type="button" class="btn btn-primary btn-warning " (click)="onClick(interesse)">
             TENHO INTERESSE
           </button>
@@ -116,60 +177,8 @@
               </div>
             </form>
           </ng-template>
-          <!--Fim do modal-->
         </div>
-        <div class="col-sm-4">
-          <h4 class="page-header">Detalhes do imóvel: </h4>
-          <p>
-            <b>Finalidade:</b> {{this.imovel.finalidade.finalidade}}
-          </p>
-          <p>
-            <b>Tipo:</b> {{this.imovel.tipo.tipo}}
-          </p>
-          <p>
-            <b>Cidade:</b> {{this.imovel.rua.bairro.cidade.cidade}}/{{this.imovel.rua.bairro.cidade.estado.uf}}
-          </p>
-          <p *ngIf="this.imovel.rua.bairro != null">
-            <b>Bairro:</b> {{this.imovel.rua.bairro.bairro}}
-          </p>
-          <p *ngIf="this.imovel.rua != null">
-            <b>Endereço:</b> {{this.imovel.rua.rua}}
-          </p>
-          <p *ngIf="this.imovel.aterreno != null">
-            <b>Área Terreno:</b> {{this.imovel.aterreno}} m²
-          </p>
-          <p *ngIf="this.imovel.aconstruida != null">
-            <b>Área Construída:</b> {{this.imovel.aconstruida}} m²
-          </p>
-        </div>
-        <div class="col-sm-3">
-          <br>
-          <p>
-            <b> Descrição:</b>
-            {{this.imovel.descricao}}
-          </p>
-          <p *ngIf="this.imovel.dormitorio != null">
-            {{this.imovel.dormitorio}} Dormitórios
-          </p>
-          <p *ngIf="this.imovel.suite != null">
-            {{this.imovel.suite}} Suíte
-          </p>
-          <p *ngIf="this.imovel.banheiro != null">
-            {{this.imovel.banheiro}} Banheiros
-          </p>
-          <p *ngIf="this.imovel.garagem != null">
-            {{this.imovel.garagem}} Garagens
-          </p>
-          <p *ngIf="this.imovel.aservico != null">
-            <b>Área de Serviço: </b>
-            {{this.imovel.aservico === true ? "Sim" : "Não"}}
-          </p>
-          <p *ngIf="this.imovel.mobilia != null">
-            <b>Mobíliado:</b>
-            {{this.imovel.mobilia === true ? "Sim" : "Não"}}
-          </p>
-        </div>
-        <div class="col-sm-7 offset-md-5">
+        <div class="col-sm-7 offset-sm-5">
           <h4 *ngIf="this.imovel.valor != null">
             <b>Valor: R${{this.imovel.valor}}</b>
           </h4>
