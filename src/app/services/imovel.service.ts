@@ -20,7 +20,7 @@ export class ImovelService {
   }
 
   getImoveis() {
-    const url = `${this.url}/todos`;
+    const url = `${this.url}/`;
     return this.http.get(url, {headers: this.header})
       .toPromise()
       .then((response: HttpResponse<Imovel>) => response)
