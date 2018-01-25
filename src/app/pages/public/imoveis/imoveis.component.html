@@ -13,8 +13,10 @@
     <thead>
     </thead>
     <tbody>
+
     <tr *ngFor="let imovel of lista | paginate: {itemsPerPage: 10, currentPage: p}"
         routerLink="/imovel/{{imovel.id}}">
+      <th scope="row">{{imovel.id}}</th>
       <td *ngIf="imovel.foto.length >0">
         <img src="assets//images/{{imovel.foto[0].foto}}" class="foto rounded">
       </td>
@@ -27,6 +29,10 @@
       </td>
       <td class="coluna">
         <p *ngIf="imovel.valor != null">Valor: R${{imovel.valor}}</p>
+      </td>
+      <td class="coluna">
+        <b>Descrição:</b>
+        {{imovel.descricao}}
       </td>
       <td class="coluna" *ngIf="imovel.dormitorio != null">
         <i class="fa fa-bed fa-fw"></i>
@@ -42,10 +48,6 @@
         <i class="fa fa-shower fa-fw"></i>
         <br>
         {{imovel.banheiro}}
-      </td>
-      <td class="coluna">
-        <b>Descrição:</b>
-        {{imovel.descricao}}
       </td>
     </tr>
     </tbody>
