@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/delay';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Imovel} from '../model/imovel';
 import {Observable} from 'rxjs/Observable';
@@ -19,11 +21,10 @@ export class ImovelService {
     this.token = localStorage.getItem('API_TOKEN');
   }
 
-  getImoveis() {
+  getImoveis(): Observable<HttpResponse<Imovel[]>> {
     const url = `${this.url}/`;
     return this.http.get(url, {headers: this.header})
-      .toPromise()
-      .then((response: HttpResponse<Imovel>) => response)
+      .map((response: HttpResponse<Imovel[]>) => response)
       .catch(this.handleError);
   }
 
@@ -94,6 +95,9 @@ export class ImovelService {
   }
 
   handleError(error: any): Promise<any> {
+    if (error.status === 200) {
+      return Promise.reject('Nenhuma');
+    }
     if (error.status === 401) {
       return Promise.reject('Unauthorized');
     }

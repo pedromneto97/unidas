@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
       this.imoveis = data.imovel;
     });
     this.lista = [];
-    if (this.imoveis.length > 0) {
+    if (this.imoveis != null && this.imoveis.length > 0) {
       this.imoveis.forEach(i => {
         if (i.foto.length > 0 && this.lista.length < 8) {
           this.lista.push(i);

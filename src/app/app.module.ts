@@ -53,7 +53,7 @@ registerLocaleData(localePt, 'pt');
     TipoService,
     FinalidadeService,
     TipoResolver,
-    FinalidadeResolver
+    FinalidadeResolver,
   ],
   bootstrap: [AppComponent]
 })
