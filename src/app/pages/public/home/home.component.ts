@@ -15,11 +15,9 @@ export class HomeComponent implements OnInit {
   lista: Imovel[];
   inscricao: Subscription;
 
-
   constructor(private rota: ActivatedRoute) {
 
   }
-
 
   ngOnInit() {
     this.inscricao = this.rota.data.subscribe((data: { imovel: Imovel[] }) => {
