@@ -11,6 +11,10 @@ import {ImovelResolver} from '../../guard/imovel.resolver';
 import {TipoResolver} from '../../guard/tipo.resolver';
 import {FinalidadeResolver} from '../../guard/finalidade.resolver';
 import {SearchComponent} from './search/search.component';
+import {RuaResolver} from '../../guard/rua.resolver';
+import {BairroResolver} from '../../guard/bairro.resolver';
+import {CidadeResolver} from '../../guard/cidade.resolver';
+import {EstadoResolver} from '../../guard/estado.resolver';
 
 const routes: Routes = [{
   path: '', component: PublicComponent, children: [
@@ -27,7 +31,13 @@ const routes: Routes = [{
     {
       path: 'busca', component: SearchComponent,
       resolve: {
-        imovel: ImovelResolver
+        imovel: ImovelResolver,
+        tipo: TipoResolver,
+        finalidade: FinalidadeResolver,
+        rua: RuaResolver,
+        bairro: BairroResolver,
+        cidade: CidadeResolver,
+        estado: EstadoResolver
       }
     }
   ]

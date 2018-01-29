@@ -1,10 +1,17 @@
 <div class="col-12">
   <div class="row">
     <div class="col-4">
-      <h3>Filtros</h3>
-      <p>
+      <form [formGroup]="filtroForm">
+        <h3>Filtros</h3>
         Tipos:
-      </p>
+        <div *ngFor="let t of tipos">
+          <div *ngFor="let c of tiposc">
+            <div *ngIf="c.id===t.id">
+              <input class="form-check-input" type="checkbox" value="{{t.id}}">{{t.tipo}}({{c.cont}})
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
     <div class="col-8">
       <alert type="danger" *ngIf="imoveis.length === 0">
@@ -34,21 +41,6 @@
           <td class="coluna">
             <b>Descrição:</b>
             {{imovel.descricao}}
-          </td>
-          <td class="coluna" *ngIf="imovel.dormitorio != null">
-            <i class="fa fa-bed fa-fw"></i>
-            <br>
-            {{imovel.dormitorio}}
-          </td>
-          <td class="coluna" *ngIf="imovel.garagem != null">
-            <i class="fa fa-car fa-fw"></i>
-            <br>
-            {{imovel.garagem}}
-          </td>
-          <td class="coluna" *ngIf="imovel.banheiro != null">
-            <i class="fa fa-shower fa-fw"></i>
-            <br>
-            {{imovel.banheiro}}
           </td>
         </tr>
         </tbody>
