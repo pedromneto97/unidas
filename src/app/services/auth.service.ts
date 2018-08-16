@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {HttpResponse} from 'selenium-webdriver/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
@@ -24,7 +23,7 @@ export class AuthService {
 
     return this.http.post(url, user, {headers: this.headers})
       .toPromise()
-      .then((response: HttpResponse) => response)
+      .then((response: HttpResponse<any>) => response)
       .catch(this.handleError);
   }
 
