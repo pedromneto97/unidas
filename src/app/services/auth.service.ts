@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import 'rxjs/add/operator/toPromise';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {HttpResponse} from "selenium-webdriver/http";
+
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpResponse} from 'selenium-webdriver/http';
 
 @Injectable()
 export class AuthService {

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {Finalidade} from "../model/finalidade";
-import {FinalidadeService} from "../services/finalidade.service";
+import {Observable} from 'rxjs';
+import {Finalidade} from '../model/finalidade';
+import {FinalidadeService} from '../services/finalidade.service';
 
 @Injectable()
 export class FinalidadeResolver implements Resolve<Finalidade> {

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {Imovel} from '../../../model/imovel';
 import {ActivatedRoute} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-home',

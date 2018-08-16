@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
-import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
-import {Rua} from "../model/rua";
+
+
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {Rua} from '../model/rua';
 
 @Injectable()
 export class RuaService {

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {Cidade} from "../model/cidade";
-import {CidadeService} from "../services/cidade.service";
+import {Observable} from 'rxjs';
+import {Cidade} from '../model/cidade';
+import {CidadeService} from '../services/cidade.service';
 
 @Injectable()
 export class CidadeResolver implements Resolve<Cidade> {

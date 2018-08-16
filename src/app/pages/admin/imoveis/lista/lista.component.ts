@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Imovel} from '../../../../model/imovel';
-import {Subscription} from 'rxjs/Subscription';
+import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {isNumber} from 'util';
 import {ImovelService} from '../../../../services/imovel.service';

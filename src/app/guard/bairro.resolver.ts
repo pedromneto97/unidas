@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {Bairro} from "../model/bairro";
-import {BairroService} from "../services/bairro.service";
+import {Observable} from 'rxjs';
+import {Bairro} from '../model/bairro';
+import {BairroService} from '../services/bairro.service';
 
 @Injectable()
 export class BairroResolver implements Resolve<Bairro> {

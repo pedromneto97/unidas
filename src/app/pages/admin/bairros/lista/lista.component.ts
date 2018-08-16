@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Bairro} from '../../../../model/bairro';
-import {Subscription} from 'rxjs/Subscription';
+import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({

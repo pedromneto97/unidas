@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {Tipo} from "../model/tipo";
-import {TipoService} from "../services/tipo.service";
+import {Observable} from 'rxjs';
+import {Tipo} from '../model/tipo';
+import {TipoService} from '../services/tipo.service';
 
 @Injectable()
 export class TipoResolver implements Resolve<Tipo> {

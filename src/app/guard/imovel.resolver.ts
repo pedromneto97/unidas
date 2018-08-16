@@ -1,8 +1,10 @@
+import {Observable, of as observableOf} from 'rxjs';
+
+import {catchError, map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/catch';
+
+
 import {Imovel} from '../model/imovel';
 import {ImovelService} from '../services/imovel.service';
 
@@ -32,12 +34,12 @@ export class ImovelResolver implements Resolve<Imovel> {
     if (id != null) {
       return this.imovel.getImovel(id);
     } else {
-      return this.imovel.getImoveis().map(resp => {
+      return this.imovel.getImoveis().pipe(map(resp => {
         return resp;
-      }).catch(err => {
+      }), catchError(err => {
         console.log(err);
-        return Observable.of(null);
-      });
+        return observableOf(null);
+      }),);
     }
   }
 }

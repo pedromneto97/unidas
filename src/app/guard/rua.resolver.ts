@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {Rua} from "../model/rua";
-import {RuaService} from "../services/rua.service";
+import {Observable} from 'rxjs';
+import {Rua} from '../model/rua';
+import {RuaService} from '../services/rua.service';
 
 @Injectable()
 export class RuaResolver implements Resolve<Rua> {

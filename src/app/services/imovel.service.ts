@@ -1,11 +1,10 @@
+import {catchError, map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/delay';
+
+
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Imovel} from '../model/imovel';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class ImovelService {
@@ -23,9 +22,9 @@ export class ImovelService {
 
   getImoveis(): Observable<HttpResponse<Imovel[]>> {
     const url = `${this.url}/`;
-    return this.http.get(url, {headers: this.header})
-      .map((response: HttpResponse<Imovel[]>) => response)
-      .catch(this.handleError);
+    return this.http.get(url, {headers: this.header}).pipe(
+      map((response: HttpResponse<Imovel[]>) => response),
+      catchError(this.handleError),);
   }
 
   getImovel(id: number) {
@@ -90,8 +89,8 @@ export class ImovelService {
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.delete(url, {headers: headers})
-      .map((response: HttpResponse<any>) => response);
+    return this.http.delete(url, {headers: headers}).pipe(
+      map((response: HttpResponse<any>) => response));
   }
 
   handleError(error: any): Promise<any> {

@@ -1,16 +1,16 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
-import {FormCanDeactivate} from "../../../../guard/form-can-deactivate.guard";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Subscription} from "rxjs/Subscription";
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormCanDeactivate} from '../../../../guard/form-can-deactivate.guard';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
 
-import {ImovelService} from "../../../../services/imovel.service";
-import {FinalidadeService} from "../../../../services/finalidade.service";
-import {TipoService} from "../../../../services/tipo.service";
+import {ImovelService} from '../../../../services/imovel.service';
+import {FinalidadeService} from '../../../../services/finalidade.service';
+import {TipoService} from '../../../../services/tipo.service';
 
-import {Imovel} from "../../../../model/imovel";
-import {Tipo} from "../../../../model/tipo";
-import {Finalidade} from "../../../../model/finalidade";
+import {Imovel} from '../../../../model/imovel';
+import {Tipo} from '../../../../model/tipo';
+import {Finalidade} from '../../../../model/finalidade';
 
 @Component({
   selector: 'app-editarimovel',

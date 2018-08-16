@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
+import {Subscription} from 'rxjs';
 import {Imovel} from '../../../model/imovel';
 import {BsModalRef, BsModalService, CarouselConfig} from 'ngx-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';

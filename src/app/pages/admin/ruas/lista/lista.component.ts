@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs/Subscription';
+import {Subscription} from 'rxjs';
 import {Rua} from '../../../../model/rua';
 import {ActivatedRoute} from '@angular/router';
 import {isNumber} from 'util';

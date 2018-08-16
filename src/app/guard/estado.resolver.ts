@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {EstadoService} from "../services/estado.service";
-import {Estado} from "../model/estado";
+import {Observable} from 'rxjs';
+import {EstadoService} from '../services/estado.service';
+import {Estado} from '../model/estado';
 
 @Injectable()
 export class EstadoResolver implements Resolve<Estado> {
